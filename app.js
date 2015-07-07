@@ -12,10 +12,21 @@ var IouRoute = require('./routes/IouRoute');
 var UomeRoute = require('./routes/UomeRoute');
 var mongoose = require('mongoose');
 var fs = require("fs");
+var stormpath = require('express-stormpath');
 
 mongoose.connect('mongodb://localhost/workout_tracker');
 
 var app = express();
+
+app.use(stormpath.init(app, {
+    apiKeyFile: './stormpath/apiKey.properties',
+    application: 'https://api.stormpath.com/v1/applications/56GpvTzerVtKtJEpbpwtvW',
+    secretKey: 'robbybobby',
+    registrationView: __dirname + '/views/register.jade',
+    loginView: __dirname + '/views/login.jade',
+}));
+
+app.listen(9000);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -73,6 +84,8 @@ app.get("/uomes", function(req, res) {
   })
 });
 
+
+
 app.post('/workouts', workouts.create);
 
 app.post('/users', UserRoute.create);
@@ -90,9 +103,26 @@ app.post('/uomes', UomeRoute.create);
 
 app.get('/workouts/:id', workouts.show);
 
+
+app.put('/uomes/:id', UomeRoute.show);
+
+app.put('/ious/:id', IouRoute.show);
+
+
+
 app.put('/workouts', workouts.update);
 
+app.put('/uomes', UomeRoute.update);
+
+app.put('/ious', IouRoute.update);
+
+
+
 app.delete('/workouts', workouts.delete);
+
+app.delete('/uomes', UomeRoute.delete);
+
+app.delete('/ious', IouRoute.delete);
 
 
 // catch 404 and forward to error handler

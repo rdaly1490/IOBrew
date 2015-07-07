@@ -26,8 +26,8 @@ module.exports = React.createClass({
 							<option value="Keg">Keg</option>
 						</select><br />
 						<label>Email Reminder in a week?</label><br />
-						<input type="radio" ref="reminder" value="true" name="reminder" />&nbsp; Yes<br />	
-						<input type="radio" ref="reminder" value="false" name="reminder" />&nbsp; No<br />																		
+						<input type="radio" value="true" name="reminder" />&nbsp; Yes<br />	
+						<input type="radio" value="false" name="reminder" />&nbsp; No<br />																		
 						<button type="submit">Submit</button>
 					</form>
 				</div>
@@ -36,23 +36,23 @@ module.exports = React.createClass({
 	},
 	submitIou: function(e) {
 		e.preventDefault();
+
+		var rem = false;
+		if ($("input[name=reminder]:checked").val() === "true") {
+			rem=true;
+		}
+
+
 		var iou = new IouModel({
 			name: this.refs.name.getDOMNode().value,
 			image: this.refs.image.getDOMNode().value,
 			reason: this.refs.reason.getDOMNode().value,
 			category: this.refs.category.getDOMNode().value,
-			reminder: this.refs.reminder.getDOMNode().value
+			reminder: rem
 		});
 
 		if (iou.attributes.image.length < 5) {
 			iou.attributes.image = "https://s-media-cache-ak0.pinimg.com/736x/85/98/de/8598de9ad9ae33b00123f07f4fef7a38.jpg"
-		}
-
-		if(iou.attributes.reminder === "true") {
-			iou.attributes.reminder === true;
-		}
-		else {
-			iou.attributes.reminder === false;
 		}
 
 		iou.save();

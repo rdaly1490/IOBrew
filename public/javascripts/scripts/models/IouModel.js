@@ -11,6 +11,6 @@ module.exports = Backbone.Model.extend({
 		userId: null,
 		date_created: null
 	},
-	urlRoot:"http://localhost:3000/ious",
+	urlRoot:"/ious",
 	idAttribute: "_id"
 });

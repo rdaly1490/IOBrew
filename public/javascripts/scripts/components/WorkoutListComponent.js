@@ -51,6 +51,6 @@ module.exports = React.createClass({
 	},
 	submitWO: function(e) {
 		e.preventDefault();
-		this.props.myRouter.navigate("submit", {trigger: true});
+		window.location.href = "http://localhost:3000/login";
 	}
 });

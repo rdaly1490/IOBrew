@@ -36,23 +36,22 @@ module.exports = React.createClass({
 	},
 	submitUome: function(e) {
 		e.preventDefault();
+
+		var rem = false;
+		if ($("input[name=reminder]:checked").val() === "true") {
+			rem=true;
+		}
+
 		var uome = new UomeModel({
 			name: this.refs.name.getDOMNode().value,
 			image: this.refs.image.getDOMNode().value,
 			reason: this.refs.reason.getDOMNode().value,
 			category: this.refs.category.getDOMNode().value,
-			reminder: this.refs.reminder.getDOMNode().value
+			reminder: rem
 		});
 
 		if (uome.attributes.image.length < 5) {
 			uome.attributes.image = "http://i.imgur.com/AwSWCaG.jpg"
-		}
-//Getting rid of === breaks it for some reason
-		if(uome.attributes.reminder === "true") {
-			uome.attributes.reminder === true;
-		}
-		else {
-			uome.attributes.reminder === false;
 		}
 
 		uome.save();

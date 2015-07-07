@@ -32516,10 +32516,244 @@ var WorkoutModel = require('../models/WorkoutModel');
 
 module.exports = Backbone.Collection.extend({
 	model: WorkoutModel,
-	url: 'http://localhost:3000/workouts'
+	url: '/workouts'
 });
 
-},{"../models/WorkoutModel":170,"backbone":1,"jquery":4}],161:[function(require,module,exports){
+},{"../models/WorkoutModel":173,"backbone":1,"jquery":4}],161:[function(require,module,exports){
+"use strict";
+
+var React = require("react");
+var $ = require("jquery");
+
+module.exports = React.createClass({
+	displayName: "exports",
+
+	render: function render() {
+		return React.createElement(
+			"div",
+			{ className: "container-fluid" },
+			React.createElement(
+				"div",
+				{ className: "col-xs-8 col-xs-offset-2" },
+				React.createElement(
+					"h1",
+					null,
+					"io",
+					React.createElement(
+						"span",
+						{ className: "brew" },
+						"Brew"
+					),
+					React.createElement("img", { src: "/images/Beer-icon.png" })
+				)
+			)
+		);
+	}
+});
+
+},{"jquery":4,"react":159}],162:[function(require,module,exports){
+"use strict";
+
+var React = require("react");
+var $ = require("jquery");
+
+var UserModel = require("../models/UserModel");
+
+module.exports = React.createClass({
+	displayName: "exports",
+
+	render: function render() {
+		return React.createElement(
+			"div",
+			{ className: "container-fluid" },
+			React.createElement(
+				"div",
+				{ className: "col-xs-8 col-xs-offset-2" },
+				React.createElement(
+					"form",
+					{ onSubmit: this.submitLogin },
+					React.createElement(
+						"label",
+						null,
+						"Username"
+					),
+					React.createElement("br", null),
+					React.createElement("input", { type: "text", ref: "username" }),
+					React.createElement("br", null),
+					React.createElement(
+						"label",
+						null,
+						"Password"
+					),
+					React.createElement("br", null),
+					React.createElement("input", { type: "text", ref: "password" }),
+					React.createElement("br", null),
+					React.createElement(
+						"button",
+						{ type: "submit" },
+						"Submit"
+					)
+				),
+				React.createElement(
+					"button",
+					{ onClick: this.toList },
+					"Back To List"
+				)
+			)
+		);
+	},
+	submitLogin: function submitLogin(e) {
+		e.preventDefault();
+		console.log(this.refs.username.getDOMNode().value);
+		console.log(this.refs.password.getDOMNode().value);
+	}
+});
+
+},{"../models/UserModel":172,"jquery":4,"react":159}],163:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+  displayName: 'exports',
+
+  componentWillMount: function componentWillMount() {
+    this.props.ioBrewUser.on('change', function () {
+      this.forceUpdate();
+    }, this);
+  },
+  render: function render() {
+    var links = [];
+    var userDropdown = null;
+    if (!this.props.ioBrewUser.attributes.username) {
+      links.push(React.createElement(
+        'li',
+        { key: 'register' },
+        React.createElement(
+          'a',
+          { href: '/register' },
+          'Register'
+        )
+      ));
+      links.push(React.createElement(
+        'li',
+        { key: 'login' },
+        React.createElement(
+          'a',
+          { href: '/login' },
+          'Log in'
+        )
+      ));
+    } else {
+      // console.log(this.props);
+      // this.props.myRouter.navigate("submitiou", {trigger: true});
+      links.push(React.createElement(
+        'li',
+        { key: 'logout' },
+        React.createElement(
+          'a',
+          { href: '#', onClick: this.onLogOut },
+          'Log out'
+        )
+      ));
+      links.push(React.createElement(
+        'li',
+        { key: 'UserDash' },
+        React.createElement(
+          'a',
+          { href: '#' },
+          'User Dash'
+        )
+      ));
+      userDropdown = React.createElement(
+        'ul',
+        { className: 'nav navbar-nav navbar-right' },
+        React.createElement(
+          'li',
+          { className: 'dropdown' },
+          React.createElement(
+            'a',
+            { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+            this.props.ioBrewUser.attributes.username,
+            ' ',
+            React.createElement('span', { className: 'caret' })
+          ),
+          React.createElement(
+            'ul',
+            { className: 'dropdown-menu' },
+            React.createElement(
+              'li',
+              null,
+              React.createElement(
+                'a',
+                { href: '#admin' },
+                'Admin'
+              )
+            ),
+            React.createElement(
+              'li',
+              null,
+              React.createElement(
+                'a',
+                { href: '#', onClick: this.onLogOut },
+                'Log out'
+              )
+            )
+          )
+        )
+      );
+    }
+    return React.createElement(
+      'nav',
+      { className: 'navbar navbar-default' },
+      React.createElement(
+        'div',
+        { className: 'container-fluid' },
+        React.createElement(
+          'div',
+          { className: 'navbar-header' },
+          React.createElement(
+            'button',
+            { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1', 'aria-expanded': 'false' },
+            React.createElement(
+              'span',
+              { className: 'sr-only' },
+              'Toggle navigation'
+            ),
+            React.createElement('span', { className: 'icon-bar' }),
+            React.createElement('span', { className: 'icon-bar' }),
+            React.createElement('span', { className: 'icon-bar' })
+          ),
+          React.createElement(
+            'a',
+            { className: 'navbar-brand', href: '#' },
+            'Cheers ',
+            this.props.ioBrewUser.attributes.givenName,
+            ' !'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+          React.createElement(
+            'ul',
+            { className: 'nav navbar-nav' },
+            links
+          ),
+          React.createElement('form', { className: 'navbar-form navbar-left', role: 'search' }),
+          userDropdown
+        )
+      )
+    );
+  },
+
+  onLogOut: function onLogOut(e) {
+    e.preventDefault();
+    window.location.href = 'http://localhost:3000/logout';
+  }
+});
+
+},{"react":159}],164:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -32608,7 +32842,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/UserModel":169,"jquery":4,"react":159}],162:[function(require,module,exports){
+},{"../models/UserModel":172,"jquery":4,"react":159}],165:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -32674,7 +32908,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/WorkoutModel":170,"jquery":4,"react":159}],163:[function(require,module,exports){
+},{"../models/WorkoutModel":173,"jquery":4,"react":159}],166:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -32771,10 +33005,10 @@ module.exports = React.createClass({
 						"Email Reminder in a week?"
 					),
 					React.createElement("br", null),
-					React.createElement("input", { type: "radio", ref: "reminder", value: "true", name: "reminder" }),
+					React.createElement("input", { type: "radio", value: "true", name: "reminder" }),
 					"  Yes",
 					React.createElement("br", null),
-					React.createElement("input", { type: "radio", ref: "reminder", value: "false", name: "reminder" }),
+					React.createElement("input", { type: "radio", value: "false", name: "reminder" }),
 					"  No",
 					React.createElement("br", null),
 					React.createElement(
@@ -32788,29 +33022,29 @@ module.exports = React.createClass({
 	},
 	submitIou: function submitIou(e) {
 		e.preventDefault();
+
+		var rem = false;
+		if ($("input[name=reminder]:checked").val() === "true") {
+			rem = true;
+		}
+
 		var iou = new IouModel({
 			name: this.refs.name.getDOMNode().value,
 			image: this.refs.image.getDOMNode().value,
 			reason: this.refs.reason.getDOMNode().value,
 			category: this.refs.category.getDOMNode().value,
-			reminder: this.refs.reminder.getDOMNode().value
+			reminder: rem
 		});
 
 		if (iou.attributes.image.length < 5) {
 			iou.attributes.image = "https://s-media-cache-ak0.pinimg.com/736x/85/98/de/8598de9ad9ae33b00123f07f4fef7a38.jpg";
 		}
 
-		if (iou.attributes.reminder === "true") {
-			iou.attributes.reminder === true;
-		} else {
-			iou.attributes.reminder === false;
-		}
-
 		iou.save();
 	}
 });
 
-},{"../models/IouModel":167,"jquery":4,"react":159}],164:[function(require,module,exports){
+},{"../models/IouModel":170,"jquery":4,"react":159}],167:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -32924,29 +33158,29 @@ module.exports = React.createClass({
 	},
 	submitUome: function submitUome(e) {
 		e.preventDefault();
+
+		var rem = false;
+		if ($("input[name=reminder]:checked").val() === "true") {
+			rem = true;
+		}
+
 		var uome = new UomeModel({
 			name: this.refs.name.getDOMNode().value,
 			image: this.refs.image.getDOMNode().value,
 			reason: this.refs.reason.getDOMNode().value,
 			category: this.refs.category.getDOMNode().value,
-			reminder: this.refs.reminder.getDOMNode().value
+			reminder: rem
 		});
 
 		if (uome.attributes.image.length < 5) {
 			uome.attributes.image = "http://i.imgur.com/AwSWCaG.jpg";
-		}
-		//Getting rid of === breaks it for some reason
-		if (uome.attributes.reminder === "true") {
-			uome.attributes.reminder === true;
-		} else {
-			uome.attributes.reminder === false;
 		}
 
 		uome.save();
 	}
 });
 
-},{"../models/UomeModel":168,"jquery":4,"react":159}],165:[function(require,module,exports){
+},{"../models/UomeModel":171,"jquery":4,"react":159}],168:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -33017,11 +33251,11 @@ module.exports = React.createClass({
 	},
 	submitWO: function submitWO(e) {
 		e.preventDefault();
-		this.props.myRouter.navigate("submit", { trigger: true });
+		window.location.href = "http://localhost:3000/login";
 	}
 });
 
-},{"../collections/WorkoutCollection":160,"jquery":4,"react":159}],166:[function(require,module,exports){
+},{"../collections/WorkoutCollection":160,"jquery":4,"react":159}],169:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -33033,6 +33267,26 @@ var SubmitComponent = require('./components/SubmitComponent');
 var RegisterComponent = require('./components/RegisterComponent');
 var SubmitIouComponent = require('./components/SubmitIouComponent');
 var SubmitUomeComponent = require('./components/SubmitUomeComponent');
+var LoginComponent = require('./components/LoginComponent');
+var HomePageComponent = require('./components/HomePageComponent');
+var NavbarComponent = require('./components/NavbarComponent');
+
+var ioBrewUserModel = require('./models/ioBrewUserModel');
+
+var ioBrewUser = new ioBrewUserModel({
+	username: window.iobrew_user.username,
+	email: window.iobrew_user.email,
+	givenName: window.iobrew_user.givenName,
+	surname: window.iobrew_user.surname,
+	modifiedAt: window.iobrew_user.modifiedAt,
+	createdAt: window.iobrew_user.createdAt,
+	status: window.iobrew_user.status,
+	emailVerificationToken: window.iobrew_user.emailVerificationToken
+});
+
+console.log(ioBrewUser);
+
+// React.render(<NavbarComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, document.getElementById("nav"));
 
 var App = Backbone.Router.extend({
 	routes: {
@@ -33044,7 +33298,7 @@ var App = Backbone.Router.extend({
 		'submituome': 'submitUome'
 	},
 	home: function home() {
-		React.render(React.createElement(WorkoutListComponent, { myRouter: myRouter }), document.getElementById('container'));
+		React.render(React.createElement(HomePageComponent, { myRouter: myRouter }), document.getElementById('container'));
 	},
 	submit: function submit() {
 		React.render(React.createElement(SubmitComponent, { myRouter: myRouter }), document.getElementById('container'));
@@ -33058,13 +33312,18 @@ var App = Backbone.Router.extend({
 	submitUome: function submitUome() {
 		React.render(React.createElement(SubmitUomeComponent, { myRouter: myRouter }), document.getElementById('container'));
 	}
-
 });
 
 var myRouter = new App();
 Backbone.history.start();
 
-},{"./components/RegisterComponent":161,"./components/SubmitComponent":162,"./components/SubmitIouComponent":163,"./components/SubmitUomeComponent":164,"./components/WorkoutListComponent":165,"backbone":1,"jquery":4,"react":159}],167:[function(require,module,exports){
+React.render(React.createElement(NavbarComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('nav'));
+
+if (ioBrewUser.attributes.username !== null) {
+	myRouter.navigate('submitiou', { trigger: true });
+}
+
+},{"./components/HomePageComponent":161,"./components/LoginComponent":162,"./components/NavbarComponent":163,"./components/RegisterComponent":164,"./components/SubmitComponent":165,"./components/SubmitIouComponent":166,"./components/SubmitUomeComponent":167,"./components/WorkoutListComponent":168,"./models/ioBrewUserModel":174,"backbone":1,"jquery":4,"react":159}],170:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -33080,11 +33339,11 @@ module.exports = Backbone.Model.extend({
 		userId: null,
 		date_created: null
 	},
-	urlRoot: "http://localhost:3000/ious",
+	urlRoot: "/ious",
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],168:[function(require,module,exports){
+},{"backbone":1}],171:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -33100,11 +33359,11 @@ module.exports = Backbone.Model.extend({
 		userId: null,
 		date_created: null
 	},
-	urlRoot: "http://localhost:3000/uomes",
+	urlRoot: "/uomes",
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],169:[function(require,module,exports){
+},{"backbone":1}],172:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -33118,11 +33377,11 @@ module.exports = Backbone.Model.extend({
 		email: null,
 		date_created: null
 	},
-	urlRoot: "http://localhost:3000/users",
+	urlRoot: "/users",
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],170:[function(require,module,exports){
+},{"backbone":1}],173:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -33133,11 +33392,29 @@ module.exports = Backbone.Model.extend({
 		description: null,
 		date_created: null
 	},
-	urlRoot: "http://localhost:3000/workouts",
+	urlRoot: "/workouts",
 	idAttribute: "_id"
 });
 
-},{"backbone":1}]},{},[166])
+},{"backbone":1}],174:[function(require,module,exports){
+"use strict";
+
+var Backbone = require("backbone");
+
+module.exports = Backbone.Model.extend({
+	defaults: {
+		username: null,
+		email: null,
+		givenName: null,
+		surname: null,
+		modifiedAt: null,
+		createdAt: null,
+		status: null,
+		emailVerificationToken: null
+	}
+});
+
+},{"backbone":1}]},{},[169])
 
 
 //# sourceMappingURL=all.js.map

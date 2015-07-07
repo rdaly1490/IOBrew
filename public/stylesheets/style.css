@@ -1,8 +1,18 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0px;
 }
 
 a {
   color: #00B7FF;
+}
+
+h1 {
+	font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+	font-size: 100px;
+	color: #999273;
+}
+
+.brew {
+	color: #FFC30F;
+	font-family: Copperplate, fantasy;
 }
