@@ -1,5 +1,5 @@
 {
-  "name": "mongotest",
+  "name": "IOBrew",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -21,7 +21,5 @@
     "morgan": "~1.5.3",
     "nodemailer": "^1.4.0",
     "serve-favicon": "~2.2.1"
-  },
-  "author": "Donn Felker <donn@donnfelker.com> (http://blog.donnfelker.com)",
-  "description": "An demo application that tracks daily workouts as an example of how to create an API."
+  }
 }
