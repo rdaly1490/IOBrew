@@ -4,10 +4,10 @@ var mongoose = require('mongoose')
 var uomeSchema = new Schema({
     image              : { type: String, required: false }
   , reason             : { type: String, required: true }    
-  , category           : { type: String, required: true }
+  , category           : { type: String, required: false }
   , senderId           : { type: String, required: true, default: " " }
   , recipientId        : { type: String, required: true, default: " " }
-  , reminder           : { type: Boolean, required: true, default: false }
+  , reminder           : { type: Boolean, required: false, default: false }
   , finished           : { type: Boolean, required: false, default: false }
   , date_created       : { type: Date, required: true, default: Date.now }
 });

@@ -38,7 +38,7 @@ module.exports = React.createClass({
 					populated = true;
 					return (
 						<div className="each-iou" id={model.get("_id")} key={model.cid}>
-							<img id={model.get("_id")} onClick={that.completeItem} ref ={model.get("_id")} className="unchecked" src="/images/empty-circle.png" />
+							<img id={model.get("_id")} onClick={that.completeItem(model)} ref ={model.get("_id")} className="unchecked" src="/images/empty-circle.png" />
 							&nbsp; {moment(model.get("date_created")).calendar()} &nbsp;
 							<b>{model.get("senderId")}</b>
 							&nbsp; Owes &nbsp;
@@ -70,27 +70,38 @@ module.exports = React.createClass({
 			return (
 				<div className="container-fluid">
 					<div className="col-xs-8 col-xs-offset-2">
-					<h3>No IOUs</h3>
+					<h3>No UOMEs</h3>
 					</div>
 				<button onClick={this.updatePage}>Update Page</button>
 				</div>
 			);	
 		}
 	},
-	completeItem: function(e) {
-		e.preventDefault();
-		e.target.src="/images/beer-icon.png";
-		var target = $(e.target);
-		var changeStatus = (target).attr("id");
+	completeItem: function(model) {
+		return function(e) {
+			e.preventDefault();
+			console.log(model);
 
-		target.parent().css("opacity", "0.75");
-		target.parent().css("text-decoration", "line-through");
 
-		$.ajax({
-		url: '/uomes',
-		type: 'PUT',
-		data: {id: changeStatus, finished: true},
-		});
+
+		}
+		// e.preventDefault();
+		// e.target.src="/images/beer-icon.png";
+		// var target = $(e.target);
+		// var changeStatus = (target).attr("id");
+
+		// target.parent().css("opacity", "0.75");
+		// target.parent().css("text-decoration", "line-through");
+
+		// $.ajax({
+		// url: '/uomes',
+		// type: 'PUT',
+		// data: {id: changeStatus, finished: true},
+		// });
+
+		// model.set({
+		// 	finished: !model.get("finished")
+		// });
 	},
 	updatePage: function(e) {
 		window.location.reload();

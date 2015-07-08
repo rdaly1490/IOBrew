@@ -13,6 +13,7 @@ var NavbarComponent = require("./components/NavbarComponent");
 var UserDashComponent = require("./components/UserDashComponent");
 var IouListComponent = require("./components/IouListComponent");
 var UomeListComponent = require("./components/UomeListComponent");
+var ProfilePageComponent = require("./components/ProfilePageComponent");
 
 var ioBrewUserModel = require("./models/ioBrewUserModel");
 
@@ -40,7 +41,8 @@ var App = Backbone.Router.extend({
 		"submituome": "submitUome",
 		"userdash": "userdash",
 		"ioulist": "ioulist",
-		"uomelist": "uomelist"
+		"uomelist": "uomelist",
+		"profile": "profile"
 	},
 	home: function() {
 		React.render(
@@ -80,6 +82,11 @@ var App = Backbone.Router.extend({
 	uomelist: function() {
 		React.render(		
 			<UomeListComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />,
+			document.getElementById("container"));			
+	},
+	profile: function() {
+		React.render(		
+			<ProfilePageComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />,
 			document.getElementById("container"));			
 	}
 });

@@ -35631,7 +35631,7 @@ module.exports = Backbone.Collection.extend({
 	url: '/ious'
 });
 
-},{"../models/IouModel":176,"backbone":1,"jquery":4}],162:[function(require,module,exports){
+},{"../models/IouModel":177,"backbone":1,"jquery":4}],162:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backbone');
@@ -35643,7 +35643,7 @@ module.exports = Backbone.Collection.extend({
 	url: '/uomes'
 });
 
-},{"../models/UomeModel":177,"backbone":1,"jquery":4}],163:[function(require,module,exports){
+},{"../models/UomeModel":178,"backbone":1,"jquery":4}],163:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backbone');
@@ -35655,7 +35655,7 @@ module.exports = Backbone.Collection.extend({
 	url: '/workouts'
 });
 
-},{"../models/WorkoutModel":179,"backbone":1,"jquery":4}],164:[function(require,module,exports){
+},{"../models/WorkoutModel":180,"backbone":1,"jquery":4}],164:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35881,7 +35881,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/UserModel":178,"jquery":4,"react":160}],167:[function(require,module,exports){
+},{"../models/UserModel":179,"jquery":4,"react":160}],167:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -36026,6 +36026,93 @@ module.exports = React.createClass({
 });
 
 },{"react":160}],168:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var $ = require('jquery');
+var moment = require('moment');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'container-fluid' },
+			React.createElement(
+				'div',
+				{ className: 'col-xs-12' },
+				React.createElement(
+					'h3',
+					null,
+					'User: ',
+					this.props.ioBrewUser.get('username')
+				),
+				React.createElement(
+					'p',
+					null,
+					'Member Since: ',
+					moment(this.props.ioBrewUser.get('createdAt')).format('MMMM Do YYYY')
+				),
+				React.createElement(
+					'h3',
+					null,
+					'Achievements'
+				),
+				React.createElement('img', { src: '/images/empty-circle.png' }),
+				React.createElement(
+					'p',
+					null,
+					'Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.'
+				),
+				React.createElement('img', { src: '/images/empty-circle.png' }),
+				React.createElement(
+					'p',
+					null,
+					'Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.'
+				),
+				React.createElement('img', { src: '/images/empty-circle.png' }),
+				React.createElement(
+					'p',
+					null,
+					'Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.'
+				),
+				React.createElement('img', { src: '/images/empty-circle.png' }),
+				React.createElement(
+					'p',
+					null,
+					'Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.'
+				),
+				React.createElement('img', { src: '/images/empty-circle.png' }),
+				React.createElement(
+					'p',
+					null,
+					'Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.'
+				),
+				React.createElement('img', { src: '/images/empty-circle.png' }),
+				React.createElement(
+					'p',
+					null,
+					'Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.'
+				),
+				React.createElement('img', { src: '/images/empty-circle.png' }),
+				React.createElement(
+					'p',
+					null,
+					'Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.'
+				),
+				React.createElement('img', { src: '/images/empty-circle.png' }),
+				React.createElement(
+					'p',
+					null,
+					'Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.'
+				)
+			)
+		);
+	}
+});
+
+},{"jquery":4,"moment":5,"react":160}],169:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36114,7 +36201,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/UserModel":178,"jquery":4,"react":160}],169:[function(require,module,exports){
+},{"../models/UserModel":179,"jquery":4,"react":160}],170:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36180,7 +36267,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/WorkoutModel":179,"jquery":4,"react":160}],170:[function(require,module,exports){
+},{"../models/WorkoutModel":180,"jquery":4,"react":160}],171:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36317,7 +36404,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/IouModel":176,"jquery":4,"react":160}],171:[function(require,module,exports){
+},{"../models/IouModel":177,"jquery":4,"react":160}],172:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36454,7 +36541,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/UomeModel":177,"jquery":4,"react":160}],172:[function(require,module,exports){
+},{"../models/UomeModel":178,"jquery":4,"react":160}],173:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -36499,7 +36586,7 @@ module.exports = React.createClass({
 					return React.createElement(
 						'div',
 						{ className: 'each-iou', id: model.get('_id'), key: model.cid },
-						React.createElement('img', { id: model.get('_id'), onClick: that.completeItem, ref: model.get('_id'), className: 'unchecked', src: '/images/empty-circle.png' }),
+						React.createElement('img', { id: model.get('_id'), onClick: that.completeItem(model), ref: model.get('_id'), className: 'unchecked', src: '/images/empty-circle.png' }),
 						'  ',
 						moment(model.get('date_created')).calendar(),
 						'  ',
@@ -36549,7 +36636,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'h3',
 						null,
-						'No IOUs'
+						'No UOMEs'
 					)
 				),
 				React.createElement(
@@ -36560,27 +36647,36 @@ module.exports = React.createClass({
 			);
 		}
 	},
-	completeItem: function completeItem(e) {
-		e.preventDefault();
-		e.target.src = '/images/beer-icon.png';
-		var target = $(e.target);
-		var changeStatus = target.attr('id');
+	completeItem: function completeItem(model) {
+		return function (e) {
+			e.preventDefault();
+			console.log(model);
+		}
+		// e.preventDefault();
+		// e.target.src="/images/beer-icon.png";
+		// var target = $(e.target);
+		// var changeStatus = (target).attr("id");
 
-		target.parent().css('opacity', '0.75');
-		target.parent().css('text-decoration', 'line-through');
+		// target.parent().css("opacity", "0.75");
+		// target.parent().css("text-decoration", "line-through");
 
-		$.ajax({
-			url: '/uomes',
-			type: 'PUT',
-			data: { id: changeStatus, finished: true }
-		});
+		// $.ajax({
+		// url: '/uomes',
+		// type: 'PUT',
+		// data: {id: changeStatus, finished: true},
+		// });
+
+		// model.set({
+		// 	finished: !model.get("finished")
+		// });
+		;
 	},
 	updatePage: function updatePage(e) {
 		window.location.reload();
 	}
 });
 
-},{"../collections/UomeCollection":162,"jquery":4,"moment":5,"react":160}],173:[function(require,module,exports){
+},{"../collections/UomeCollection":162,"jquery":4,"moment":5,"react":160}],174:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36657,7 +36753,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"jquery":4,"react":160}],174:[function(require,module,exports){
+},{"jquery":4,"react":160}],175:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36732,7 +36828,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/WorkoutCollection":163,"jquery":4,"react":160}],175:[function(require,module,exports){
+},{"../collections/WorkoutCollection":163,"jquery":4,"react":160}],176:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -36750,6 +36846,7 @@ var NavbarComponent = require('./components/NavbarComponent');
 var UserDashComponent = require('./components/UserDashComponent');
 var IouListComponent = require('./components/IouListComponent');
 var UomeListComponent = require('./components/UomeListComponent');
+var ProfilePageComponent = require('./components/ProfilePageComponent');
 
 var ioBrewUserModel = require('./models/ioBrewUserModel');
 
@@ -36777,7 +36874,8 @@ var App = Backbone.Router.extend({
 		'submituome': 'submitUome',
 		'userdash': 'userdash',
 		'ioulist': 'ioulist',
-		'uomelist': 'uomelist'
+		'uomelist': 'uomelist',
+		'profile': 'profile'
 	},
 	home: function home() {
 		React.render(React.createElement(HomePageComponent, { myRouter: myRouter }), document.getElementById('container'));
@@ -36802,6 +36900,9 @@ var App = Backbone.Router.extend({
 	},
 	uomelist: function uomelist() {
 		React.render(React.createElement(UomeListComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('container'));
+	},
+	profile: function profile() {
+		React.render(React.createElement(ProfilePageComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('container'));
 	}
 });
 
@@ -36814,7 +36915,7 @@ React.render(React.createElement(NavbarComponent, { myRouter: myRouter, ioBrewUs
 // 	myRouter.navigate("userdash", {trigger:true});
 // }
 
-},{"./components/HomePageComponent":164,"./components/IouListComponent":165,"./components/LoginComponent":166,"./components/NavbarComponent":167,"./components/RegisterComponent":168,"./components/SubmitComponent":169,"./components/SubmitIouComponent":170,"./components/SubmitUomeComponent":171,"./components/UomeListComponent":172,"./components/UserDashComponent":173,"./components/WorkoutListComponent":174,"./models/ioBrewUserModel":180,"backbone":1,"jquery":4,"react":160}],176:[function(require,module,exports){
+},{"./components/HomePageComponent":164,"./components/IouListComponent":165,"./components/LoginComponent":166,"./components/NavbarComponent":167,"./components/ProfilePageComponent":168,"./components/RegisterComponent":169,"./components/SubmitComponent":170,"./components/SubmitIouComponent":171,"./components/SubmitUomeComponent":172,"./components/UomeListComponent":173,"./components/UserDashComponent":174,"./components/WorkoutListComponent":175,"./models/ioBrewUserModel":181,"backbone":1,"jquery":4,"react":160}],177:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -36834,7 +36935,7 @@ module.exports = Backbone.Model.extend({
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],177:[function(require,module,exports){
+},{"backbone":1}],178:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -36854,7 +36955,7 @@ module.exports = Backbone.Model.extend({
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],178:[function(require,module,exports){
+},{"backbone":1}],179:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -36872,7 +36973,7 @@ module.exports = Backbone.Model.extend({
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],179:[function(require,module,exports){
+},{"backbone":1}],180:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -36887,7 +36988,7 @@ module.exports = Backbone.Model.extend({
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],180:[function(require,module,exports){
+},{"backbone":1}],181:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -36905,7 +37006,7 @@ module.exports = Backbone.Model.extend({
 	}
 });
 
-},{"backbone":1}]},{},[175])
+},{"backbone":1}]},{},[176])
 
 
 //# sourceMappingURL=all.js.map
