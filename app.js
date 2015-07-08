@@ -12,6 +12,8 @@ var IouRoute = require('./routes/IouRoute');
 var UomeRoute = require('./routes/UomeRoute');
 var mongoose = require('mongoose');
 var fs = require("fs");
+var facebook = require("./stormpath/facebook");
+
 var stormpath = require('express-stormpath');
 
 mongoose.connect('mongodb://localhost/workout_tracker');
@@ -24,6 +26,14 @@ app.use(stormpath.init(app, {
     secretKey: 'robbybobby',
     registrationView: __dirname + '/views/register.jade',
     loginView: __dirname + '/views/login.jade',
+    enableForgotPassword: true,
+    enableFacebook: true,
+    social: {
+      facebook: {
+        appId: facebook.appId,
+        appSecret: facebook.appSecret,
+      },
+    },
 }));
 
 app.listen(9000);

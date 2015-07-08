@@ -44,11 +44,12 @@ module.exports = React.createClass({
 
 
 		var iou = new IouModel({
-			name: this.refs.name.getDOMNode().value,
+			recipientId: this.refs.name.getDOMNode().value,
 			image: this.refs.image.getDOMNode().value,
 			reason: this.refs.reason.getDOMNode().value,
 			category: this.refs.category.getDOMNode().value,
-			reminder: rem
+			reminder: rem,
+			senderId: this.props.ioBrewUser.get("username")
 		});
 
 		if (iou.attributes.image.length < 5) {

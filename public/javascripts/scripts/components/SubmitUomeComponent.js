@@ -9,7 +9,7 @@ module.exports = React.createClass({
 			<div className="container-fluid">
 				<div className="col-xs-8 col-xs-offset-2">
 					<form onSubmit={this.submitUome}>
-						<label>Name</label><br />
+						<label>This person owes you beer!</label><br />
 						<input type="text" ref="name" /><br />
 						<label>Image URL</label><br />
 						<input type="text" ref="image" /><br />
@@ -43,11 +43,12 @@ module.exports = React.createClass({
 		}
 
 		var uome = new UomeModel({
-			name: this.refs.name.getDOMNode().value,
+			senderId: this.refs.name.getDOMNode().value,
 			image: this.refs.image.getDOMNode().value,
 			reason: this.refs.reason.getDOMNode().value,
 			category: this.refs.category.getDOMNode().value,
-			reminder: rem
+			reminder: rem,
+			recipientId: this.props.ioBrewUser.get("username")
 		});
 
 		if (uome.attributes.image.length < 5) {

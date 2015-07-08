@@ -3,29 +3,31 @@ var UomeModel = require('../models/uome').Uome;
 exports.create = function(req, res) {
 
 //req.body.whatever has to be what the ref is in the component
-  var name = req.body.name;
   var image = req.body.image;
   var reason = req.body.reason;
   var category = req.body.category;
   var reminder = req.body.reminder;
   var finished = req.body.finished;
+  var senderId = req.body.senderId;
+  var recipientId = req.body.recipientId;
       
   var newUome = new UomeModel(); 
 
     //newUome.property ... The property must equal exactly what's in the model
-    newUome.name = name; 
     newUome.image = image; 
     newUome.reason = reason; 
     newUome.category = category;  
     newUome.reminder = reminder;
     newUome.finished = finished;
+    newUome.senderId = senderId;
+    newUome.recipientId = recipientId;
     
     newUome.save(function(err) {
 
       if(!err) {
         res.status(201).json({message: "Uome created for: " + newUome.name });   
       } else {
-        res.status(500).json({message: "Could not create User. Error: " + err});
+        res.status(500).json({message: "Could not create Uome. Error: " + err});
       }
 
     });
@@ -48,24 +50,14 @@ exports.show = function(req, res) {
 exports.update = function(req, res) {
   
   var id = req.body.id;  
-  var name = req.body.name;
-  var image = req.body.image;
-  var reason = req.body.reason;
-  var category = req.body.category;
-  var reminder = req.body.reminder;
   var finished = req.body.finished;
 
   UomeModel.findById(id, function(err, doc) {
       if(!err && doc) {
-        doc.name = name; 
-        doc.image = image; 
-        doc.reason = reason; 
-        doc.category = category; 
-        doc.reminder = reminder;
         doc.finished = finished; 
         doc.save(function(err) {
         if(!err) {
-          res.status(200).json({message: "Uome updated: " + name});    
+          res.status(200).json({message: "Uome updated: " + id});    
         } else {
           res.status(500).json({message: "Could not update Uome. " + err});
         }  

@@ -16,3 +16,47 @@ h1 {
 	color: #FFC30F;
 	font-family: Copperplate, fantasy;
 }
+
+#container {
+	/*background-color: #FFEFBF;*/
+	/*background: url(http://snowbrains.com/wp-content/uploads/2013/09/Why-Beer-Is-Good-For-You.jpg);*/
+	margin-top: -20px;
+}
+
+.logo {
+	background-color: #FFEFBF;
+	text-align: center;
+}
+
+.test {
+	background-color: #E6DBAC;
+	border-radius: 10px;
+	height:800px;
+}
+
+.pic1 {
+	height:200px;
+	width:200px;
+	border-radius: 50%;
+	margin-top: 50px;
+	background-color: #334D5C;
+}
+
+.each-iou {
+	background-color: #E6DBAC;
+	border:3px solid black;
+}
+
+.unchecked {
+	height:50px;
+	width:50px;
+}
+
+.unchecked:hover {
+	cursor: pointer;
+}
+
+
+
+
+

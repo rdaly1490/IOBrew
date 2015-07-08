@@ -2,13 +2,13 @@ var Backbone = require("backbone");
 
 module.exports = Backbone.Model.extend({
 	defaults: {
-		name: null,
 		image: "http://i.imgur.com/AwSWCaG.jpg",
 		reason: null,
 		category: null,
 		reminder: false,
 		finished: false,
-		userId: null,
+		senderId: null,
+		recipientId: null,
 		date_created: null
 	},
 	urlRoot:"/uomes",

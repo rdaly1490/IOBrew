@@ -10,6 +10,9 @@ var SubmitUomeComponent = require("./components/SubmitUomeComponent");
 var LoginComponent = require("./components/LoginComponent");
 var HomePageComponent = require("./components/HomePageComponent");
 var NavbarComponent = require("./components/NavbarComponent");
+var UserDashComponent = require("./components/UserDashComponent");
+var IouListComponent = require("./components/IouListComponent");
+var UomeListComponent = require("./components/UomeListComponent");
 
 var ioBrewUserModel = require("./models/ioBrewUserModel");
 
@@ -24,9 +27,8 @@ var ioBrewUser = new ioBrewUserModel({
 		emailVerificationToken: window.iobrew_user.emailVerificationToken
 });
 
-console.log(ioBrewUser);
-
-// React.render(<NavbarComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, document.getElementById("nav"));
+// console.log(ioBrewUser);
+console.log(window.iobrew_user);
 
 var App = Backbone.Router.extend({
 	routes: {
@@ -35,7 +37,10 @@ var App = Backbone.Router.extend({
 		"submit":"submit",
 		"register": "register",
 		"submitiou": "submitIou",
-		"submituome": "submitUome"
+		"submituome": "submitUome",
+		"userdash": "userdash",
+		"ioulist": "ioulist",
+		"uomelist": "uomelist"
 	},
 	home: function() {
 		React.render(
@@ -54,12 +59,27 @@ var App = Backbone.Router.extend({
 	},
 	submitIou: function() {
 		React.render(		
-			<SubmitIouComponent myRouter={myRouter}/>,
+			<SubmitIouComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />,
 			document.getElementById("container"));			
 	},
 	submitUome: function() {
 		React.render(		
-			<SubmitUomeComponent myRouter={myRouter}/>,
+			<SubmitUomeComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />,
+			document.getElementById("container"));			
+	},
+	userdash: function() {
+		React.render(		
+			<UserDashComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />,
+			document.getElementById("container"));			
+	},
+	ioulist: function() {
+		React.render(		
+			<IouListComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />,
+			document.getElementById("container"));			
+	},
+	uomelist: function() {
+		React.render(		
+			<UomeListComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />,
 			document.getElementById("container"));			
 	}
 });
@@ -69,9 +89,9 @@ Backbone.history.start();
 
 React.render(<NavbarComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, document.getElementById("nav"));
 
-if (ioBrewUser.attributes.username !== null) {
-	myRouter.navigate("submitiou", {trigger:true});
-}
+// if (ioBrewUser.get("username") !== null) {
+// 	myRouter.navigate("userdash", {trigger:true});
+// }
 
 
 

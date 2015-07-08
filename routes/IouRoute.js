@@ -3,29 +3,31 @@ var IouModel = require('../models/iou').Iou;
 exports.create = function(req, res) {
 
 //req.body.whatever has to be what the ref is in the component
-  var name = req.body.name;
   var image = req.body.image;
   var reason = req.body.reason;
   var category = req.body.category;
   var reminder = req.body.reminder;
   var finished = req.body.finished;
+  var senderId = req.body.senderId;
+  var recipientId = req.body.recipientId;
       
   var newIou = new IouModel(); 
 
     //newIou.property ... The property must equal exactly what's in the model
-    newIou.name = name; 
     newIou.image = image; 
     newIou.reason = reason; 
     newIou.category = category;  
     newIou.reminder = reminder;
     newIou.finished = finished;
+    newIou.senderId = senderId;
+    newIou.recipientId = recipientId;
     
     newIou.save(function(err) {
 
       if(!err) {
         res.status(201).json({message: "Iou created for: " + newIou.name });   
       } else {
-        res.status(500).json({message: "Could not create User. Error: " + err});
+        res.status(500).json({message: "Could not create Iou. Error: " + err});
       }
 
     });
@@ -48,24 +50,14 @@ exports.show = function(req, res) {
 exports.update = function(req, res) {
   
   var id = req.body.id; 
-  var name = req.body.name;
-  var image = req.body.image;
-  var reason = req.body.reason;
-  var category = req.body.category;
-  var reminder = req.body.reminder;
   var finished = req.body.finished; 
 
   IouModel.findById(id, function(err, doc) {
       if(!err && doc) {
-        doc.name = name; 
-        doc.image = image; 
-        doc.reason = reason; 
-        doc.category = category; 
-        doc.reminder = reminder;
         doc.finished = finished; 
         doc.save(function(err) {
           if(!err) {
-            res.status(200).json({message: "Iou updated: " + name}); 
+            res.status(200).json({message: "Iou updated: " + id}); 
           } else {
             res.status(500).json({message: "Could not update Iou. " + err});
           }  
