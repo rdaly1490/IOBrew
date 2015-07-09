@@ -12,9 +12,13 @@ module.exports = React.createClass({
 
 		var UomeHistory = new UomeCollection();
 		UomeHistory.fetch({
-			data: {filter:
-					 {finished: 0} //0 or 1 for true or false (0 is F, 1 is T)
-					},
+			data: {
+					filter:
+					 {	
+					 	finished: 0, //0 or 1 for binary T or F
+					 	recipientId: this.props.ioBrewUser.get("username")
+					 } 
+				  },
 			success: function() {
 				that.forceUpdate();
 			}
@@ -30,56 +34,33 @@ module.exports = React.createClass({
 	render: function() {
 
 		var that = this;
-		var populated;
 
 		if (this.state.uomeHistory.length === 0) {
-			var wlist = <div></div>
+			var wlist = <div><h3>No UOMEs</h3></div>
 		}
 		else {
 			var wlist = this.state.uomeHistory.map(function(model) {
-
-				if(model.get("recipientId") === that.props.ioBrewUser.get("username")) {
-					populated = true;
-					return (
-						<div className="each-iou" key={model.cid}>
-							<img onClick={that.completeItem(model)} className="unchecked" src="/images/empty-circle.png" />
-							&nbsp; {moment(model.get("date_created")).calendar()} &nbsp;
-							<b>{model.get("senderId")}</b>
-							&nbsp; Owes &nbsp;
-							<b>You</b> &nbsp;
-							a {model.get("category")}
-						</div>
-					);
-				}
-
-				else {
-					populated = false;
-				}
+				return (
+					<div className="each-iou" key={model.cid}>
+						<img onClick={that.completeItem(model)} className="unchecked" src="/images/empty-circle.png" />
+						&nbsp; {moment(model.get("date_created")).calendar()} &nbsp;
+						<b>{model.get("senderId")}</b>
+						&nbsp; Owes &nbsp;
+						<b>You</b> &nbsp;
+						a {model.get("category")}
+					</div>
+				);
 			});
 		}
 
-		if (populated === true) {
-
-			return (
-				<div className="container-fluid">
-					<div className="col-xs-8 col-xs-offset-2">
-						{wlist}
-					</div>
-				<button onClick={this.updatePage}>Update Page</button>
+		return (
+			<div className="container-fluid">
+				<div className="col-xs-8 col-xs-offset-2">
+					{wlist}
 				</div>
-			);
-		}
-
-		else {
-			return (
-				<div className="container-fluid">
-					<div className="col-xs-8 col-xs-offset-2">
-					<h3>No UOMEs</h3>
-					</div>
-				<button onClick={this.updatePage}>Update Page</button>
-				</div>
-			);	
-		}
+			<button onClick={this.updatePage}>Update Page</button>
+			</div>
+		);
 	},
 	completeItem: function(model) {
 		return function(e) {

@@ -35711,7 +35711,11 @@ module.exports = React.createClass({
 
 		var IouHistory = new IouCollection();
 		IouHistory.fetch({
-			data: { filter: { finished: 0 } //0 or 1 for true or false (0 is F, 1 is T)
+			data: {
+				filter: {
+					finished: 0, //0 or 1 for binary T or F
+					senderId: this.props.ioBrewUser.get('username')
+				}
 			},
 			success: function success() {
 				that.forceUpdate();
@@ -35731,75 +35735,56 @@ module.exports = React.createClass({
 		var populated;
 
 		if (this.state.iouHistory.length === 0) {
-			var wlist = React.createElement('div', null);
+			var wlist = React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'h3',
+					null,
+					'No IOUs'
+				)
+			);
 		} else {
 			var wlist = this.state.iouHistory.map(function (model) {
 
-				if (model.get('senderId') === that.props.ioBrewUser.get('username')) {
-					populated = true;
-					return React.createElement(
-						'div',
-						{ className: 'each-iou', key: model.cid },
-						React.createElement('img', { onClick: that.completeItem(model), ref: model.get('_id'), className: 'unchecked', src: '/images/empty-circle.png' }),
-						'  ',
-						moment(model.get('date_created')).calendar(),
-						'  ',
-						React.createElement(
-							'b',
-							null,
-							'You'
-						),
-						'  Owe  ',
-						React.createElement(
-							'b',
-							null,
-							model.get('recipientId')
-						),
-						'   a ',
-						model.get('category')
-					);
-				} else {
-					populated = false;
-				}
+				return React.createElement(
+					'div',
+					{ className: 'each-iou', key: model.cid },
+					React.createElement('img', { onClick: that.completeItem(model), ref: model.get('_id'), className: 'unchecked', src: '/images/empty-circle.png' }),
+					'  ',
+					moment(model.get('date_created')).calendar(),
+					'  ',
+					React.createElement(
+						'b',
+						null,
+						'You'
+					),
+					'  Owe  ',
+					React.createElement(
+						'b',
+						null,
+						model.get('recipientId')
+					),
+					'   a ',
+					model.get('category')
+				);
 			});
 		}
 
-		if (populated === true) {
-
-			return React.createElement(
+		return React.createElement(
+			'div',
+			{ className: 'container-fluid' },
+			React.createElement(
 				'div',
-				{ className: 'container-fluid' },
-				React.createElement(
-					'div',
-					{ className: 'col-xs-8 col-xs-offset-2' },
-					wlist
-				),
-				React.createElement(
-					'button',
-					{ onClick: this.updatePage },
-					'Update Page'
-				)
-			);
-		} else {
-			return React.createElement(
-				'div',
-				{ className: 'container-fluid' },
-				React.createElement(
-					'div',
-					{ className: 'col-xs-8 col-xs-offset-2' },
-					React.createElement(
-						'h3',
-						null,
-						'No IOUs'
-					)
-				),
-				React.createElement(
-					'button',
-					{ onClick: this.updatePage },
-					'Update Page'
-				)
-			);
-		}
+				{ className: 'col-xs-8 col-xs-offset-2' },
+				wlist
+			),
+			React.createElement(
+				'button',
+				{ onClick: this.updatePage },
+				'Update Page'
+			)
+		);
 	},
 	completeItem: function completeItem(model) {
 		return function (e) {
@@ -36567,7 +36552,11 @@ module.exports = React.createClass({
 
 		var UomeHistory = new UomeCollection();
 		UomeHistory.fetch({
-			data: { filter: { finished: 0 } //0 or 1 for true or false (0 is F, 1 is T)
+			data: {
+				filter: {
+					finished: 0, //0 or 1 for binary T or F
+					recipientId: this.props.ioBrewUser.get('username')
+				}
 			},
 			success: function success() {
 				that.forceUpdate();
@@ -36584,78 +36573,57 @@ module.exports = React.createClass({
 	render: function render() {
 
 		var that = this;
-		var populated;
 
 		if (this.state.uomeHistory.length === 0) {
-			var wlist = React.createElement('div', null);
+			var wlist = React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'h3',
+					null,
+					'No UOMEs'
+				)
+			);
 		} else {
 			var wlist = this.state.uomeHistory.map(function (model) {
-
-				if (model.get('recipientId') === that.props.ioBrewUser.get('username')) {
-					populated = true;
-					return React.createElement(
-						'div',
-						{ className: 'each-iou', key: model.cid },
-						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-circle.png' }),
-						'  ',
-						moment(model.get('date_created')).calendar(),
-						'  ',
-						React.createElement(
-							'b',
-							null,
-							model.get('senderId')
-						),
-						'  Owes  ',
-						React.createElement(
-							'b',
-							null,
-							'You'
-						),
-						'   a ',
-						model.get('category')
-					);
-				} else {
-					populated = false;
-				}
+				return React.createElement(
+					'div',
+					{ className: 'each-iou', key: model.cid },
+					React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-circle.png' }),
+					'  ',
+					moment(model.get('date_created')).calendar(),
+					'  ',
+					React.createElement(
+						'b',
+						null,
+						model.get('senderId')
+					),
+					'  Owes  ',
+					React.createElement(
+						'b',
+						null,
+						'You'
+					),
+					'   a ',
+					model.get('category')
+				);
 			});
 		}
 
-		if (populated === true) {
-
-			return React.createElement(
+		return React.createElement(
+			'div',
+			{ className: 'container-fluid' },
+			React.createElement(
 				'div',
-				{ className: 'container-fluid' },
-				React.createElement(
-					'div',
-					{ className: 'col-xs-8 col-xs-offset-2' },
-					wlist
-				),
-				React.createElement(
-					'button',
-					{ onClick: this.updatePage },
-					'Update Page'
-				)
-			);
-		} else {
-			return React.createElement(
-				'div',
-				{ className: 'container-fluid' },
-				React.createElement(
-					'div',
-					{ className: 'col-xs-8 col-xs-offset-2' },
-					React.createElement(
-						'h3',
-						null,
-						'No UOMEs'
-					)
-				),
-				React.createElement(
-					'button',
-					{ onClick: this.updatePage },
-					'Update Page'
-				)
-			);
-		}
+				{ className: 'col-xs-8 col-xs-offset-2' },
+				wlist
+			),
+			React.createElement(
+				'button',
+				{ onClick: this.updatePage },
+				'Update Page'
+			)
+		);
 	},
 	completeItem: function completeItem(model) {
 		return function (e) {

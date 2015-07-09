@@ -84,6 +84,7 @@ app.get("/users", function(req, res) {
 
 app.get("/ious", function(req, res) {
   mongoose.model("iou").find(req.query.filter, function(err, ious) {
+    console.log(req.query);
     res.send(ious);
   })
 });
