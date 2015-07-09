@@ -102,6 +102,8 @@ module.exports = React.createClass({
 		// model.set({
 		// 	finished: !model.get("finished")
 		// });
+
+		//save this model and it will update the thing.  also change the class
 	},
 	updatePage: function(e) {
 		window.location.reload();
