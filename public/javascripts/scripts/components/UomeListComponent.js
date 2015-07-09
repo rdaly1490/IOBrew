@@ -2,49 +2,50 @@ var React = require('react');
 var $ = require("jquery");
 var moment = require('moment');
 
-var UomeModel = require("../models/UomeModel");
-var UomeCollection = require("../collections/UomeCollection");
+// var UomeCollection = require("../collections/UomeCollection");
+var OweCollection = require("../collections/OweCollection");
 
 module.exports = React.createClass({
 	getInitialState: function() {
 
 		var that=this;
 
-		var UomeHistory = new UomeCollection();
-		UomeHistory.fetch({
+		var OweHistory = new OweCollection();
+		OweHistory.fetch({
 			data: {
 					filter:
 					 {	
+					 	type: 2,
 					 	finished: 0, //0 or 1 for binary T or F
-					 	recipientId: this.props.ioBrewUser.get("username")
+					 	owedid: this.props.ioBrewUser.get("username")
 					 } 
 				  },
 			success: function() {
 				that.forceUpdate();
 			}
 		});
-		UomeHistory.on("sync", function() {
+		OweHistory.on("sync", function() {
 			that.forceUpdate();
 		});
 
 		return {
-			uomeHistory: UomeHistory
+			oweHistory: OweHistory
 		}
 	},
 	render: function() {
 
 		var that = this;
 
-		if (this.state.uomeHistory.length === 0) {
+		if (this.state.oweHistory.length === 0) {
 			var wlist = <div><h3>No UOMEs</h3></div>
 		}
 		else {
-			var wlist = this.state.uomeHistory.map(function(model) {
+			var wlist = this.state.oweHistory.map(function(model) {
 				return (
 					<div className="each-iou" key={model.cid}>
 						<img onClick={that.completeItem(model)} className="unchecked" src="/images/empty-circle.png" />
 						&nbsp; {moment(model.get("date_created")).calendar()} &nbsp;
-						<b>{model.get("senderId")}</b>
+						<b>{model.get("owername")}</b>
 						&nbsp; Owes &nbsp;
 						<b>You</b> &nbsp;
 						a {model.get("category")}
@@ -67,13 +68,9 @@ module.exports = React.createClass({
 			e.preventDefault();
 			var target = $(e.target);
 
-			console.log(model.id, model.get('finished'));
-
 			model.set({
 				finished: !(model.get("finished"))
 			});
-
-			console.log(model.id, model.get('finished'));
 
 			model.save();
 

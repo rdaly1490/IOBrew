@@ -1,7 +1,8 @@
 var React = require('react');
 var $ = require("jquery");
 
-var IouModel = require("../models/IouModel");
+// var IouModel = require("../models/IouModel");
+var OweModel = require("../models/OweModel");
 
 module.exports = React.createClass({
 	render: function() {
@@ -43,19 +44,25 @@ module.exports = React.createClass({
 		}
 
 
-		var iou = new IouModel({
-			recipientId: this.refs.name.getDOMNode().value,
+		var owe = new OweModel({
+			type: 1,
+			owerid: this.props.ioBrewUser.get("username"),
+			owername: this.props.ioBrewUser.get("givenName"),
+			owedid: this.refs.name.getDOMNode().value,
+			owedname: this.refs.name.getDOMNode().value,
+			createdby: this.props.ioBrewUser.get("username"),
 			image: this.refs.image.getDOMNode().value,
 			reason: this.refs.reason.getDOMNode().value,
 			category: this.refs.category.getDOMNode().value,
-			reminder: rem,
-			senderId: this.props.ioBrewUser.get("username")
+			reminder: rem
 		});
 
-		if (iou.attributes.image.length < 5) {
-			iou.attributes.image = "https://s-media-cache-ak0.pinimg.com/736x/85/98/de/8598de9ad9ae33b00123f07f4fef7a38.jpg"
+		if (owe.attributes.image.length < 5) {
+			owe.attributes.image = "https://s-media-cache-ak0.pinimg.com/736x/85/98/de/8598de9ad9ae33b00123f07f4fef7a38.jpg"
 		}
 
-		iou.save();
+		owe.save();
+
+		this.props.myRouter.navigate("userdash", {trigger: true});
 	}
 });

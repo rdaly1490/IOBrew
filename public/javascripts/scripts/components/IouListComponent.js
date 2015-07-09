@@ -2,52 +2,52 @@ var React = require('react');
 var $ = require("jquery");
 var moment = require('moment');
 
-var IouCollection = require("../collections/IouCollection");
+var OweCollection = require("../collections/OweCollection");
 
 module.exports = React.createClass({
 	getInitialState: function() {
 
 		var that=this;
 
-		var IouHistory = new IouCollection();
-		IouHistory.fetch({
+		var OweHistory = new OweCollection();
+		OweHistory.fetch({
 			data: {
 					filter:
 					 {	
+					 	type: 1,
 					 	finished: 0, //0 or 1 for binary T or F
-					 	senderId: this.props.ioBrewUser.get("username")
+					 	owerid: this.props.ioBrewUser.get("username")
 					 } 
 				  },
 			success: function() {
 				that.forceUpdate();
 			}
 		});
-		IouHistory.on("sync", function() {
+		OweHistory.on("sync", function() {
 			that.forceUpdate();
 		});
 
 		return {
-			iouHistory: IouHistory
+			oweHistory: OweHistory
 		}
 	},
 	render: function() {
 
 		var that = this;
-		var populated;
 
-		if (this.state.iouHistory.length === 0) {
+		if (this.state.oweHistory.length === 0) {
 			var wlist = <div><h3>No IOUs</h3></div>
 		}
 		else {
-			var wlist = this.state.iouHistory.map(function(model) {
+			var wlist = this.state.oweHistory.map(function(model) {
 
 				return (
 					<div className="each-iou" key={model.cid}>
-						<img onClick={that.completeItem(model)} ref ={model.get("_id")} className="unchecked" src="/images/empty-circle.png" />
+						<img onClick={that.completeItem(model)} className="unchecked" src="/images/empty-circle.png" />
 						&nbsp; {moment(model.get("date_created")).calendar()} &nbsp;
 						<b>You</b>
 						&nbsp; Owe &nbsp;
-						<b>{model.get("recipientId")}</b> &nbsp;
+						<b>{model.get("owedname")}</b> &nbsp;
 						a {model.get("category")}
 					</div>
 				);
@@ -69,13 +69,9 @@ module.exports = React.createClass({
 			e.preventDefault();
 			var target = $(e.target);
 
-			console.log(model.id, model.get('finished'));
-
 			model.set({
 				finished: !(model.get("finished"))
 			});
-
-			console.log(model.id, model.get('finished'));
 
 			model.save();
 

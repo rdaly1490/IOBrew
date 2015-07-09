@@ -10,6 +10,7 @@ var workouts = require('./routes/workouts');
 var UserRoute = require('./routes/UserRoute');
 var IouRoute = require('./routes/IouRoute');
 var UomeRoute = require('./routes/UomeRoute');
+var OweRoute = require('./routes/OweRoute');
 var mongoose = require('mongoose');
 var fs = require("fs");
 var facebook = require("./stormpath/facebook");
@@ -96,6 +97,13 @@ app.get("/uomes", function(req, res) {
   })
 });
 
+app.get("/iobrews", function(req, res) {
+  mongoose.model("owe").find(req.query.filter, function(err, ious) {
+    console.log(req.query);
+    res.send(ious);
+  })
+});
+
 
 
 app.post('/workouts', workouts.create);
@@ -106,6 +114,8 @@ app.post('/ious', IouRoute.create);
 
 app.post('/uomes', UomeRoute.create);
 
+app.post('/iobrews', OweRoute.create);
+
 
 
 
@@ -115,10 +125,12 @@ app.post('/uomes', UomeRoute.create);
 
 app.get('/workouts/:id', workouts.show);
 
-
 app.get('/uomes/:id', UomeRoute.show);
 
 app.get('/ious/:id', IouRoute.show);
+
+app.get('/iobrews/:id', OweRoute.show);
+
 
 
 
@@ -128,6 +140,8 @@ app.put('/uomes/:id', UomeRoute.update);
 
 app.put('/ious/:id', IouRoute.update);
 
+app.put('/iobrews/:id', OweRoute.update);
+
 
 
 app.delete('/workouts', workouts.delete);
@@ -135,6 +149,8 @@ app.delete('/workouts', workouts.delete);
 app.delete('/uomes', UomeRoute.delete);
 
 app.delete('/ious', IouRoute.delete);
+
+app.delete('/iobrews', OweRoute.delete);
 
 
 // catch 404 and forward to error handler

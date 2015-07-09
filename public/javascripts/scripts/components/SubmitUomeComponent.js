@@ -1,7 +1,7 @@
 var React = require('react');
 var $ = require("jquery");
 
-var UomeModel = require("../models/UomeModel");
+var OweModel = require("../models/OweModel");
 
 module.exports = React.createClass({
 	render: function() {
@@ -42,19 +42,26 @@ module.exports = React.createClass({
 			rem=true;
 		}
 
-		var uome = new UomeModel({
-			senderId: this.refs.name.getDOMNode().value,
+		var owe = new OweModel({
+			type: 2,
+			owerid: this.refs.name.getDOMNode().value,
+			owername: this.refs.name.getDOMNode().value,
+			owedid: this.props.ioBrewUser.get("username"),
+			owedname: this.props.ioBrewUser.get("givenName"),
+			createdby: this.props.ioBrewUser.get("username"),
 			image: this.refs.image.getDOMNode().value,
 			reason: this.refs.reason.getDOMNode().value,
 			category: this.refs.category.getDOMNode().value,
-			reminder: rem,
-			recipientId: this.props.ioBrewUser.get("username")
+			reminder: rem
 		});
 
-		if (uome.attributes.image.length < 5) {
-			uome.attributes.image = "http://i.imgur.com/AwSWCaG.jpg"
+
+		if (owe.attributes.image.length < 5) {
+			owe.attributes.image = "http://i.imgur.com/AwSWCaG.jpg"
 		}
 
-		uome.save();
+		owe.save();
+
+		this.props.myRouter.navigate("userdash", {trigger: true});
 	}
 });
