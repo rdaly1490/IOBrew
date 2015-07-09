@@ -35682,20 +35682,16 @@ module.exports = React.createClass({
 					),
 					React.createElement("img", { src: "/images/Beer-icon.png" })
 				),
-				React.createElement(
-					"div",
-					{ className: "col-xs-10 col-xs-offset-1 test" },
-					React.createElement("div", { className: "col-xs-8 col-xs-offset-2 pic1" }),
-					React.createElement(
-						"div",
-						{ className: "col-xs-8 col-xs-offset-2 well" },
-						"Lorem ipsum Duis dolore veniam proident velit sint dolor magna eu nisi in."
-					)
-				)
+				React.createElement("div", { className: "col-xs-10 col-xs-offset-1 test" })
 			)
 		);
 	}
 });
+
+// <div className="col-xs-8 col-xs-offset-2 pic1"></div>
+// <div className="col-xs-8 col-xs-offset-2 well">
+// Lorem ipsum Duis dolore veniam proident velit sint dolor magna eu nisi in.
+// </div>
 
 },{"jquery":4,"react":160}],165:[function(require,module,exports){
 'use strict';
@@ -35715,6 +35711,8 @@ module.exports = React.createClass({
 
 		var IouHistory = new IouCollection();
 		IouHistory.fetch({
+			data: { filter: { finished: 0 } //0 or 1 for true or false (0 is F, 1 is T)
+			},
 			success: function success() {
 				that.forceUpdate();
 			}
@@ -35737,21 +35735,21 @@ module.exports = React.createClass({
 		} else {
 			var wlist = this.state.iouHistory.map(function (model) {
 
-				if (model.get('senderId') === that.props.ioBrewUser.get('username') && model.get('finished') === false) {
+				if (model.get('senderId') === that.props.ioBrewUser.get('username')) {
 					populated = true;
 					return React.createElement(
 						'div',
-						{ className: 'each-iou', id: model.get('_id'), key: model.cid },
-						React.createElement('img', { id: model.get('_id'), onClick: that.completeItem, ref: model.get('_id'), className: 'unchecked', src: '/images/empty-circle.png' }),
+						{ className: 'each-iou', key: model.cid },
+						React.createElement('img', { onClick: that.completeItem(model), ref: model.get('_id'), className: 'unchecked', src: '/images/empty-circle.png' }),
 						'  ',
 						moment(model.get('date_created')).calendar(),
 						'  ',
 						React.createElement(
 							'b',
 							null,
-							model.get('senderId')
+							'You'
 						),
-						'  Owes  ',
+						'  Owe  ',
 						React.createElement(
 							'b',
 							null,
@@ -35803,20 +35801,29 @@ module.exports = React.createClass({
 			);
 		}
 	},
-	completeItem: function completeItem(e) {
-		e.preventDefault();
-		e.target.src = '/images/beer-icon.png';
-		var target = $(e.target);
-		var changeStatus = target.attr('id');
+	completeItem: function completeItem(model) {
+		return function (e) {
+			e.preventDefault();
+			var target = $(e.target);
 
-		target.parent().css('opacity', '0.75');
-		target.parent().css('text-decoration', 'line-through');
+			console.log(model.id, model.get('finished'));
 
-		$.ajax({
-			url: '/ious',
-			type: 'PUT',
-			data: { id: changeStatus, finished: true }
-		});
+			model.set({
+				finished: !model.get('finished')
+			});
+
+			console.log(model.id, model.get('finished'));
+
+			model.save();
+
+			if (model.get('finished') === true) {
+				e.target.src = '/images/beer-icon.png';
+				target.parent().addClass('checked');
+			} else {
+				e.target.src = '/images/empty-circle.png';
+				target.parent().removeClass('checked');
+			}
+		};
 	},
 	updatePage: function updatePage(e) {
 		window.location.reload();
@@ -36548,6 +36555,7 @@ var React = require('react');
 var $ = require('jquery');
 var moment = require('moment');
 
+var UomeModel = require('../models/UomeModel');
 var UomeCollection = require('../collections/UomeCollection');
 
 module.exports = React.createClass({
@@ -36559,6 +36567,8 @@ module.exports = React.createClass({
 
 		var UomeHistory = new UomeCollection();
 		UomeHistory.fetch({
+			data: { filter: { finished: 0 } //0 or 1 for true or false (0 is F, 1 is T)
+			},
 			success: function success() {
 				that.forceUpdate();
 			}
@@ -36581,12 +36591,12 @@ module.exports = React.createClass({
 		} else {
 			var wlist = this.state.uomeHistory.map(function (model) {
 
-				if (model.get('recipientId') === that.props.ioBrewUser.get('username') && model.get('finished') === false) {
+				if (model.get('recipientId') === that.props.ioBrewUser.get('username')) {
 					populated = true;
 					return React.createElement(
 						'div',
-						{ className: 'each-iou', id: model.get('_id'), key: model.cid },
-						React.createElement('img', { id: model.get('_id'), onClick: that.completeItem(model), ref: model.get('_id'), className: 'unchecked', src: '/images/empty-circle.png' }),
+						{ className: 'each-iou', key: model.cid },
+						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-circle.png' }),
 						'  ',
 						moment(model.get('date_created')).calendar(),
 						'  ',
@@ -36650,35 +36660,33 @@ module.exports = React.createClass({
 	completeItem: function completeItem(model) {
 		return function (e) {
 			e.preventDefault();
-			console.log(model);
-		}
-		// e.preventDefault();
-		// e.target.src="/images/beer-icon.png";
-		// var target = $(e.target);
-		// var changeStatus = (target).attr("id");
+			var target = $(e.target);
 
-		// target.parent().css("opacity", "0.75");
-		// target.parent().css("text-decoration", "line-through");
+			console.log(model.id, model.get('finished'));
 
-		// $.ajax({
-		// url: '/uomes',
-		// type: 'PUT',
-		// data: {id: changeStatus, finished: true},
-		// });
+			model.set({
+				finished: !model.get('finished')
+			});
 
-		// model.set({
-		// 	finished: !model.get("finished")
-		// });
+			console.log(model.id, model.get('finished'));
 
-		//save this model and it will update the thing.  also change the class
-		;
+			model.save();
+
+			if (model.get('finished') === true) {
+				e.target.src = '/images/beer-icon.png';
+				target.parent().addClass('checked');
+			} else {
+				e.target.src = '/images/empty-circle.png';
+				target.parent().removeClass('checked');
+			}
+		};
 	},
 	updatePage: function updatePage(e) {
 		window.location.reload();
 	}
 });
 
-},{"../collections/UomeCollection":162,"jquery":4,"moment":5,"react":160}],174:[function(require,module,exports){
+},{"../collections/UomeCollection":162,"../models/UomeModel":178,"jquery":4,"moment":5,"react":160}],174:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36864,7 +36872,7 @@ var ioBrewUser = new ioBrewUserModel({
 });
 
 // console.log(ioBrewUser);
-console.log(window.iobrew_user);
+// console.log(window.iobrew_user);
 
 var App = Backbone.Router.extend({
 	routes: {

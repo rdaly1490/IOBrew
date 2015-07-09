@@ -24,6 +24,7 @@ block body
 
             form.registration-form.form-horizontal.sp-form(method='post', role='form')
               input(name='_csrf', type='hidden', value=csrfToken)
+              input(name='customData[imageUrl]', type='hidden', value='https://upload.wikimedia.org/wikipedia/commons/0/0f/Grosser_Panda.JPG')
 
               if app.get('stormpathEnableUsername')
                 .form-group.group-username(form-group='true')

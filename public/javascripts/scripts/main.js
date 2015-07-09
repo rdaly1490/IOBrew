@@ -29,7 +29,7 @@ var ioBrewUser = new ioBrewUserModel({
 });
 
 // console.log(ioBrewUser);
-console.log(window.iobrew_user);
+// console.log(window.iobrew_user);
 
 var App = Backbone.Router.extend({
 	routes: {

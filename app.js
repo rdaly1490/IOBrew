@@ -83,13 +83,14 @@ app.get("/users", function(req, res) {
 });
 
 app.get("/ious", function(req, res) {
-  mongoose.model("iou").find(function(err, ious) {
+  mongoose.model("iou").find(req.query.filter, function(err, ious) {
     res.send(ious);
   })
 });
 
 app.get("/uomes", function(req, res) {
-  mongoose.model("uome").find(function(err, uomes) {
+  mongoose.model("uome").find(req.query.filter, function(err, uomes) {
+    console.log(req.query);
     res.send(uomes);
   })
 });
@@ -114,17 +115,17 @@ app.post('/uomes', UomeRoute.create);
 app.get('/workouts/:id', workouts.show);
 
 
-app.put('/uomes/:id', UomeRoute.show);
+app.get('/uomes/:id', UomeRoute.show);
 
-app.put('/ious/:id', IouRoute.show);
+app.get('/ious/:id', IouRoute.show);
 
 
 
 app.put('/workouts', workouts.update);
 
-app.put('/uomes', UomeRoute.update);
+app.put('/uomes/:id', UomeRoute.update);
 
-app.put('/ious', IouRoute.update);
+app.put('/ious/:id', IouRoute.update);
 
 
 

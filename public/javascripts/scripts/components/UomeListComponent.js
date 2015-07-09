@@ -2,6 +2,7 @@ var React = require('react');
 var $ = require("jquery");
 var moment = require('moment');
 
+var UomeModel = require("../models/UomeModel");
 var UomeCollection = require("../collections/UomeCollection");
 
 module.exports = React.createClass({
@@ -11,6 +12,9 @@ module.exports = React.createClass({
 
 		var UomeHistory = new UomeCollection();
 		UomeHistory.fetch({
+			data: {filter:
+					 {finished: 0} //0 or 1 for true or false (0 is F, 1 is T)
+					},
 			success: function() {
 				that.forceUpdate();
 			}
@@ -34,11 +38,11 @@ module.exports = React.createClass({
 		else {
 			var wlist = this.state.uomeHistory.map(function(model) {
 
-				if(model.get("recipientId") === that.props.ioBrewUser.get("username") && model.get("finished") === false) {
+				if(model.get("recipientId") === that.props.ioBrewUser.get("username")) {
 					populated = true;
 					return (
-						<div className="each-iou" id={model.get("_id")} key={model.cid}>
-							<img id={model.get("_id")} onClick={that.completeItem(model)} ref ={model.get("_id")} className="unchecked" src="/images/empty-circle.png" />
+						<div className="each-iou" key={model.cid}>
+							<img onClick={that.completeItem(model)} className="unchecked" src="/images/empty-circle.png" />
 							&nbsp; {moment(model.get("date_created")).calendar()} &nbsp;
 							<b>{model.get("senderId")}</b>
 							&nbsp; Owes &nbsp;
@@ -80,30 +84,27 @@ module.exports = React.createClass({
 	completeItem: function(model) {
 		return function(e) {
 			e.preventDefault();
-			console.log(model);
+			var target = $(e.target);
 
+			console.log(model.id, model.get('finished'));
 
+			model.set({
+				finished: !(model.get("finished"))
+			});
 
+			console.log(model.id, model.get('finished'));
+
+			model.save();
+
+			if (model.get("finished") === true) {
+				e.target.src="/images/beer-icon.png";
+				target.parent().addClass("checked");
+			}
+			else {
+				e.target.src="/images/empty-circle.png";
+				target.parent().removeClass("checked");
+			}
 		}
-		// e.preventDefault();
-		// e.target.src="/images/beer-icon.png";
-		// var target = $(e.target);
-		// var changeStatus = (target).attr("id");
-
-		// target.parent().css("opacity", "0.75");
-		// target.parent().css("text-decoration", "line-through");
-
-		// $.ajax({
-		// url: '/uomes',
-		// type: 'PUT',
-		// data: {id: changeStatus, finished: true},
-		// });
-
-		// model.set({
-		// 	finished: !model.get("finished")
-		// });
-
-		//save this model and it will update the thing.  also change the class
 	},
 	updatePage: function(e) {
 		window.location.reload();

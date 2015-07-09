@@ -56,6 +56,11 @@ h1 {
 	cursor: pointer;
 }
 
+.checked {
+	opacity: 0.75;
+	text-decoration: line-through;
+}
+
 
 
 

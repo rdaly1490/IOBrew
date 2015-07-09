@@ -49,15 +49,27 @@ exports.show = function(req, res) {
 
 exports.update = function(req, res) {
   
-  var id = req.body.id; 
-  var finished = req.body.finished; 
+  var id = req.params.id;  
+  var image = req.body.image;
+  var reason = req.body.reason;
+  var category = req.body.category;
+  var reminder = req.body.reminder;
+  var finished = req.body.finished;
+  var senderId = req.body.senderId;
+  var recipientId = req.body.recipientId;
 
   IouModel.findById(id, function(err, doc) {
       if(!err && doc) {
-        doc.finished = finished; 
+        doc.image = image; 
+        doc.reason = reason; 
+        doc.category = category;  
+        doc.reminder = reminder;
+        doc.finished = finished;
+        doc.senderId = senderId;
+        doc.recipientId = recipientId; 
         doc.save(function(err) {
           if(!err) {
-            res.status(200).json({message: "Iou updated: " + id}); 
+            res.status(200).json(doc);
           } else {
             res.status(500).json({message: "Could not update Iou. " + err});
           }  

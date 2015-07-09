@@ -3,13 +3,13 @@ var mongoose = require('mongoose')
 
 var uomeSchema = new Schema({
     image              : { type: String, required: false }
-  , reason             : { type: String, required: true }    
+  , reason             : { type: String, required: false }    
   , category           : { type: String, required: false }
-  , senderId           : { type: String, required: true, default: " " }
-  , recipientId        : { type: String, required: true, default: " " }
+  , senderId           : { type: String, required: false, default: " " }
+  , recipientId        : { type: String, required: false, default: " " }
   , reminder           : { type: Boolean, required: false, default: false }
   , finished           : { type: Boolean, required: false, default: false }
-  , date_created       : { type: Date, required: true, default: Date.now }
+  , date_created       : { type: Date, required: false, default: Date.now }
 });
 
 var uome = mongoose.model('uome', uomeSchema);

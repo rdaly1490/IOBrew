@@ -11,6 +11,9 @@ module.exports = React.createClass({
 
 		var IouHistory = new IouCollection();
 		IouHistory.fetch({
+			data: {filter:
+					 {finished: 0} //0 or 1 for true or false (0 is F, 1 is T)
+					},
 			success: function() {
 				that.forceUpdate();
 			}
@@ -34,14 +37,14 @@ module.exports = React.createClass({
 		else {
 			var wlist = this.state.iouHistory.map(function(model) {
 
-				if(model.get("senderId") === that.props.ioBrewUser.get("username") && model.get("finished") === false) {
+				if(model.get("senderId") === that.props.ioBrewUser.get("username")) {
 					populated = true;
 					return (
-						<div className="each-iou" id={model.get("_id")} key={model.cid}>
-							<img id={model.get("_id")} onClick={that.completeItem} ref ={model.get("_id")} className="unchecked" src="/images/empty-circle.png" />
+						<div className="each-iou" key={model.cid}>
+							<img onClick={that.completeItem(model)} ref ={model.get("_id")} className="unchecked" src="/images/empty-circle.png" />
 							&nbsp; {moment(model.get("date_created")).calendar()} &nbsp;
-							<b>{model.get("senderId")}</b>
-							&nbsp; Owes &nbsp;
+							<b>You</b>
+							&nbsp; Owe &nbsp;
 							<b>{model.get("recipientId")}</b> &nbsp;
 							a {model.get("category")}
 						</div>
@@ -77,20 +80,30 @@ module.exports = React.createClass({
 			);	
 		}
 	},
-	completeItem: function(e) {
-		e.preventDefault();
-		e.target.src="/images/beer-icon.png";
-		var target = $(e.target);
-		var changeStatus = (target).attr("id");
+	completeItem: function(model) {
+		return function(e) {
+			e.preventDefault();
+			var target = $(e.target);
 
-		target.parent().css("opacity", "0.75");
-		target.parent().css("text-decoration", "line-through");
+			console.log(model.id, model.get('finished'));
 
-		$.ajax({
-		url: '/ious',
-		type: 'PUT',
-		data: {id: changeStatus, finished: true},
-		});
+			model.set({
+				finished: !(model.get("finished"))
+			});
+
+			console.log(model.id, model.get('finished'));
+
+			model.save();
+
+			if (model.get("finished") === true) {
+				e.target.src="/images/beer-icon.png";
+				target.parent().addClass("checked");
+			}
+			else {
+				e.target.src="/images/empty-circle.png";
+				target.parent().removeClass("checked");
+			}
+		}
 	},
 	updatePage: function(e) {
 		window.location.reload();
