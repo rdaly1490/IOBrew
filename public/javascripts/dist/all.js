@@ -35701,7 +35701,7 @@ module.exports = React.createClass({
 		OweHistory.fetch({
 			data: {
 				filter: {
-					type: 1,
+					// type: 1, //shouldnt need type because of owerid being the user.  in type 2 ower id is other party
 					finished: 0, //0 or 1 for binary T or F
 					owerid: this.props.ioBrewUser.get('username')
 				}
@@ -36551,7 +36551,7 @@ module.exports = React.createClass({
 		OweHistory.fetch({
 			data: {
 				filter: {
-					type: 2,
+					// type: 2,
 					finished: 0, //0 or 1 for binary T or F
 					owedid: this.props.ioBrewUser.get('username')
 				}
