@@ -1,5 +1,7 @@
 var oweModel = require('../models/owe').Owe; 
 
+var AchievementFunctions = require('./AchievementFunctions');
+
 exports.create = function(req, res) {
 
 //req.body.whatever has to be what the ref is in the component
@@ -33,9 +35,9 @@ exports.create = function(req, res) {
     newOwe.save(function(err) {
 
       if(!err) {
-        res.status(201).json({message: "Iou created for: " + newOwe.name });   
+        res.status(201).json({message: "IOBrew created for: " + newOwe.name });   
       } else {
-        res.status(500).json({message: "Could not create Iou. Error: " + err});
+        res.status(500).json({message: "Could not create IOBrew. Error: " + err});
       }
 
     });
@@ -48,14 +50,14 @@ exports.show = function(req, res) {
     if(!err && doc) {
       res.status(200).json(doc);
     } else if(err) {
-      res.status(500).json({ message: "Error loading Iou." + err});
+      res.status(500).json({ message: "Error loading IOBrew." + err});
     } else {
-      res.status(404).json({ message: "Iou not found."});
+      res.status(404).json({ message: "IOBrew not found."});
     }
   });
 }
 
-exports.update = function(req, res) {
+exports.update = function(req, res, next) {
   
   var id = req.params.id; 
   var type = req.body.type;
@@ -86,14 +88,15 @@ exports.update = function(req, res) {
         doc.save(function(err) {
           if(!err) {
             res.status(200).json(doc);
+            next();
           } else {
-            res.status(500).json({message: "Could not update Iou. " + err});
+            res.status(500).json({message: "Could not update IOBrew. " + err});
           }  
         });
       } else if(!err) {
-        res.status(404).json({ message: "Could not find Iou."});
+        res.status(404).json({ message: "Could not find IOBrew."});
       } else {
-        res.status(500).json({ message: "Could not update Iou." + err});
+        res.status(500).json({ message: "Could not update IOBrew." + err});
       }
     }); 
 }
@@ -104,11 +107,11 @@ exports.delete = function(req, res) {
   oweModel.findById(id, function(err, doc) {
     if(!err && doc) {
       doc.remove();
-      res.status(200).json({ message: "Iou removed."});
+      res.status(200).json({ message: "IOBrew removed."});
     } else if(!err) {
-      res.status(404).json({ message: "Could not find Iou."});
+      res.status(404).json({ message: "Could not find IOBrew."});
     } else {
-      res.status(403).json({message: "Could not delete Iou. " + err });
+      res.status(403).json({message: "Could not delete IOBrew. " + err });
     }
   });
 }

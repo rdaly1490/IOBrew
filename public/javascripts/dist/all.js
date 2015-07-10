@@ -36905,8 +36905,6 @@ module.exports = Backbone.Model.extend({
 		category: null,
 		reminder: false,
 		finished: false,
-		senderId: null,
-		recipientId: null,
 		date_created: null
 	},
 	urlRoot: "/iobrews",

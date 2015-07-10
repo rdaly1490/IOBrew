@@ -11,6 +11,8 @@ var UserRoute = require('./routes/UserRoute');
 var IouRoute = require('./routes/IouRoute');
 var UomeRoute = require('./routes/UomeRoute');
 var OweRoute = require('./routes/OweRoute');
+var AchievementRoute = require('./routes/AchievementRoute');
+var AchievementFunctions = require('./routes/AchievementFunctions');
 var mongoose = require('mongoose');
 var fs = require("fs");
 var facebook = require("./stormpath/facebook");
@@ -73,6 +75,7 @@ app.get('/', routes.index);
 
 app.get("/workouts", function(req, res) {
   mongoose.model("workout").find(function(err, workout) {
+    AchievementFunctions.FirstIou();
     res.send(workout);
   })
 });
@@ -85,25 +88,29 @@ app.get("/users", function(req, res) {
 
 app.get("/ious", function(req, res) {
   mongoose.model("iou").find(req.query.filter, function(err, ious) {
-    console.log(req.query);
     res.send(ious);
   })
 });
 
 app.get("/uomes", function(req, res) {
   mongoose.model("uome").find(req.query.filter, function(err, uomes) {
-    console.log(req.query);
     res.send(uomes);
   })
 });
 
 app.get("/iobrews", function(req, res) {
-  mongoose.model("owe").find(req.query.filter, function(err, ious) {
+  mongoose.model("owe").find(req.query.filter, function(err, owes) {
     console.log(req.query);
-    res.send(ious);
+    res.send(owes);
   })
 });
 
+app.get("/achievements", function(req, res) {
+  mongoose.model("achievements").find(req.query.filter, function(err, achievements) {
+    console.log(req.query);
+    res.send(achievements);
+  })
+});
 
 
 app.post('/workouts', workouts.create);
@@ -115,6 +122,8 @@ app.post('/ious', IouRoute.create);
 app.post('/uomes', UomeRoute.create);
 
 app.post('/iobrews', OweRoute.create);
+
+app.post('/achievements', AchievementRoute.create);
 
 
 
@@ -131,6 +140,8 @@ app.get('/ious/:id', IouRoute.show);
 
 app.get('/iobrews/:id', OweRoute.show);
 
+app.get('/achievements/:id', AchievementRoute.show);
+
 
 
 
@@ -140,7 +151,13 @@ app.put('/uomes/:id', UomeRoute.update);
 
 app.put('/ious/:id', IouRoute.update);
 
-app.put('/iobrews/:id', OweRoute.update);
+app.put('/iobrews/:id',OweRoute.update,AchievementFunctions.FirstIou);
+
+app.put('/achievements/:id', AchievementRoute.update);
+
+
+
+
 
 
 
@@ -151,6 +168,8 @@ app.delete('/uomes', UomeRoute.delete);
 app.delete('/ious', IouRoute.delete);
 
 app.delete('/iobrews', OweRoute.delete);
+
+app.delete('/achievements', AchievementRoute.delete);
 
 
 // catch 404 and forward to error handler
