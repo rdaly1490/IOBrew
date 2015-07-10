@@ -7,7 +7,7 @@ exports.FirstIou = function(req, res) {
 	var username = req.body.owerid;
 
 	oweModel.find({finished: 1, owerid: username}, function(err, iobrews) {
-		var first = (iobrews.length >= 3)
+		var first = (iobrews.length > 0)
 		if(first) {
 			var testModel = new achievementModel({
 				username: username,
@@ -16,9 +16,9 @@ exports.FirstIou = function(req, res) {
 			testModel.save(function(err){
 				console.log(err);
 			});
-			console.log("> = 3 trues");
+			console.log("First IOU complete");
 		} else {
-			console.log("< 3 trues");
+			console.log("False");
 		}
 	});	
 

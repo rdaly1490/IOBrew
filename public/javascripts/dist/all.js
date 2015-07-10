@@ -35624,6 +35624,18 @@ module.exports = require('./lib/React');
 
 var Backbone = require('backbone');
 Backbone.$ = require('jquery');
+var AchievementModel = require('../models/AchievementModel');
+
+module.exports = Backbone.Collection.extend({
+	model: AchievementModel,
+	url: '/achievements'
+});
+
+},{"../models/AchievementModel":177,"backbone":1,"jquery":4}],162:[function(require,module,exports){
+'use strict';
+
+var Backbone = require('backbone');
+Backbone.$ = require('jquery');
 var OweModel = require('../models/OweModel');
 
 module.exports = Backbone.Collection.extend({
@@ -35631,7 +35643,7 @@ module.exports = Backbone.Collection.extend({
 	url: '/iobrews'
 });
 
-},{"../models/OweModel":176,"backbone":1,"jquery":4}],162:[function(require,module,exports){
+},{"../models/OweModel":178,"backbone":1,"jquery":4}],163:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backbone');
@@ -35643,7 +35655,7 @@ module.exports = Backbone.Collection.extend({
 	url: '/workouts'
 });
 
-},{"../models/WorkoutModel":178,"backbone":1,"jquery":4}],163:[function(require,module,exports){
+},{"../models/WorkoutModel":180,"backbone":1,"jquery":4}],164:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35681,7 +35693,7 @@ module.exports = React.createClass({
 // Lorem ipsum Duis dolore veniam proident velit sint dolor magna eu nisi in.
 // </div>
 
-},{"jquery":4,"react":160}],164:[function(require,module,exports){
+},{"jquery":4,"react":160}],165:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35799,7 +35811,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/OweCollection":161,"jquery":4,"moment":5,"react":160}],165:[function(require,module,exports){
+},{"../collections/OweCollection":162,"jquery":4,"moment":5,"react":160}],166:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35857,7 +35869,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/UserModel":177,"jquery":4,"react":160}],166:[function(require,module,exports){
+},{"../models/UserModel":179,"jquery":4,"react":160}],167:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -36001,17 +36013,52 @@ module.exports = React.createClass({
   }
 });
 
-},{"react":160}],167:[function(require,module,exports){
+},{"react":160}],168:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var $ = require('jquery');
 var moment = require('moment');
 
+var AchievementCollection = require('../collections/AchievementCollection');
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+
+		var that = this;
+
+		var AchievementHistory = new AchievementCollection();
+		AchievementHistory.fetch({
+			data: {
+				filter: {
+					username: this.props.ioBrewUser.get('username')
+				}
+			},
+			success: function success() {
+				that.forceUpdate();
+			}
+		});
+		AchievementHistory.on('sync', function () {
+			that.forceUpdate();
+		});
+
+		return {
+			achievementHistory: AchievementHistory
+		};
+	},
 	render: function render() {
+
+		if (this.state.achievementHistory.length === 0) {
+			console.log('loading');
+		} else {
+			this.state.achievementHistory.map(function (model) {
+				if (model.get('type') === 'First IOU') {
+					$('.firstiou').attr('src', '/images/Beer-icon.png');
+				}
+			});
+		}
 		return React.createElement(
 			'div',
 			{ className: 'container-fluid' },
@@ -36035,11 +36082,11 @@ module.exports = React.createClass({
 					null,
 					'Achievements'
 				),
-				React.createElement('img', { src: '/images/empty-circle.png' }),
+				React.createElement('img', { className: 'firstiou', src: '/images/empty-circle.png' }),
 				React.createElement(
 					'p',
 					null,
-					'Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.'
+					'First IOU Completed!'
 				),
 				React.createElement('img', { src: '/images/empty-circle.png' }),
 				React.createElement(
@@ -36088,7 +36135,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"jquery":4,"moment":5,"react":160}],168:[function(require,module,exports){
+},{"../collections/AchievementCollection":161,"jquery":4,"moment":5,"react":160}],169:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36177,7 +36224,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/UserModel":177,"jquery":4,"react":160}],169:[function(require,module,exports){
+},{"../models/UserModel":179,"jquery":4,"react":160}],170:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36243,7 +36290,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/WorkoutModel":178,"jquery":4,"react":160}],170:[function(require,module,exports){
+},{"../models/WorkoutModel":180,"jquery":4,"react":160}],171:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36387,7 +36434,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/OweModel":176,"jquery":4,"react":160}],171:[function(require,module,exports){
+},{"../models/OweModel":178,"jquery":4,"react":160}],172:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36530,7 +36577,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/OweModel":176,"jquery":4,"react":160}],172:[function(require,module,exports){
+},{"../models/OweModel":178,"jquery":4,"react":160}],173:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -36648,7 +36695,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/OweCollection":161,"jquery":4,"moment":5,"react":160}],173:[function(require,module,exports){
+},{"../collections/OweCollection":162,"jquery":4,"moment":5,"react":160}],174:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36725,7 +36772,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"jquery":4,"react":160}],174:[function(require,module,exports){
+},{"jquery":4,"react":160}],175:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36800,7 +36847,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/WorkoutCollection":162,"jquery":4,"react":160}],175:[function(require,module,exports){
+},{"../collections/WorkoutCollection":163,"jquery":4,"react":160}],176:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -36887,7 +36934,21 @@ React.render(React.createElement(NavbarComponent, { myRouter: myRouter, ioBrewUs
 // 	myRouter.navigate("userdash", {trigger:true});
 // }
 
-},{"./components/HomePageComponent":163,"./components/IouListComponent":164,"./components/LoginComponent":165,"./components/NavbarComponent":166,"./components/ProfilePageComponent":167,"./components/RegisterComponent":168,"./components/SubmitComponent":169,"./components/SubmitIouComponent":170,"./components/SubmitUomeComponent":171,"./components/UomeListComponent":172,"./components/UserDashComponent":173,"./components/WorkoutListComponent":174,"./models/ioBrewUserModel":179,"backbone":1,"jquery":4,"react":160}],176:[function(require,module,exports){
+},{"./components/HomePageComponent":164,"./components/IouListComponent":165,"./components/LoginComponent":166,"./components/NavbarComponent":167,"./components/ProfilePageComponent":168,"./components/RegisterComponent":169,"./components/SubmitComponent":170,"./components/SubmitIouComponent":171,"./components/SubmitUomeComponent":172,"./components/UomeListComponent":173,"./components/UserDashComponent":174,"./components/WorkoutListComponent":175,"./models/ioBrewUserModel":181,"backbone":1,"jquery":4,"react":160}],177:[function(require,module,exports){
+"use strict";
+
+var Backbone = require("backbone");
+
+module.exports = Backbone.Model.extend({
+	defaults: {
+		username: null,
+		type: null
+	},
+	urlRoot: "/achievements",
+	idAttribute: "_id"
+});
+
+},{"backbone":1}],178:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -36911,7 +36972,7 @@ module.exports = Backbone.Model.extend({
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],177:[function(require,module,exports){
+},{"backbone":1}],179:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -36929,7 +36990,7 @@ module.exports = Backbone.Model.extend({
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],178:[function(require,module,exports){
+},{"backbone":1}],180:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -36944,7 +37005,7 @@ module.exports = Backbone.Model.extend({
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],179:[function(require,module,exports){
+},{"backbone":1}],181:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -36962,7 +37023,7 @@ module.exports = Backbone.Model.extend({
 	}
 });
 
-},{"backbone":1}]},{},[175])
+},{"backbone":1}]},{},[176])
 
 
 //# sourceMappingURL=all.js.map
