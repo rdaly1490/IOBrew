@@ -32,6 +32,8 @@ app.use(stormpath.init(app, {
     registrationView: __dirname + '/views/register.jade',
     loginView: __dirname + '/views/login.jade',
     enableForgotPassword: true,
+    redirectUrl: '/#userdash',
+    enableAutoLogin: true,
     // enableFacebook: true,
     social: {
       facebook: {
@@ -83,9 +85,17 @@ app.get("/workouts", function(req, res) {
 });
 
 app.get("/users", function(req, res) {
-  mongoose.model("user").find(function(err, users) {
-    res.send(users);
-  })
+  var users = [];
+
+  app.get('stormpathApplication').getAccounts(function(err, accounts) {
+    accounts.each(function(account, cb) {
+      users.push(account);
+      cb();
+    }, function(err) {
+      if (err) return next(err);
+      res.json(users);
+    });
+  });
 });
 
 app.get("/ious", function(req, res) {

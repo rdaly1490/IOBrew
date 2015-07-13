@@ -369,6 +369,7 @@ body {
 	background-position: center;
 	margin-top: -30px;
 	text-align: center;
+	padding-top: 30px;
 }
 
 .profile-container img {
@@ -376,17 +377,30 @@ body {
 	width:30%;
 }
 
-.achievements h5 {
-	font-size: 18px;
-	font-weight: bold;	
+.achievements h3 {
+	font-size: 22px;
+	font-weight: bold;
+	font-family: "Bangers"	
+}
+
+.achievements h1 {
+	font-family: "Oswald";
+	text-decoration:underline;
+	margin-bottom: 20px;
 }
 
 .achievements p {
-	font-size: 14px;	
+	font-size: 18px;
+	font-weight: bold;
+	font-family: "Quicksand";	
 }
 
 .completed {
 	font-size: 14px;
+}
+
+.user-info {
+	font-family: "Oswald"
 }
 
 

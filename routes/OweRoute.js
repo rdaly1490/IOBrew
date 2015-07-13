@@ -57,7 +57,7 @@ exports.create = function(req, res) {
             newOwe.save();
           }
         });
-      }, 3000);
+      }, 604800000);
     }
     else {
       newOwe.save();

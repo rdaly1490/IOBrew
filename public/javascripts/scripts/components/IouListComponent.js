@@ -64,7 +64,7 @@ module.exports = React.createClass({
 								<p>Date Created: {moment(model.get("date_created")).calendar()}</p>
 								<p>Created by: {model.get("createdby")}</p>
 								<p>Reason: {model.get("reason")}</p>
-								<p>Image your friend sent you!:<a href={model.get("image")}><img src={model.get("image")} /></a></p>
+								<p>Image associated with this item: <a href={model.get("image")}><img src={model.get("image")} /></a></p>
 							</div>
 						</div>
 					</div>

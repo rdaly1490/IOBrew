@@ -56,26 +56,26 @@ module.exports = React.createClass({
 		}
 		return (
 			<div className="container-fluid profile-container">
-				<div className="col-xs-12">
+				<div className="col-xs-12 user-info">
 				<h3>User: {this.props.ioBrewUser.get("username")}</h3>
 				<p>Member Since: {moment(this.state.achievementHistory.get("date_created")).format("MMMM Do YYYY")}</p>
 				</div>
 
 				<div className="col-xs-10 col-xs-offset-1 achievements">
-					<h3>Achievements</h3>
+					<h1>Achievements</h1>
 
 					<img className="firstiou" src="/images/empty-circle.png" />
-					<h5>First IOU Completed!</h5>
+					<h3>First IOU Completed!</h3>
 					<p className="firstiouCompleted"></p>
 					<img className="firstuome" src="/images/empty-circle.png" />
-					<h5>First UOME Completed</h5>
+					<h3>First UOME Completed</h3>
 					<p className="firstuomeCompleted"></p>
 
 					<img className="teniou" src="/images/empty-circle.png" />
-					<h5>Ten IOUs Completed!</h5>
+					<h3>Ten IOUs Completed!</h3>
 					<p className="teniouCompleted"></p>
 					<img className="tenuome" src="/images/empty-circle.png" />
-					<h5>Ten UOMEs Completed</h5>
+					<h3>Ten UOMEs Completed</h3>
 					<p className="tenuomeCompleted"></p>
 
 

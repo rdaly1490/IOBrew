@@ -13,8 +13,8 @@ module.exports = React.createClass({
 						<p>An innovative IOU App for beers</p>
 					</div>
 					<div className="col-xs-12 banner-buttons">
-						<a className="button primary-button" href="/login">Sign Up</a>
-						<a className="button secondary-button" href="/register">Log In</a>
+						<a className="button primary-button" href="/register">Sign Up</a>
+						<a className="button secondary-button" href="/login">Log In</a>
 					</div>
 				</div>
 				<div className="container-fluid home-benefits">

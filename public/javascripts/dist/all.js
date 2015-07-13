@@ -35700,12 +35700,12 @@ module.exports = React.createClass({
 					{ className: "col-xs-12 banner-buttons" },
 					React.createElement(
 						"a",
-						{ className: "button primary-button", href: "/login" },
+						{ className: "button primary-button", href: "/register" },
 						"Sign Up"
 					),
 					React.createElement(
 						"a",
-						{ className: "button secondary-button", href: "/register" },
+						{ className: "button secondary-button", href: "/login" },
 						"Log In"
 					)
 				)
@@ -35876,7 +35876,7 @@ module.exports = React.createClass({
 							React.createElement(
 								'p',
 								null,
-								'Image your friend sent you!:',
+								'Image associated with this item: ',
 								React.createElement(
 									'a',
 									{ href: model.get('image') },
@@ -36208,7 +36208,7 @@ module.exports = React.createClass({
 			{ className: 'container-fluid profile-container' },
 			React.createElement(
 				'div',
-				{ className: 'col-xs-12' },
+				{ className: 'col-xs-12 user-info' },
 				React.createElement(
 					'h3',
 					null,
@@ -36226,34 +36226,34 @@ module.exports = React.createClass({
 				'div',
 				{ className: 'col-xs-10 col-xs-offset-1 achievements' },
 				React.createElement(
-					'h3',
+					'h1',
 					null,
 					'Achievements'
 				),
 				React.createElement('img', { className: 'firstiou', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'h5',
+					'h3',
 					null,
 					'First IOU Completed!'
 				),
 				React.createElement('p', { className: 'firstiouCompleted' }),
 				React.createElement('img', { className: 'firstuome', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'h5',
+					'h3',
 					null,
 					'First UOME Completed'
 				),
 				React.createElement('p', { className: 'firstuomeCompleted' }),
 				React.createElement('img', { className: 'teniou', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'h5',
+					'h3',
 					null,
 					'Ten IOUs Completed!'
 				),
 				React.createElement('p', { className: 'teniouCompleted' }),
 				React.createElement('img', { className: 'tenuome', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'h5',
+					'h3',
 					null,
 					'Ten UOMEs Completed'
 				),
@@ -36854,7 +36854,7 @@ module.exports = React.createClass({
 							React.createElement(
 								'p',
 								null,
-								'Image associated with this item:',
+								'Image associated with this item: ',
 								React.createElement(
 									'a',
 									{ href: model.get('image') },
