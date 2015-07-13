@@ -30,7 +30,7 @@ app.use(stormpath.init(app, {
     registrationView: __dirname + '/views/register.jade',
     loginView: __dirname + '/views/login.jade',
     enableForgotPassword: true,
-    enableFacebook: true,
+    // enableFacebook: true,
     social: {
       facebook: {
         appId: facebook.appId,

@@ -40,7 +40,7 @@ module.exports = React.createClass({
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">Cheers {this.props.ioBrewUser.get("givenName")} !</a>
+            <a className="navbar-brand" href="#">io<span className="brew">Brew</span><img src="/images/Beer-icon.png" /></a>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -61,3 +61,6 @@ module.exports = React.createClass({
     window.location.href = "/logout";
   }
 });
+
+
+// <a className="navbar-brand" href="#">Cheers {this.props.ioBrewUser.get("givenName")} !</a>

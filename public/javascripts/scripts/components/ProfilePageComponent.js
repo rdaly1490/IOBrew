@@ -42,30 +42,31 @@ module.exports = React.createClass({
 			});	
 		}
 		return (
-			<div className="container-fluid">
+			<div className="container-fluid profile-container">
 				<div className="col-xs-12">
 				<h3>User: {this.props.ioBrewUser.get("username")}</h3>
-				<p>Member Since: {moment(this.props.ioBrewUser.get("createdAt")).format("MMMM Do YYYY")}</p>
+				<p>Member Since: {moment(this.state.achievementHistory.get("date_created")).format("MMMM Do YYYY")}</p>
+				</div>
 
-
-				<h3>Achievements</h3>
-				<img className="firstiou" src="/images/empty-circle.png" />
-				<p>First IOU Completed!</p>
-				<img src="/images/empty-circle.png" />
-				<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-				<img src="/images/empty-circle.png" />
-				<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-				<img src="/images/empty-circle.png" />
-				<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-				<img src="/images/empty-circle.png" />
-				<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-				<img src="/images/empty-circle.png" />
-				<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-				<img src="/images/empty-circle.png" />
-				<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-				<img src="/images/empty-circle.png" />
-				<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-
+				<div className="col-xs-10 col-xs-offset-1 achievements">
+					<h3>Achievements</h3>
+					<img className="firstiou" src="/images/empty-circle.png" />
+					<h5>First IOU Completed!</h5>
+					<p>Completed {moment(this.props.ioBrewUser.get("createdAt")).format("MMMM Do YYYY")}</p>
+					<img src="/images/empty-circle.png" />
+					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
+					<img src="/images/empty-circle.png" />
+					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
+					<img src="/images/empty-circle.png" />
+					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
+					<img src="/images/empty-circle.png" />
+					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
+					<img src="/images/empty-circle.png" />
+					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
+					<img src="/images/empty-circle.png" />
+					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
+					<img src="/images/empty-circle.png" />
+					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
 				</div>
 			</div>
 		);

@@ -6,15 +6,15 @@ var OweModel = require("../models/OweModel");
 module.exports = React.createClass({
 	render: function() {
 		return (
-			<div className="container-fluid">
-				<div className="col-xs-8 col-xs-offset-2">
+			<div className="container-fluid submit-container">
+				<div className="col-xs-8 col-xs-offset-2 form">
 					<form onSubmit={this.submitUome}>
 						<label>This person owes you beer!</label><br />
 						<input type="text" ref="name" /><br />
 						<label>Image URL</label><br />
 						<input type="text" ref="image" /><br />
 						<label>Reason</label><br />
-						<input type="text" ref="reason" /><br />
+						<textarea ref="reason"></textarea><br />
 						<label>Category</label><br />
 						<select ref="category">
 							<option value=""> -- Select a Beer Category -- </option>

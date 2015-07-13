@@ -37,7 +37,10 @@ module.exports = React.createClass({
 		var that = this;
 
 		if (this.state.oweHistory.length === 0) {
-			var wlist = <div><h3>No UOMEs</h3></div>
+			var wlist = <div>
+							<img src="/images/empty-list.png" />
+							<h3>No UOMEs</h3>
+						</div>
 		}
 		else {
 			var wlist = this.state.oweHistory.map(function(model) {
@@ -49,6 +52,12 @@ module.exports = React.createClass({
 						&nbsp; Owes &nbsp;
 						<b>You</b> &nbsp;
 						a {model.get("category")}
+						<button onClick={that.showDetails}>Details</button>
+						<div className="details" style={detailsStyle} key={model.get("_id")}>
+							<p>Date Created: {moment(model.get("date_created")).calendar()}</p>
+							<p>Created by: {model.get("createdby")}</p>
+							<p>Image you sent to your friend!:<a href={model.get("image")}><img src={model.get("image")} /></a></p>
+						</div>
 					</div>
 				);
 			});
@@ -57,6 +66,7 @@ module.exports = React.createClass({
 		return (
 			<div className="container-fluid">
 				<div className="col-xs-8 col-xs-offset-2">
+				<h2>Beers Owed to You</h2>
 					{wlist}
 				</div>
 			<button onClick={this.updatePage}>Update Page</button>
@@ -86,5 +96,10 @@ module.exports = React.createClass({
 	},
 	updatePage: function(e) {
 		window.location.reload();
+	},
+	showDetails: function(e) {
+		e.preventDefault();
+		var target = $(e.target);
+		target.siblings(".details").toggle();
 	}
 });

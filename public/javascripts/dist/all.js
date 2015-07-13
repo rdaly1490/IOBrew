@@ -35667,22 +35667,93 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "container-fluid" },
+			null,
 			React.createElement(
 				"div",
-				{ className: "col-xs-12 logo" },
+				{ className: "container-fluid home-banner" },
 				React.createElement(
-					"h1",
-					null,
-					"io",
+					"div",
+					{ className: "col-xs-12 banner-text" },
 					React.createElement(
-						"span",
-						{ className: "brew" },
-						"Brew"
+						"h1",
+						null,
+						" Connect."
 					),
-					React.createElement("img", { src: "/images/Beer-icon.png" })
+					React.createElement(
+						"h1",
+						{ className: "alt-text" },
+						" Drink. "
+					),
+					React.createElement(
+						"h1",
+						null,
+						"Share."
+					),
+					React.createElement(
+						"p",
+						null,
+						"An innovative IOU App for beers"
+					)
 				),
-				React.createElement("div", { className: "col-xs-10 col-xs-offset-1 test" })
+				React.createElement(
+					"div",
+					{ className: "col-xs-12 banner-buttons" },
+					React.createElement(
+						"a",
+						{ className: "button primary-button", href: "/login" },
+						"Sign Up"
+					),
+					React.createElement(
+						"a",
+						{ className: "button secondary-button", href: "/register" },
+						"Log In"
+					)
+				)
+			),
+			React.createElement(
+				"div",
+				{ className: "container-fluid home-benefits" },
+				React.createElement(
+					"div",
+					{ className: "col-xs-12" },
+					React.createElement(
+						"div",
+						{ className: "col-xs-10 col-xs-offset-1 benefits" },
+						React.createElement("img", { src: "/images/beer-list.png" }),
+						React.createElement(
+							"h3",
+							null,
+							"Keep Track"
+						),
+						React.createElement(
+							"p",
+							null,
+							"Never miss out on a cold, refreshing beer again!  IoBrew lets you keep track of beer owed to you and beers you owe to others.  Remember to collect on those beers and to share the wealth with others."
+						),
+						React.createElement("img", { src: "/images/beer-achievements.png" }),
+						React.createElement(
+							"h3",
+							null,
+							"Achievements"
+						),
+						React.createElement(
+							"p",
+							null,
+							"Work towards achievements with your friends and prove who buys the most beers once and for all.  Think youre always stuck spotting your friends?  At least get some achievements for it."
+						),
+						React.createElement("img", { src: "/images/beer-email.png" }),
+						React.createElement(
+							"h3",
+							null,
+							"Email Reminders"
+						),
+						React.createElement(
+							"p",
+							null,
+							"Still cant remember to check for beers owed to you or owed to others?  Too busy to log in and check?  Well, dont fret, we will send you email reminders if you so choose!"
+						)
+					)
+				)
 			)
 		);
 	}
@@ -35731,13 +35802,16 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
-
+		var detailsStyle = {
+			display: 'none'
+		};
 		var that = this;
 
 		if (this.state.oweHistory.length === 0) {
 			var wlist = React.createElement(
 				'div',
 				null,
+				React.createElement('img', { src: '/images/empty-list.png' }),
 				React.createElement(
 					'h3',
 					null,
@@ -35746,42 +35820,79 @@ module.exports = React.createClass({
 			);
 		} else {
 			var wlist = this.state.oweHistory.map(function (model) {
-
 				return React.createElement(
 					'div',
-					{ className: 'each-iou', key: model.cid },
-					React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-circle.png' }),
-					'  ',
-					moment(model.get('date_created')).calendar(),
-					'  ',
+					null,
 					React.createElement(
-						'b',
-						null,
-						'You'
-					),
-					'  Owe  ',
-					React.createElement(
-						'b',
-						null,
-						model.get('owedname')
-					),
-					'   a ',
-					model.get('category')
+						'div',
+						{ className: 'each-iou', key: model.cid },
+						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-circle.png' }),
+						'  ',
+						React.createElement(
+							'b',
+							null,
+							' You'
+						),
+						'  Owe  ',
+						React.createElement(
+							'b',
+							null,
+							model.get('owedname')
+						),
+						'   a ',
+						model.get('category'),
+						React.createElement(
+							'button',
+							{ onClick: that.showDetails },
+							'Details'
+						),
+						React.createElement(
+							'div',
+							{ className: 'details', style: detailsStyle, key: model.get('_id') },
+							React.createElement(
+								'p',
+								null,
+								'Date Created: ',
+								moment(model.get('date_created')).calendar()
+							),
+							React.createElement(
+								'p',
+								null,
+								'Created by: ',
+								model.get('createdby')
+							),
+							React.createElement(
+								'p',
+								null,
+								'Image your friend sent you!:',
+								React.createElement(
+									'a',
+									{ href: model.get('image') },
+									React.createElement('img', { src: model.get('image') })
+								)
+							)
+						)
+					)
 				);
 			});
 		}
 
 		return React.createElement(
 			'div',
-			{ className: 'container-fluid' },
+			{ className: 'container-fluid list-container' },
 			React.createElement(
 				'div',
-				{ className: 'col-xs-8 col-xs-offset-2' },
+				{ className: 'col-xs-10 col-xs-offset-1 todo-list' },
+				React.createElement(
+					'h2',
+					null,
+					'Beers You Owe'
+				),
 				wlist
 			),
 			React.createElement(
 				'button',
-				{ onClick: this.updatePage },
+				{ className: 'update', onClick: this.updatePage },
 				'Update Page'
 			)
 		);
@@ -35808,6 +35919,11 @@ module.exports = React.createClass({
 	},
 	updatePage: function updatePage(e) {
 		window.location.reload();
+	},
+	showDetails: function showDetails(e) {
+		e.preventDefault();
+		var target = $(e.target);
+		target.siblings('.details').toggle();
 	}
 });
 
@@ -35987,9 +36103,13 @@ module.exports = React.createClass({
           React.createElement(
             'a',
             { className: 'navbar-brand', href: '#' },
-            'Cheers ',
-            this.props.ioBrewUser.get('givenName'),
-            ' !'
+            'io',
+            React.createElement(
+              'span',
+              { className: 'brew' },
+              'Brew'
+            ),
+            React.createElement('img', { src: '/images/Beer-icon.png' })
           )
         ),
         React.createElement(
@@ -36012,6 +36132,8 @@ module.exports = React.createClass({
     window.location.href = '/logout';
   }
 });
+
+// <a className="navbar-brand" href="#">Cheers {this.props.ioBrewUser.get("givenName")} !</a>
 
 },{"react":160}],168:[function(require,module,exports){
 'use strict';
@@ -36061,7 +36183,7 @@ module.exports = React.createClass({
 		}
 		return React.createElement(
 			'div',
-			{ className: 'container-fluid' },
+			{ className: 'container-fluid profile-container' },
 			React.createElement(
 				'div',
 				{ className: 'col-xs-12' },
@@ -36075,8 +36197,12 @@ module.exports = React.createClass({
 					'p',
 					null,
 					'Member Since: ',
-					moment(this.props.ioBrewUser.get('createdAt')).format('MMMM Do YYYY')
-				),
+					moment(this.state.achievementHistory.get('date_created')).format('MMMM Do YYYY')
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'col-xs-10 col-xs-offset-1 achievements' },
 				React.createElement(
 					'h3',
 					null,
@@ -36084,9 +36210,15 @@ module.exports = React.createClass({
 				),
 				React.createElement('img', { className: 'firstiou', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'p',
+					'h5',
 					null,
 					'First IOU Completed!'
+				),
+				React.createElement(
+					'p',
+					null,
+					'Completed ',
+					moment(this.props.ioBrewUser.get('createdAt')).format('MMMM Do YYYY')
 				),
 				React.createElement('img', { src: '/images/empty-circle.png' }),
 				React.createElement(
@@ -36305,17 +36437,17 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "container-fluid" },
+			{ className: "container-fluid submit-container" },
 			React.createElement(
 				"div",
-				{ className: "col-xs-8 col-xs-offset-2" },
+				{ className: "col-xs-8 col-xs-offset-2 form" },
 				React.createElement(
 					"form",
 					{ onSubmit: this.submitIou },
 					React.createElement(
 						"label",
 						null,
-						"Name"
+						"Who do you owe a beer?"
 					),
 					React.createElement("br", null),
 					React.createElement("input", { type: "text", ref: "name" }),
@@ -36334,7 +36466,7 @@ module.exports = React.createClass({
 						"Reason"
 					),
 					React.createElement("br", null),
-					React.createElement("input", { type: "text", ref: "reason" }),
+					React.createElement("textarea", { ref: "reason" }),
 					React.createElement("br", null),
 					React.createElement(
 						"label",
@@ -36448,10 +36580,10 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "container-fluid" },
+			{ className: "container-fluid submit-container" },
 			React.createElement(
 				"div",
-				{ className: "col-xs-8 col-xs-offset-2" },
+				{ className: "col-xs-8 col-xs-offset-2 form" },
 				React.createElement(
 					"form",
 					{ onSubmit: this.submitUome },
@@ -36477,7 +36609,7 @@ module.exports = React.createClass({
 						"Reason"
 					),
 					React.createElement("br", null),
-					React.createElement("input", { type: "text", ref: "reason" }),
+					React.createElement("textarea", { ref: "reason" }),
 					React.createElement("br", null),
 					React.createElement(
 						"label",
@@ -36623,6 +36755,7 @@ module.exports = React.createClass({
 			var wlist = React.createElement(
 				'div',
 				null,
+				React.createElement('img', { src: '/images/empty-list.png' }),
 				React.createElement(
 					'h3',
 					null,
@@ -36650,7 +36783,38 @@ module.exports = React.createClass({
 						'You'
 					),
 					'   a ',
-					model.get('category')
+					model.get('category'),
+					React.createElement(
+						'button',
+						{ onClick: that.showDetails },
+						'Details'
+					),
+					React.createElement(
+						'div',
+						{ className: 'details', style: detailsStyle, key: model.get('_id') },
+						React.createElement(
+							'p',
+							null,
+							'Date Created: ',
+							moment(model.get('date_created')).calendar()
+						),
+						React.createElement(
+							'p',
+							null,
+							'Created by: ',
+							model.get('createdby')
+						),
+						React.createElement(
+							'p',
+							null,
+							'Image you sent to your friend!:',
+							React.createElement(
+								'a',
+								{ href: model.get('image') },
+								React.createElement('img', { src: model.get('image') })
+							)
+						)
+					)
 				);
 			});
 		}
@@ -36661,6 +36825,11 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'col-xs-8 col-xs-offset-2' },
+				React.createElement(
+					'h2',
+					null,
+					'Beers Owed to You'
+				),
 				wlist
 			),
 			React.createElement(
@@ -36692,6 +36861,11 @@ module.exports = React.createClass({
 	},
 	updatePage: function updatePage(e) {
 		window.location.reload();
+	},
+	showDetails: function showDetails(e) {
+		e.preventDefault();
+		var target = $(e.target);
+		target.siblings('.details').toggle();
 	}
 });
 
@@ -36707,48 +36881,64 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "container-fluid" },
+			{ className: "container-fluid user-container" },
+			React.createElement(
+				"h1",
+				null,
+				" Cheers  ",
+				this.props.ioBrewUser.get("givenName"),
+				"!"
+			),
 			React.createElement(
 				"div",
-				{ className: "col-xs-12" },
+				{ className: "col-xs-12 submit-btn" },
+				React.createElement(
+					"button",
+					{ onClick: this.submitIou },
+					"Submit an IOU!"
+				)
+			),
+			React.createElement(
+				"div",
+				{ onClick: this.listIous, className: "col-xs-12 iou-dash" },
 				React.createElement(
 					"div",
-					{ className: "col-xs-6 iou" },
-					React.createElement(
-						"button",
-						{ onClick: this.submitIou },
-						"Submit an IOU!"
-					),
-					React.createElement("br", null),
+					{ className: "col-xs-10 col-xs-offset-1" },
 					React.createElement(
 						"div",
-						{ onClick: this.listIous, className: "col-xs-10 col-xs-offset-1 well" },
+						{ className: "col-xs-10 col-xs-offset-1" },
 						React.createElement(
-							"div",
-							{ className: "col-xs-10 col-xs-offset-1" },
-							"Click Me to see List!"
-						),
-						"Lorem ipsum Eiusmod deserunt magna aute do incididunt eiusmod officia. Lorem ipsum Dolor Ut aliqua consequat pariatur occaecat. Lorem ipsum Ea Excepteur aute cupidatat minim pariatur Ut eu aliquip voluptate in. Lorem ipsum Culpa tempor aliqua nostrud amet non."
+							"h2",
+							null,
+							"Beers You Owe"
+						)
 					)
+				)
+			),
+			React.createElement(
+				"div",
+				{ className: "col-xs-12 submit-btn" },
+				React.createElement(
+					"button",
+					{ onClick: this.submitUome },
+					"Submit a UOME!"
 				),
+				React.createElement("br", null),
 				React.createElement(
 					"div",
-					{ className: "col-xs-6 uome" },
-					React.createElement(
-						"button",
-						{ onClick: this.submitUome },
-						"Submit a UOME!"
-					),
-					React.createElement("br", null),
+					{ onClick: this.listUomes, className: "col-xs-12 uome-dash" },
 					React.createElement(
 						"div",
-						{ onClick: this.listUomes, className: "col-xs-10 col-xs-offset-1 well" },
+						{ className: "col-xs-10 col-xs-offset-1" },
 						React.createElement(
 							"div",
 							{ className: "col-xs-10 col-xs-offset-1" },
-							"Click Me to see List!"
-						),
-						"Lorem ipsum Eiusmod deserunt magna aute do incididunt eiusmod officia. Lorem ipsum Dolor Ut aliqua consequat pariatur occaecat. Lorem ipsum Ea Excepteur aute cupidatat minim pariatur Ut eu aliquip voluptate in. Lorem ipsum Culpa tempor aliqua nostrud amet non."
+							React.createElement(
+								"h2",
+								null,
+								"Beers Owed To You"
+							)
+						)
 					)
 				)
 			)

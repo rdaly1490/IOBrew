@@ -2,14 +2,25 @@ body {
   padding: 0px;
 }
 
-a {
-  color: #00B7FF;
+
+
+/*------------------   NavBar   -----------------------------------*/
+
+.navbar-header {
+	background-color: rgba(255, 239, 191, 1);
 }
 
-h1 {
+.navbar-brand {
+	font-size: 40px;
 	font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
-	font-size: 100px;
+	margin-bottom: 20px;
 	color: #999273;
+}
+
+.navbar-brand img{
+	height:40px;
+	width:40px;
+	display: inline;
 }
 
 .brew {
@@ -17,21 +28,257 @@ h1 {
 	font-family: Copperplate, fantasy;
 }
 
-#container {
-	/*background-color: #FFEFBF;*/
-	/*background: url(http://snowbrains.com/wp-content/uploads/2013/09/Why-Beer-Is-Good-For-You.jpg);*/
-	margin-top: -20px;
+.collapsed {
+	margin-top: 15px;
 }
 
-.logo {
-	background-color: #FFEFBF;
+
+/*------------------   HomePage   ---------------------------------*/
+
+.home-banner {
+	background: url(/images/friends-mugs.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 600px;
+	margin-top: -20px;
+	color: white;
 	text-align: center;
 }
 
-.test {
-	background-color: #E6DBAC;
-	border-radius: 10px;
-	height:800px;
+.home-banner h1 {
+	font-size: 34px;
+	display: inline;
+	font-family: 'Ubuntu', sans-serif;
+	/*ubuntu bold, courgette bold*/
+	font-weight: bold;
+}
+
+.alt-text {
+	color:black;
+}
+
+.banner-text {
+	padding-top: 290px;
+}
+
+.banner-text p {
+	margin-bottom: 0px;
+	margin-top: 10px;
+	font-size: 20px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: bold;
+}
+
+.button {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	height:30%;
+	font-size: 100%;
+	color: white;
+	border-radius: 4px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.button:hover {
+	text-decoration: none;
+	color:white;
+	font-weight: bold;
+}
+
+.primary-button {
+	background-color: #999273;
+	display:block;
+	width:40%;
+}
+
+.secondary-button {
+	background-color: transparent;
+	border: 1px solid white;
+	padding-left: 25px;
+	padding-right: 25px;
+	display: block;
+	width:50%;
+
+}
+
+.secondary-button:hover {
+	background-color: #999273;
+}
+
+.home-benefits {
+	background: url(/images/textured-background.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+.benefits {
+	margin: 40px;
+	text-align: center;
+	font-family: 'Bangers', cursive;
+}
+
+.benefits img {
+	height:60%;
+	width:60%;
+	max-height:200px;
+	max-width:200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.benefits p {
+	text-align: left;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: bold;
+}
+
+/*--------------------------   User Dash   -----------------------------------*/
+
+.user-container {
+	padding: 0px;
+	background: url(/images/textured-background.jpg);
+	background-size: cover;
+	background-position: center;
+	margin-top: -30px;
+}
+
+.user-container h2 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 30px;
+	text-align: center;
+	margin-top: 170px;
+}
+
+.user-container h1 {
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 30px;
+	color: black;
+}
+
+.iou-dash {
+	background: url(/images/beer-glasses.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 300px;
+	color:white;
+	font-size: 18px;
+	text-align: left;
+}
+
+.iou-dash:hover {
+	cursor: pointer;
+}
+
+.submit-btn {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.submit-btn button{
+	width:100%;
+	margin-top: 50px;
+	border-radius: 4px;
+	/*border:none;*/
+	font-size: 30px;
+	background-color: #FFEFBF;
+	color:#999273;
+	font-family: 'Oswald', sans-serif;
+}
+
+.uome-dash {
+	background: url(/images/beer-mugs.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 300px;
+	color:white;
+	font-size: 18px;
+	text-align: left;
+	margin-bottom: 150px;
+}
+
+.uome-dash:hover {
+	cursor: pointer;
+}
+
+/*-------------------------   Submit IOU  Page & Submit UOME Page   ------------------------------*/
+
+.submit-container {
+	background: url(/images/textured-background.jpg);
+	background-size: cover;
+	background-position: center;
+	margin-top: -30px;
+	min-height: 600px;
+}
+
+.form {
+	padding-top: 50px;
+}
+
+.form label {
+	font-size: 15px;
+	color:#334D5C;
+	margin-top: 15px;
+}
+
+.form input[type=text] {
+	background-color: #FFEFBF;
+	width: 80%;
+}
+
+.form textarea {
+	width: 80%;
+	background-color: #FFEFBF;
+}
+
+.form select {
+	width: 80%;
+	background-color: #FFEFBF;
+}
+
+.form button {
+	margin-top: 15px;
+	border-radius: 4px;
+	width:30%;
+	border:none;
+	float:right;
+	margin-right: 20%;
+	background-color: #17A601
+}
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------   IOU List Page   -------------------------------*/
+
+.list-container {
+	background: url(/images/textured-background.jpg);
+	background-size: cover;
+	background-position: center;
+	margin-top: -30px;
+	min-height: 600px;
+}
+
+.list-container button {
+	border-radius: 4px;
+	border:none;
+}
+
+.todo-list {
+	margin-top: 50px;
 }
 
 .pic1 {
@@ -47,6 +294,13 @@ h1 {
 	border:3px solid black;
 	border-radius: 5px;
 	margin-top: 5px;
+	padding: 10px;
+	color:#334D5C;
+}
+
+.each-iou button {
+	float: right;
+	margin-top: 30px;
 }
 
 .unchecked {
@@ -61,6 +315,45 @@ h1 {
 .checked {
 	opacity: 0.75;
 	text-decoration: line-through;
+}
+
+.update {
+	margin-top: 30px;
+}
+
+.details p img {
+	width:20%;
+	height:20%;
+}
+
+.details {
+	background-color: #E6DBAC;
+	border-top: 3px solid black;
+	margin-top: 15px;
+}
+
+
+/*----------------------------------   Profile Page   ----------------------------------*/
+
+.profile-container {
+	background: url(/images/textured-background.jpg);
+	background-size: cover;
+	background-position: center;
+	margin-top: -30px;
+	text-align: center;
+}
+
+.achievements h5 {
+	font-size: 18px;
+	font-weight: bold;	
+}
+
+.achievements p {
+	font-size: 14px;	
+}
+
+.completed {
+	font-size: 14px;
 }
 
 
