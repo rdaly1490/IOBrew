@@ -16,5 +16,13 @@ module.exports = Backbone.Model.extend({
 		date_created: null
 	},
 	urlRoot:"/iobrews",
-	idAttribute: "_id"
+	idAttribute: "_id",
+	getClass: function(model) {
+		if (model.get("createdby") === window.iobrew_user.username) {
+			return "user-submitted";
+		}
+		else {
+			return "friend-submitted";
+		}
+	}
 });

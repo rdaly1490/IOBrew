@@ -33,30 +33,34 @@ module.exports = React.createClass({
 		}
 	},
 	render: function() {
-
+		var detailsStyle = {
+			display:"none"
+		};
 		var that = this;
 
 		if (this.state.oweHistory.length === 0) {
-			var wlist = <div>
+			var wlist = <div className="no-iobrews">
 							<img src="/images/empty-list.png" />
-							<h3>No UOMEs</h3>
+							<h3>Theres Nothing Here</h3>
 						</div>
 		}
 		else {
 			var wlist = this.state.oweHistory.map(function(model) {
 				return (
-					<div className="each-iou" key={model.cid}>
-						<img onClick={that.completeItem(model)} className="unchecked" src="/images/empty-circle.png" />
-						&nbsp; {moment(model.get("date_created")).calendar()} &nbsp;
-						<b>{model.get("owername")}</b>
-						&nbsp; Owes &nbsp;
-						<b>You</b> &nbsp;
-						a {model.get("category")}
-						<button onClick={that.showDetails}>Details</button>
-						<div className="details" style={detailsStyle} key={model.get("_id")}>
-							<p>Date Created: {moment(model.get("date_created")).calendar()}</p>
-							<p>Created by: {model.get("createdby")}</p>
-							<p>Image you sent to your friend!:<a href={model.get("image")}><img src={model.get("image")} /></a></p>
+					<div>
+						<div className={model.getClass(model)+" "+"each-iou"} key={model.cid}>
+							<img onClick={that.completeItem(model)} className="unchecked" src="/images/empty-circle.png" />
+							<b> {model.get("owername")} </b>
+							Owes
+							<b> You </b>
+							a {model.get("category")}
+							<button onClick={that.showDetails}>Details</button>
+							<div className="details" style={detailsStyle} key={model.get("_id")}>
+								<p>Date Created: {moment(model.get("date_created")).calendar()}</p>
+								<p>Created by: {model.get("createdby")}</p>
+								<p>Reason: {model.get("reason")}</p>
+								<p>Image associated with this item:<a href={model.get("image")}><img src={model.get("image")} /></a></p>
+							</div>
 						</div>
 					</div>
 				);
@@ -64,8 +68,8 @@ module.exports = React.createClass({
 		}
 
 		return (
-			<div className="container-fluid">
-				<div className="col-xs-8 col-xs-offset-2">
+			<div className="container-fluid list-container">
+				<div className="col-xs-10 col-xs-offset-1 todo-list">
 				<h2>Beers Owed to You</h2>
 					{wlist}
 				</div>

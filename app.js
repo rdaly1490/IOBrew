@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var nodemailer = require('nodemailer');
 
 var routes = require('./routes/index');
 var workouts = require('./routes/workouts');
@@ -16,6 +17,7 @@ var AchievementFunctions = require('./routes/AchievementFunctions');
 var mongoose = require('mongoose');
 var fs = require("fs");
 var facebook = require("./stormpath/facebook");
+var emailConfig=require('./stormpath/email');
 
 var stormpath = require('express-stormpath');
 
@@ -112,6 +114,29 @@ app.get("/achievements", function(req, res) {
   })
 });
 
+app.post("/send-email", function(req, res) {
+  // console.log("This worksssss");
+  var transporter = nodemailer.createTransport(emailConfig);
+  var message = {
+
+    from: "IoBrew",
+    to: req.body.username,
+    subject: "Don't forget about your booze, log back into IoBrew!",
+    text: "This is a test email.",
+    html: "<p> From: "+" "+req.body.username+"</p> <p> Message: "+" "+req.body.category+"</p>"
+  };
+  transporter.sendMail(message, function(error, info) {
+    if(error) {
+      console.log(error)
+      res.send("email error");
+    }
+    else {
+      console.log(info);
+      res.send("Email sent!")
+    }
+  });
+});
+
 
 app.post('/workouts', workouts.create);
 
@@ -121,9 +146,34 @@ app.post('/ious', IouRoute.create);
 
 app.post('/uomes', UomeRoute.create);
 
-app.post('/iobrews', OweRoute.create);
+app.post('/iobrews', OweRoute.create)//, function(req, res) {
+//   if(req.body.reminder === true) {
+//     console.log("trueeeeeeeeeeeee");
+//     setTimeout(function() {
+//       var transporter = nodemailer.createTransport(emailConfig);
+//       var message = {
+//         from: "rdaly1490@gmail.com",
+//         to: req.body.createdby,
+//         subject: "Don't forget about your booze, log back into IoBrew!",
+//         text: "This is a test email.",
+//         html: "<p> From: "+" "+req.body.createdby+"</p> <p> Message: "+" "+req.body.category+"</p>"
+//       };
+//       transporter.sendMail(message, function(error, info) {
+//         if(error) {
+//           console.log(error)
+//           res.send("email error");
+//         }
+//         else {
+//           console.log(info);
+//           res.send("Email sent!")
+//         }
+//       });
+//     }, 3000);
+//   }
+// });
 
 app.post('/achievements', AchievementRoute.create);
+
 
 
 
@@ -151,7 +201,11 @@ app.put('/uomes/:id', UomeRoute.update);
 
 app.put('/ious/:id', IouRoute.update);
 
-app.put('/iobrews/:id',OweRoute.update,AchievementFunctions.FirstIou);
+app.put('/iobrews/:id',OweRoute.update
+  ,AchievementFunctions.FirstIou
+  ,AchievementFunctions.FirstUome
+  ,AchievementFunctions.TenIou
+  ,AchievementFunctions.TenUome);
 
 app.put('/achievements/:id', AchievementRoute.update);
 

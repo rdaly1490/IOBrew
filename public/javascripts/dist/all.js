@@ -35771,6 +35771,8 @@ var React = require('react');
 var $ = require('jquery');
 var moment = require('moment');
 
+var OweModel = require('../models/OweModel');
+
 var OweCollection = require('../collections/OweCollection');
 
 module.exports = React.createClass({
@@ -35810,12 +35812,12 @@ module.exports = React.createClass({
 		if (this.state.oweHistory.length === 0) {
 			var wlist = React.createElement(
 				'div',
-				null,
+				{ className: 'no-iobrews' },
 				React.createElement('img', { src: '/images/empty-list.png' }),
 				React.createElement(
 					'h3',
 					null,
-					'No IOUs'
+					'Theres Nothing Here'
 				)
 			);
 		} else {
@@ -35825,7 +35827,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						'div',
-						{ className: 'each-iou', key: model.cid },
+						{ className: model.getClass(model) + ' ' + 'each-iou', key: model.cid },
 						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-circle.png' }),
 						'  ',
 						React.createElement(
@@ -35848,7 +35850,7 @@ module.exports = React.createClass({
 						),
 						React.createElement(
 							'div',
-							{ className: 'details', style: detailsStyle, key: model.get('_id') },
+							{ className: model.getClass(model) + ' ' + 'details', style: detailsStyle, key: model.get('_id') },
 							React.createElement(
 								'p',
 								null,
@@ -35860,6 +35862,12 @@ module.exports = React.createClass({
 								null,
 								'Created by: ',
 								model.get('createdby')
+							),
+							React.createElement(
+								'p',
+								null,
+								'Reason: ',
+								model.get('reason')
 							),
 							React.createElement(
 								'p',
@@ -35927,7 +35935,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/OweCollection":162,"jquery":4,"moment":5,"react":160}],166:[function(require,module,exports){
+},{"../collections/OweCollection":162,"../models/OweModel":178,"jquery":4,"moment":5,"react":160}],166:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36178,6 +36186,16 @@ module.exports = React.createClass({
 			this.state.achievementHistory.map(function (model) {
 				if (model.get('type') === 'First IOU') {
 					$('.firstiou').attr('src', '/images/Beer-icon.png');
+					$('.firstiouCompleted').html('Completed:' + ' ' + moment(model.get('date_created')).format('MMMM Do YYYY'));
+				} else if (model.get('type') === 'First UOME') {
+					$('.firstuome').attr('src', '/images/green-checkmark.png');
+					$('.firstuomeCompleted').html('Completed:' + ' ' + moment(model.get('date_created')).format('MMMM Do YYYY'));
+				} else if (model.get('type') === 'Ten IOU') {
+					$('.teniou').attr('src', '/images/retro-beer.jpg');
+					$('.teniouCompleted').html('Completed:' + ' ' + moment(model.get('date_created')).format('MMMM Do YYYY'));
+				} else if (model.get('type') === 'Ten UOME') {
+					$('.tenuome').attr('src', '/images/green-checkmark.png');
+					$('.tenuomeCompleted').html('Completed:' + ' ' + moment(model.get('date_created')).format('MMMM Do YYYY'));
 				}
 			});
 		}
@@ -36214,18 +36232,28 @@ module.exports = React.createClass({
 					null,
 					'First IOU Completed!'
 				),
+				React.createElement('p', { className: 'firstiouCompleted' }),
+				React.createElement('img', { className: 'firstuome', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'p',
+					'h5',
 					null,
-					'Completed ',
-					moment(this.props.ioBrewUser.get('createdAt')).format('MMMM Do YYYY')
+					'First UOME Completed'
 				),
-				React.createElement('img', { src: '/images/empty-circle.png' }),
+				React.createElement('p', { className: 'firstuomeCompleted' }),
+				React.createElement('img', { className: 'teniou', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'p',
+					'h5',
 					null,
-					'Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.'
+					'Ten IOUs Completed!'
 				),
+				React.createElement('p', { className: 'teniouCompleted' }),
+				React.createElement('img', { className: 'tenuome', src: '/images/empty-circle.png' }),
+				React.createElement(
+					'h5',
+					null,
+					'Ten UOMEs Completed'
+				),
+				React.createElement('p', { className: 'tenuomeCompleted' }),
 				React.createElement('img', { src: '/images/empty-circle.png' }),
 				React.createElement(
 					'p',
@@ -36748,70 +36776,81 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
-
+		var detailsStyle = {
+			display: 'none'
+		};
 		var that = this;
 
 		if (this.state.oweHistory.length === 0) {
 			var wlist = React.createElement(
 				'div',
-				null,
+				{ className: 'no-iobrews' },
 				React.createElement('img', { src: '/images/empty-list.png' }),
 				React.createElement(
 					'h3',
 					null,
-					'No UOMEs'
+					'Theres Nothing Here'
 				)
 			);
 		} else {
 			var wlist = this.state.oweHistory.map(function (model) {
 				return React.createElement(
 					'div',
-					{ className: 'each-iou', key: model.cid },
-					React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-circle.png' }),
-					'  ',
-					moment(model.get('date_created')).calendar(),
-					'  ',
-					React.createElement(
-						'b',
-						null,
-						model.get('owername')
-					),
-					'  Owes  ',
-					React.createElement(
-						'b',
-						null,
-						'You'
-					),
-					'   a ',
-					model.get('category'),
-					React.createElement(
-						'button',
-						{ onClick: that.showDetails },
-						'Details'
-					),
+					null,
 					React.createElement(
 						'div',
-						{ className: 'details', style: detailsStyle, key: model.get('_id') },
+						{ className: model.getClass(model) + ' ' + 'each-iou', key: model.cid },
+						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-circle.png' }),
 						React.createElement(
-							'p',
+							'b',
 							null,
-							'Date Created: ',
-							moment(model.get('date_created')).calendar()
+							' ',
+							model.get('owername'),
+							' '
+						),
+						'Owes',
+						React.createElement(
+							'b',
+							null,
+							' You '
+						),
+						'a ',
+						model.get('category'),
+						React.createElement(
+							'button',
+							{ onClick: that.showDetails },
+							'Details'
 						),
 						React.createElement(
-							'p',
-							null,
-							'Created by: ',
-							model.get('createdby')
-						),
-						React.createElement(
-							'p',
-							null,
-							'Image you sent to your friend!:',
+							'div',
+							{ className: 'details', style: detailsStyle, key: model.get('_id') },
 							React.createElement(
-								'a',
-								{ href: model.get('image') },
-								React.createElement('img', { src: model.get('image') })
+								'p',
+								null,
+								'Date Created: ',
+								moment(model.get('date_created')).calendar()
+							),
+							React.createElement(
+								'p',
+								null,
+								'Created by: ',
+								model.get('createdby')
+							),
+							React.createElement(
+								'p',
+								null,
+								'Reason: ',
+								model.get('reason')
+							),
+							React.createElement(
+								'p',
+								null,
+								'Image associated with this item:',
+								React.createElement(
+									'a',
+									{ href: model.get('image') },
+									React.createElement('img', { src: model.get('image') })
+								)
 							)
 						)
 					)
@@ -36821,10 +36860,10 @@ module.exports = React.createClass({
 
 		return React.createElement(
 			'div',
-			{ className: 'container-fluid' },
+			{ className: 'container-fluid list-container' },
 			React.createElement(
 				'div',
-				{ className: 'col-xs-8 col-xs-offset-2' },
+				{ className: 'col-xs-10 col-xs-offset-1 todo-list' },
 				React.createElement(
 					'h2',
 					null,
@@ -37159,7 +37198,14 @@ module.exports = Backbone.Model.extend({
 		date_created: null
 	},
 	urlRoot: "/iobrews",
-	idAttribute: "_id"
+	idAttribute: "_id",
+	getClass: function getClass(model) {
+		if (model.get("createdby") === window.iobrew_user.username) {
+			return "user-submitted";
+		} else {
+			return "friend-submitted";
+		}
+	}
 });
 
 },{"backbone":1}],179:[function(require,module,exports){

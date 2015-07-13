@@ -1,3 +1,6 @@
+var nodemailer = require('nodemailer');
+var emailConfig=require('../stormpath/email');
+
 var oweModel = require('../models/owe').Owe; 
 
 var AchievementFunctions = require('./AchievementFunctions');
@@ -31,16 +34,34 @@ exports.create = function(req, res) {
     newOwe.owedid = owedid;
     newOwe.owedname = owedname;
     newOwe.createdby = createdby;
-    
-    newOwe.save(function(err) {
 
-      if(!err) {
-        res.status(201).json({message: "IOBrew created for: " + newOwe.name });   
-      } else {
-        res.status(500).json({message: "Could not create IOBrew. Error: " + err});
-      }
-
-    });
+    if(newOwe.reminder === true) {
+      setTimeout(function() {
+        var transporter = nodemailer.createTransport(emailConfig);
+        var message = {
+          from: "rdaly1490@gmail.com",
+          to: newOwe.createdby,
+          subject: "Don't forget about your booze, log back into IoBrew!",
+          text: "This is a test email.",
+          html: "<p> From: "+" "+newOwe.createdby+"</p> <p> Message: "+" "+newOwe.category+"</p>"
+        };
+        transporter.sendMail(message, function(error, info) {
+          if(error) {
+            console.log(error)
+            res.send("email error");
+            newOwe.save();
+          }
+          else {
+            console.log(info);
+            res.send("Email sent!")
+            newOwe.save();
+          }
+        });
+      }, 3000);
+    }
+    else {
+      newOwe.save();
+    }
 }
 
 exports.show = function(req, res) {

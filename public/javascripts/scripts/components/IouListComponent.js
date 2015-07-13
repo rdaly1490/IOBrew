@@ -2,6 +2,8 @@ var React = require('react');
 var $ = require("jquery");
 var moment = require('moment');
 
+var OweModel = require("../models/OweModel");
+
 var OweCollection = require("../collections/OweCollection");
 
 module.exports = React.createClass({
@@ -38,25 +40,26 @@ module.exports = React.createClass({
 		var that = this;
 
 		if (this.state.oweHistory.length === 0) {
-			var wlist = <div>
+			var wlist = <div className="no-iobrews">
 							<img src="/images/empty-list.png" />
-							<h3>No IOUs</h3>
+							<h3>Theres Nothing Here</h3>
 						</div>
 		}
 		else {
 			var wlist = this.state.oweHistory.map(function(model) {
 				return (
 					<div>
-						<div className="each-iou" key={model.cid}>
+						<div className={model.getClass(model)+" "+"each-iou"} key={model.cid}>
 							<img onClick={that.completeItem(model)} className="unchecked" src="/images/empty-circle.png" />
 							&nbsp; <b> You</b>
 							&nbsp; Owe &nbsp;
 							<b>{model.get("owedname")}</b> &nbsp;
 							a {model.get("category")}
 							<button onClick={that.showDetails}>Details</button>
-							<div className="details" style={detailsStyle} key={model.get("_id")}>
+							<div className={model.getClass(model)+" "+"details"} style={detailsStyle} key={model.get("_id")}>
 								<p>Date Created: {moment(model.get("date_created")).calendar()}</p>
 								<p>Created by: {model.get("createdby")}</p>
+								<p>Reason: {model.get("reason")}</p>
 								<p>Image your friend sent you!:<a href={model.get("image")}><img src={model.get("image")} /></a></p>
 							</div>
 						</div>
