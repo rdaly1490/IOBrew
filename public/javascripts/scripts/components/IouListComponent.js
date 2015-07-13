@@ -39,22 +39,26 @@ module.exports = React.createClass({
 		};
 		var that = this;
 
-		if (this.state.oweHistory.length === 0) {
+		var sortedModels = this.state.oweHistory.sortBy(function(oweModel) {
+			return (-1*(new Date(oweModel.get("date_created")).getTime()));
+		});
+
+		if (sortedModels.length === 0) {
 			var wlist = <div className="no-iobrews">
 							<img src="/images/empty-list.png" />
 							<h3>Theres Nothing Here</h3>
 						</div>
 		}
 		else {
-			var wlist = this.state.oweHistory.map(function(model) {
+			var wlist = sortedModels.map(function(model) {
 				return (
 					<div>
 						<div className={model.getClass(model)+" "+"each-iou"} key={model.cid}>
 							<img onClick={that.completeItem(model)} className="unchecked" src="/images/empty-circle.png" />
-							&nbsp; <b> You</b>
-							&nbsp; Owe &nbsp;
-							<b>{model.get("owedname")}</b> &nbsp;
-							a {model.get("category")}
+							&nbsp;<b>You</b>
+							&nbsp;Owe&nbsp;
+							<b>{model.get("owedname")}</b> 
+							&nbsp;a {model.get("category")}
 							<button onClick={that.showDetails}>Details</button>
 							<div className={model.getClass(model)+" "+"details"} style={detailsStyle} key={model.get("_id")}>
 								<p>Date Created: {moment(model.get("date_created")).calendar()}</p>

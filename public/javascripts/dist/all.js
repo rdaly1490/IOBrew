@@ -35809,7 +35809,11 @@ module.exports = React.createClass({
 		};
 		var that = this;
 
-		if (this.state.oweHistory.length === 0) {
+		var sortedModels = this.state.oweHistory.sortBy(function (oweModel) {
+			return -1 * new Date(oweModel.get('date_created')).getTime();
+		});
+
+		if (sortedModels.length === 0) {
 			var wlist = React.createElement(
 				'div',
 				{ className: 'no-iobrews' },
@@ -35821,7 +35825,7 @@ module.exports = React.createClass({
 				)
 			);
 		} else {
-			var wlist = this.state.oweHistory.map(function (model) {
+			var wlist = sortedModels.map(function (model) {
 				return React.createElement(
 					'div',
 					null,
@@ -35829,19 +35833,19 @@ module.exports = React.createClass({
 						'div',
 						{ className: model.getClass(model) + ' ' + 'each-iou', key: model.cid },
 						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-circle.png' }),
-						'  ',
+						' ',
 						React.createElement(
 							'b',
 							null,
-							' You'
+							'You'
 						),
-						'  Owe  ',
+						' Owe ',
 						React.createElement(
 							'b',
 							null,
 							model.get('owedname')
 						),
-						'   a ',
+						' a ',
 						model.get('category'),
 						React.createElement(
 							'button',
@@ -36781,7 +36785,11 @@ module.exports = React.createClass({
 		};
 		var that = this;
 
-		if (this.state.oweHistory.length === 0) {
+		var sortedModels = this.state.oweHistory.sortBy(function (oweModel) {
+			return -1 * new Date(oweModel.get('date_created')).getTime();
+		});
+
+		if (sortedModels.length === 0) {
 			var wlist = React.createElement(
 				'div',
 				{ className: 'no-iobrews' },
@@ -36793,7 +36801,7 @@ module.exports = React.createClass({
 				)
 			);
 		} else {
-			var wlist = this.state.oweHistory.map(function (model) {
+			var wlist = sortedModels.map(function (model) {
 				return React.createElement(
 					'div',
 					null,
@@ -36801,6 +36809,7 @@ module.exports = React.createClass({
 						'div',
 						{ className: model.getClass(model) + ' ' + 'each-iou', key: model.cid },
 						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-circle.png' }),
+						' ',
 						React.createElement(
 							'b',
 							null,
