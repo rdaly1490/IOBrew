@@ -36472,39 +36472,51 @@ module.exports = React.createClass({
 					{ className: "col-xs-12" },
 					React.createElement(
 						"div",
-						{ className: "col-xs-10 col-xs-offset-1 benefits" },
-						React.createElement("img", { src: "/images/beer-list.png" }),
+						{ className: "col-xs-10 col-xs-offset-1 col md-12 col-lg-10 col-lg-offset-1 benefits" },
 						React.createElement(
-							"h3",
-							null,
-							"Keep Track"
+							"div",
+							{ className: "col-xs-12 col-md-4 col-lg-4" },
+							React.createElement("img", { src: "/images/beer-list.png" }),
+							React.createElement(
+								"h3",
+								null,
+								"Keep Track"
+							),
+							React.createElement(
+								"p",
+								null,
+								"Never miss out on a cold, refreshing beer again!  IoBrew lets you keep track of beer owed to you and beers you owe to others.  Remember to collect on those beers and to share the wealth with others."
+							)
 						),
 						React.createElement(
-							"p",
-							null,
-							"Never miss out on a cold, refreshing beer again!  IoBrew lets you keep track of beer owed to you and beers you owe to others.  Remember to collect on those beers and to share the wealth with others."
-						),
-						React.createElement("img", { src: "/images/beer-achievements.png" }),
-						React.createElement(
-							"h3",
-							null,
-							"Achievements"
-						),
-						React.createElement(
-							"p",
-							null,
-							"Work towards achievements with your friends and prove who buys the most beers once and for all.  Think youre always stuck spotting your friends?  At least get some achievements for it."
-						),
-						React.createElement("img", { src: "/images/beer-email.png" }),
-						React.createElement(
-							"h3",
-							null,
-							"Email Reminders"
+							"div",
+							{ className: "col-xs-12 col-md-4 col-lg-4" },
+							React.createElement("img", { src: "/images/beer-achievements.png" }),
+							React.createElement(
+								"h3",
+								null,
+								"Achievements"
+							),
+							React.createElement(
+								"p",
+								null,
+								"Work towards achievements with your friends and prove who buys the most beers once and for all.  Think youre always stuck spotting your friends?  At least get some achievements for it."
+							)
 						),
 						React.createElement(
-							"p",
-							null,
-							"Still cant remember to check for beers owed to you or owed to others?  Too busy to log in and check?  Well, dont fret, we will send you email reminders if you so choose!"
+							"div",
+							{ className: "col-xs-12 col-md-4 col-lg-4" },
+							React.createElement("img", { src: "/images/beer-email.png" }),
+							React.createElement(
+								"h3",
+								null,
+								"Email Reminders"
+							),
+							React.createElement(
+								"p",
+								null,
+								"Still cant remember to check for beers owed to you or owed to others?  Too busy to log in and check?  Well, dont fret, we will send you email reminders if you so choose!"
+							)
 						)
 					)
 				)
@@ -36781,20 +36793,20 @@ module.exports = React.createClass({
       );
       links.push(React.createElement(
         'li',
-        { className: 'nav-links', key: 'register' },
-        React.createElement(
-          'a',
-          { href: '/register' },
-          'Register'
-        )
-      ));
-      links.push(React.createElement(
-        'li',
         { className: 'nav-links', key: 'login' },
         React.createElement(
           'a',
           { href: '/login' },
           'Log in'
+        )
+      ));
+      links.push(React.createElement(
+        'li',
+        { className: 'nav-links', key: 'register' },
+        React.createElement(
+          'a',
+          { href: '/register' },
+          'Register'
         )
       ));
     } else {
@@ -37215,6 +37227,11 @@ module.exports = React.createClass({
 						this.state.errors.name
 					),
 					React.createElement(
+						"p",
+						{ className: "error" },
+						this.state.errors.noUser
+					),
+					React.createElement(
 						"label",
 						null,
 						"Image URL"
@@ -37315,6 +37332,8 @@ module.exports = React.createClass({
 	submitIou: function submitIou(e) {
 		e.preventDefault();
 
+		var that = this;
+
 		var err = {};
 
 		var owed = this.refs.name.getDOMNode().value;
@@ -37361,9 +37380,15 @@ module.exports = React.createClass({
 				owe.attributes.image = "https://s-media-cache-ak0.pinimg.com/736x/85/98/de/8598de9ad9ae33b00123f07f4fef7a38.jpg";
 			}
 
-			owe.save();
-
-			this.props.myRouter.navigate("userdash", { trigger: true });
+			owe.save(null, {
+				success: function success(model) {
+					that.props.myRouter.navigate("userdash", { trigger: true });
+				},
+				error: function error(model, response) {
+					err.noUser = response.responseJSON.message;
+					that.setState({ errors: err });
+				}
+			});
 		}
 	}
 });
@@ -37408,6 +37433,11 @@ module.exports = React.createClass({
 						"p",
 						{ className: "error" },
 						this.state.errors.name
+					),
+					React.createElement(
+						"p",
+						{ className: "error" },
+						this.state.errors.noUser
 					),
 					React.createElement(
 						"label",
@@ -37510,6 +37540,8 @@ module.exports = React.createClass({
 	submitUome: function submitUome(e) {
 		e.preventDefault();
 
+		var that = this;
+
 		var err = {};
 
 		var owed = this.refs.name.getDOMNode().value;
@@ -37556,9 +37588,15 @@ module.exports = React.createClass({
 				owe.attributes.image = "http://i.imgur.com/AwSWCaG.jpg";
 			}
 
-			owe.save();
-
-			this.props.myRouter.navigate("userdash", { trigger: true });
+			owe.save(null, {
+				success: function success(model) {
+					that.props.myRouter.navigate("userdash", { trigger: true });
+				},
+				error: function error(model, response) {
+					err.noUser = response.responseJSON.message;
+					that.setState({ errors: err });
+				}
+			});
 		}
 	}
 });

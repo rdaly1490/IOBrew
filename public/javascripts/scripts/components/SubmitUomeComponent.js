@@ -19,6 +19,7 @@ module.exports = React.createClass({
 						<label>This person owes you beer!</label><br />
 						<input type="text" ref="name" placeholder="Enter username or regular name" /><br />
 						<p className="error">{this.state.errors.name}</p>
+						<p className="error">{this.state.errors.noUser}</p>
 						<label>Image URL</label><br />
 						<input type="text" ref="image" /><br />
 						<p className="error">{this.state.errors.image}</p>
@@ -48,6 +49,8 @@ module.exports = React.createClass({
 	submitUome: function(e) {
 		e.preventDefault();
 
+		var that = this;
+		
 		var err = {}
 
 		var owed = this.refs.name.getDOMNode().value
@@ -95,9 +98,15 @@ module.exports = React.createClass({
 				owe.attributes.image = "http://i.imgur.com/AwSWCaG.jpg"
 			}
 
-			owe.save();
-
-			this.props.myRouter.navigate("userdash", {trigger: true});
+			owe.save(null, {
+				success: function(model) {
+					that.props.myRouter.navigate("userdash", {trigger: true});
+				},
+				error: function(model, response) {
+					err.noUser = response.responseJSON.message;
+					that.setState({errors:err});
+				}
+			});
 		}
 	}
 });

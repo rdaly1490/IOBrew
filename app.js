@@ -34,6 +34,7 @@ app.use(stormpath.init(app, {
     enableForgotPassword: true,
     redirectUrl: '/#userdash',
     enableAutoLogin: true,
+    sessionDuration: 1000 * 60 * 60,
     // enableFacebook: true,
     social: {
       facebook: {
@@ -123,33 +124,33 @@ app.post('/iobrews', function(req,res,next) {
   if(req.body.type === 1 && req.body.owedid.indexOf("@") !== -1) {
     app.get('stormpathApplication').getAccounts({username: req.body.owedid}, function(err, accounts) {
       if (accounts.items.length > 0) {
-        res.status(200).json("User Exists");
-        console.log("User found");
+        res.status(200).json({message: "User Exists"});
+        console.log({message: "User found"});
         req.body.owedname = accounts.items[0].givenName;
         next();
       }
       else {
-        res.status(404).json("User Not Found");
-        console.log("User Not Found");
+        res.status(404).json({message: "User Not Found"});
+        console.log({message: "User Not Found"});
       }
     });
   }
   else if (req.body.type === 2 && req.body.owerid.indexOf("@") !== -1){
     app.get('stormpathApplication').getAccounts({username: req.body.owerid}, function(err, accounts) {
       if (accounts.items.length > 0) {
-        res.status(200).json("User Exists");
+        res.status(200).json({message: "User Exists"});
         req.body.owername = accounts.items[0].givenName;
         next();
       }
       else {
-         res.status(404).json("User Not Found");
+         res.status(404).json({message: "User Not Found"});
       }
     });
   }
   else {
-    res.status(200).json("Not an email address");
+    res.status(200).json({message: "Not an email address"});
+    next();
   }
-  next();
 }, OweRoute.create)
 
 app.post('/achievements', AchievementRoute.create);
