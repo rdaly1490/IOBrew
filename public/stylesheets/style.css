@@ -6,8 +6,16 @@ body {
 
 /*------------------   NavBar   -----------------------------------*/
 
+.nav-container {
+	background-color: rgba(255, 239, 191, 1);
+	border:none;
+}
 .navbar-header {
 	background-color: rgba(255, 239, 191, 1);
+}
+
+.navbar-collapse {
+	border: 1px solid black;
 }
 
 .navbar-brand {
@@ -21,6 +29,10 @@ body {
 	height:40px;
 	width:40px;
 	display: inline;
+}
+
+.nav-links:hover {
+	background-color: #999273;
 }
 
 .brew {
@@ -181,7 +193,7 @@ body {
 	padding-right: 0px;
 }
 
-.submit-btn button{
+.submit-btn button {
 	width:100%;
 	margin-top: 50px;
 	border-radius: 4px;
@@ -190,6 +202,10 @@ body {
 	background-color: #FFEFBF;
 	color:#999273;
 	font-family: 'Oswald', sans-serif;
+}
+
+.submit-btn button:hover {
+	background-color: #FFC30F;
 }
 
 .uome-dash {
@@ -258,6 +274,10 @@ body {
 	background-color: #17A601
 }
 
+.error {
+	color:red;
+	font-family: "Oswald", sans-serif;
+}
 
 
 

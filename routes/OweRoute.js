@@ -4,6 +4,18 @@ var emailConfig=require('../stormpath/email');
 var oweModel = require('../models/owe').Owe; 
 
 var AchievementFunctions = require('./AchievementFunctions');
+// var express = require('express');
+// var app = express();
+// var stormpath = require('express-stormpath');
+
+// exports.checkUsers = function(req, res, next) {
+//   app.get('stormpathApplication').getAccounts({email: "rdaly1490@gmail.com"}, function(err, accounts) {
+//     if (accounts) {
+//       console.log("This works");
+//       next();
+//     }
+//   });
+// }
 
 exports.create = function(req, res) {
 
@@ -35,6 +47,10 @@ exports.create = function(req, res) {
     newOwe.owedname = owedname;
     newOwe.createdby = createdby;
 
+    console.log(newOwe);
+
+    newOwe.save();
+
     if(newOwe.reminder === true) {
       setTimeout(function() {
         var transporter = nodemailer.createTransport(emailConfig);
@@ -49,18 +65,13 @@ exports.create = function(req, res) {
           if(error) {
             console.log(error)
             res.send("email error");
-            newOwe.save();
           }
           else {
             console.log(info);
             res.send("Email sent!")
-            newOwe.save();
           }
         });
       }, 604800000);
-    }
-    else {
-      newOwe.save();
     }
 }
 

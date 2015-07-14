@@ -20,6 +20,7 @@
     "mongoose": "~2.7.x",
     "morgan": "~1.5.3",
     "nodemailer": "^1.4.0",
-    "serve-favicon": "~2.2.1"
+    "serve-favicon": "~2.2.1",
+    "stormpath": "^0.10.0"
   }
 }

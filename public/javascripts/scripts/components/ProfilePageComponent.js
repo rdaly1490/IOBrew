@@ -52,6 +52,14 @@ module.exports = React.createClass({
 					$(".tenuome").attr("src","/images/green-checkmark.png");
 					$(".tenuomeCompleted").html("Completed:"+" " +moment(model.get("date_created")).format("MMMM Do YYYY"));
 				}
+				else if (model.get("type") === "Fifty IOU") {
+					$(".fiftyiou").attr("src","/images/beer-list.png");
+					$(".fiftyiouCompleted").html("Completed:"+" " +moment(model.get("date_created")).format("MMMM Do YYYY"));
+				}
+				else if (model.get("type") === "Fifty UOME") {
+					$(".fiftyuome").attr("src","/images/beer-list.png");
+					$(".fiftyuomeCompleted").html("Completed:"+" " +moment(model.get("date_created")).format("MMMM Do YYYY"));
+				}
 			});	
 		}
 		return (
@@ -78,22 +86,16 @@ module.exports = React.createClass({
 					<h3>Ten UOMEs Completed</h3>
 					<p className="tenuomeCompleted"></p>
 
+					<img className="fiftyiou" src="/images/empty-circle.png" />
+					<h3>Fifty IOUs Completed!</h3>
+					<p className="fiftyiouCompleted"></p>
+					<img className="fiftyuome" src="/images/empty-circle.png" />
+					<h3>Fifty UOMEs Completed</h3>
+					<p className="fiftyuomeCompleted"></p>
 
 
 
 
-					<img src="/images/empty-circle.png" />
-					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-					<img src="/images/empty-circle.png" />
-					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-					<img src="/images/empty-circle.png" />
-					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-					<img src="/images/empty-circle.png" />
-					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-					<img src="/images/empty-circle.png" />
-					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
-					<img src="/images/empty-circle.png" />
-					<p>Lorem ipsum Nostrud consequat sit ut in dolore irure sint Duis sunt incididunt.</p>
 				</div>
 			</div>
 		);

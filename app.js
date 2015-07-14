@@ -84,20 +84,6 @@ app.get("/workouts", function(req, res) {
   })
 });
 
-app.get("/users", function(req, res) {
-  var users = [];
-
-  app.get('stormpathApplication').getAccounts(function(err, accounts) {
-    accounts.each(function(account, cb) {
-      users.push(account);
-      cb();
-    }, function(err) {
-      if (err) return next(err);
-      res.json(users);
-    });
-  });
-});
-
 app.get("/ious", function(req, res) {
   mongoose.model("iou").find(req.query.filter, function(err, ious) {
     res.send(ious);
@@ -124,29 +110,6 @@ app.get("/achievements", function(req, res) {
   })
 });
 
-app.post("/send-email", function(req, res) {
-  // console.log("This worksssss");
-  var transporter = nodemailer.createTransport(emailConfig);
-  var message = {
-
-    from: "IoBrew",
-    to: req.body.username,
-    subject: "Don't forget about your booze, log back into IoBrew!",
-    text: "This is a test email.",
-    html: "<p> From: "+" "+req.body.username+"</p> <p> Message: "+" "+req.body.category+"</p>"
-  };
-  transporter.sendMail(message, function(error, info) {
-    if(error) {
-      console.log(error)
-      res.send("email error");
-    }
-    else {
-      console.log(info);
-      res.send("Email sent!")
-    }
-  });
-});
-
 
 app.post('/workouts', workouts.create);
 
@@ -156,31 +119,38 @@ app.post('/ious', IouRoute.create);
 
 app.post('/uomes', UomeRoute.create);
 
-app.post('/iobrews', OweRoute.create)//, function(req, res) {
-//   if(req.body.reminder === true) {
-//     console.log("trueeeeeeeeeeeee");
-//     setTimeout(function() {
-//       var transporter = nodemailer.createTransport(emailConfig);
-//       var message = {
-//         from: "rdaly1490@gmail.com",
-//         to: req.body.createdby,
-//         subject: "Don't forget about your booze, log back into IoBrew!",
-//         text: "This is a test email.",
-//         html: "<p> From: "+" "+req.body.createdby+"</p> <p> Message: "+" "+req.body.category+"</p>"
-//       };
-//       transporter.sendMail(message, function(error, info) {
-//         if(error) {
-//           console.log(error)
-//           res.send("email error");
-//         }
-//         else {
-//           console.log(info);
-//           res.send("Email sent!")
-//         }
-//       });
-//     }, 3000);
-//   }
-// });
+app.post('/iobrews', function(req,res,next) {
+  if(req.body.type === 1 && req.body.owedid.indexOf("@") !== -1) {
+    app.get('stormpathApplication').getAccounts({username: req.body.owedid}, function(err, accounts) {
+      if (accounts.items.length > 0) {
+        res.status(200).json("User Exists");
+        console.log("User found");
+        req.body.owedname = accounts.items[0].givenName;
+        next();
+      }
+      else {
+        res.status(404).json("User Not Found");
+        console.log("User Not Found");
+      }
+    });
+  }
+  else if (req.body.type === 2 && req.body.owerid.indexOf("@") !== -1){
+    app.get('stormpathApplication').getAccounts({username: req.body.owerid}, function(err, accounts) {
+      if (accounts.items.length > 0) {
+        res.status(200).json("User Exists");
+        req.body.owername = accounts.items[0].givenName;
+        next();
+      }
+      else {
+         res.status(404).json("User Not Found");
+      }
+    });
+  }
+  else {
+    res.status(200).json("Not an email address");
+  }
+  next();
+}, OweRoute.create)
 
 app.post('/achievements', AchievementRoute.create);
 
@@ -215,7 +185,9 @@ app.put('/iobrews/:id',OweRoute.update
   ,AchievementFunctions.FirstIou
   ,AchievementFunctions.FirstUome
   ,AchievementFunctions.TenIou
-  ,AchievementFunctions.TenUome);
+  ,AchievementFunctions.TenUome
+  ,AchievementFunctions.FiftyIou
+  ,AchievementFunctions.FiftyUome);
 
 app.put('/achievements/:id', AchievementRoute.update);
 
