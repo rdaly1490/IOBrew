@@ -23,7 +23,7 @@ var config = require('./config/config');
 
 var stormpath = require('express-stormpath');
 
-mongoose.connect('mongodb://localhost/workout_tracker');
+mongoose.connect(config.stormPath.mongo);
 
 var app = express();
 
