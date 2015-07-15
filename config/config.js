@@ -12,13 +12,16 @@ if(process.env.NODE_ENV === 'production') {
 				user: process.env.MAILGUN_USER,
 				pass: process.env.MAILGUN_PASS
 			}
+		},
+		mongo: {
+			mongolabUri: process.env.MONGOLAB_URI
 		}
 	};
 }
 else {
-	var stormpath
 	module.exports = {
 		stormPath: require('../stormpath/stormpath.js'),
-		email: require('../stormpath/email.js')
+		email: require('../stormpath/email.js'),
+		mongo: {mongolabUri: 'mongodb://localhost/workout_tracker'}
 	};
 }
