@@ -37233,7 +37233,7 @@ module.exports = React.createClass({
 			{ className: "container-fluid submit-container" },
 			React.createElement(
 				"div",
-				{ className: "col-xs-8 col-xs-offset-2 form" },
+				{ className: "col-xs-6 col-xs-offset-3 form" },
 				React.createElement(
 					"form",
 					{ onSubmit: this.submitIou },
@@ -37441,7 +37441,7 @@ module.exports = React.createClass({
 			{ className: "container-fluid submit-container" },
 			React.createElement(
 				"div",
-				{ className: "col-xs-8 col-xs-offset-2 form" },
+				{ className: "col-xs-8 form" },
 				React.createElement(
 					"form",
 					{ onSubmit: this.submitUome },
@@ -37450,7 +37450,11 @@ module.exports = React.createClass({
 						null,
 						"This person owes you beer!"
 					),
-					React.createElement("br", null),
+					React.createElement(
+						"a",
+						{ className: "details-submit", href: "#" },
+						"?"
+					),
 					React.createElement("input", { type: "text", ref: "name", placeholder: "Enter username or regular name" }),
 					React.createElement("br", null),
 					React.createElement(
@@ -37556,6 +37560,34 @@ module.exports = React.createClass({
 						"button",
 						{ type: "submit" },
 						"Submit"
+					)
+				)
+			),
+			React.createElement(
+				"div",
+				{ className: "col-xs-4 tutorial" },
+				React.createElement(
+					"h5",
+					null,
+					"Curios how this works?"
+				),
+				React.createElement(
+					"ul",
+					null,
+					React.createElement(
+						"li",
+						null,
+						"Enter another users email into the top category.  Friend not signed up yet? No Problem!  Just enter his name!"
+					),
+					React.createElement(
+						"li",
+						null,
+						"Enter an image link to send to your friend along with the request (optional)."
+					),
+					React.createElement(
+						"li",
+						null,
+						"Then submit, collect, and drink!"
 					)
 				)
 			)

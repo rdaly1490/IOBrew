@@ -14,7 +14,7 @@ module.exports = React.createClass({
 	render: function() {
 		return (
 			<div className="container-fluid submit-container">
-				<div className="col-xs-8 col-xs-offset-2 form">
+				<div className="col-xs-6 col-xs-offset-3 form">
 					<form onSubmit={this.submitIou}>
 						<label>Who do you owe a beer?</label><br />
 						<input type="text" ref="name" placeholder="Enter username or regular name" /><br />

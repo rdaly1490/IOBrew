@@ -326,7 +326,7 @@ body {
 
 .form input[type=text] {
 	background-color: #FFEFBF;
-	width: 80%;
+	width: 100%;
 }
 
 .form span {
@@ -335,12 +335,12 @@ body {
 
 
 .form textarea {
-	width: 80%;
+	width: 100%;
 	background-color: #FFEFBF;
 }
 
 .form select {
-	width: 80%;
+	width: 100%;
 	background-color: #FFEFBF;
 }
 
@@ -359,7 +359,22 @@ body {
 	font-family: "Oswald", sans-serif;
 }
 
+.tutorial {
+	border-left: 1px solid black;
+	margin-top: 50px;
+}
 
+.tutorial h5 {
+	text-align: left;
+}
+
+.tutorial ul {
+	padding-left: 5px;
+}
+
+.details-submit {
+	float: right;
+}
 
 
 

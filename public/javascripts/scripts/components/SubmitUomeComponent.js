@@ -14,9 +14,9 @@ module.exports = React.createClass({
 	render: function() {
 		return (
 			<div className="container-fluid submit-container">
-				<div className="col-xs-8 col-xs-offset-2 form">
+				<div className="col-xs-8 form">
 					<form onSubmit={this.submitUome}>
-						<label>This person owes you beer!</label><br />
+						<label>This person owes you beer!</label><a className="details-submit" href="#">?</a>
 						<input type="text" ref="name" placeholder="Enter username or regular name" /><br />
 						<p className="error">{this.state.errors.name}</p>
 						<p className="error">{this.state.errors.noUser}</p>
@@ -42,6 +42,15 @@ module.exports = React.createClass({
 						<input type="radio" value="false" name="reminder" />&nbsp; No<br />																	
 						<button type="submit">Submit</button>
 					</form>
+				</div>
+				<div className="col-xs-4 tutorial">
+					<h5>Curios how this works?</h5>
+					<ul>
+						<li>Enter another users email into the top category.  Friend not signed up yet?
+							No Problem!  Just enter his name!</li>
+						<li>Enter an image link to send to your friend along with the request (optional).</li>
+						<li>Then submit, collect, and drink!</li>
+					</ul>
 				</div>
 			</div>
 		);
