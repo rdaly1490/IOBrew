@@ -17,8 +17,9 @@ var AchievementRoute = require('./routes/AchievementRoute');
 var AchievementFunctions = require('./routes/AchievementFunctions');
 var mongoose = require('mongoose');
 var fs = require("fs");
-var facebook = require("./stormpath/facebook");
-var emailConfig=require('./stormpath/email');
+var config = require('./config/config');
+// var facebook = require("./stormpath/facebook");
+// var emailConfig=require('./stormpath/email');
 
 var stormpath = require('express-stormpath');
 
@@ -27,9 +28,11 @@ mongoose.connect('mongodb://localhost/workout_tracker');
 var app = express();
 
 app.use(stormpath.init(app, {
-    apiKeyFile: './stormpath/apiKey.properties',
+    apiKeyId: config.stormPath.apiKeyId,
+    apiKeySecret: config.stormPath.apiKeySecret,
+    secretKey: config.stormPath.secretKey,
+    // apiKeyFile: './stormpath/apiKey.properties',
     application: 'https://api.stormpath.com/v1/applications/56GpvTzerVtKtJEpbpwtvW',
-    secretKey: 'robbybobby',
     registrationView: __dirname + '/views/register.jade',
     loginView: __dirname + '/views/login.jade',
     enableForgotPassword: true,
@@ -37,12 +40,12 @@ app.use(stormpath.init(app, {
     enableAutoLogin: true,
     sessionDuration: 1000 * 60 * 60,
     // enableFacebook: true,
-    social: {
-      facebook: {
-        appId: facebook.appId,
-        appSecret: facebook.appSecret,
-      },
-    },
+    // social: {
+    //   facebook: {
+    //     appId: facebook.appId,
+    //     appSecret: facebook.appSecret,
+    //   },
+    // },
 }));
 
 // app.listen(9000);

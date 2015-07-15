@@ -1,5 +1,6 @@
 var nodemailer = require('nodemailer');
-var emailConfig=require('../stormpath/email');
+// var emailConfig=require('../stormpath/email');
+var emailConfig = require('../config/config').email;
 
 var oweModel = require('../models/owe').Owe; 
 
