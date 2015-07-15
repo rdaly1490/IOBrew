@@ -19,7 +19,7 @@ module.exports = React.createClass({
 				</div>
 				<div className="container-fluid home-benefits">
 					<div className="col-xs-12">
-						<div className="col-xs-10 col-xs-offset-1 col md-12 col-lg-10 col-lg-offset-1 benefits">
+						<div className="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 benefits">
 							<div className="col-xs-12 col-md-4 col-lg-4">
 								<img src="/images/beer-list.png" />
 								<h3>Keep Track</h3>

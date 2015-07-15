@@ -36472,7 +36472,7 @@ module.exports = React.createClass({
 					{ className: "col-xs-12" },
 					React.createElement(
 						"div",
-						{ className: "col-xs-10 col-xs-offset-1 col md-12 col-lg-10 col-lg-offset-1 benefits" },
+						{ className: "col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 benefits" },
 						React.createElement(
 							"div",
 							{ className: "col-xs-12 col-md-4 col-lg-4" },

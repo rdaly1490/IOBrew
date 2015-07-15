@@ -1,5 +1,5 @@
 var nodemailer = require('nodemailer');
-// var emailConfig=require('../stormpath/email');
+var emailConfig=require('../stormpath/email');
 
 var oweModel = require('../models/owe').Owe; 
 
@@ -51,27 +51,27 @@ exports.create = function(req, res) {
 
     newOwe.save();
 
-    // if(newOwe.reminder === true) {
-    //   setTimeout(function() {
-    //     var transporter = nodemailer.createTransport(emailConfig);
-    //     var message = {
-    //       from: "rdaly1490@gmail.com",
-    //       to: newOwe.createdby,
-    //       subject: "Don't forget about your booze, log back into IoBrew!",
-    //       text: "This is a test email.",
-    //       html: "<p> From: "+" "+newOwe.createdby+"</p> <p> Message: "+" "+newOwe.category+"</p>"
-    //     };
-    //     transporter.sendMail(message, function(error, info) {
-    //       if(error) {
-    //         console.log(error)
-    //         res.send("email error");
-    //       }
-    //       else {
-    //         console.log(info);
-    //         res.send("Email sent!")
-    //       }
-    //     });
-    //   }, 604800000);
+    if(newOwe.reminder === true) {
+      setTimeout(function() {
+        var transporter = nodemailer.createTransport(emailConfig);
+        var message = {
+          from: "rdaly1490@gmail.com",
+          to: newOwe.createdby,
+          subject: "Don't forget about your booze, log back into IoBrew!",
+          text: "This is a test email.",
+          html: "<p> From: "+" "+newOwe.createdby+"</p> <p> Message: "+" "+newOwe.category+"</p>"
+        };
+        transporter.sendMail(message, function(error, info) {
+          if(error) {
+            console.log(error)
+            res.send("email error");
+          }
+          else {
+            console.log(info);
+            res.send("Email sent!")
+          }
+        });
+      }, 604800000);
     }
 }
 
