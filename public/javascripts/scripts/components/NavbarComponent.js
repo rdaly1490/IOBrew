@@ -10,7 +10,7 @@ module.exports = React.createClass({
     var links = [];
     var userDropdown = null;
     if(!this.props.ioBrewUser.get("username")) {
-      
+      var logo = (<a className="navbar-brand" href="#">io<span className="brew">Brew</span><img src="/images/Beer-icon.png" /></a>);
       links.push(<li className="nav-links" key="login"><a href="/login">Log in</a></li>);
       links.push(<li className="nav-links" key="register"><a href="/register">Register</a></li>);
     }
