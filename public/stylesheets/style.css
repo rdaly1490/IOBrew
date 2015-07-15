@@ -38,6 +38,7 @@ body {
 
 .nav-links {
 	font-size: 140%;
+	font-family: "Oswald"
 }
 
 .brew {
@@ -65,6 +66,9 @@ body {
 	.navbar-brand {
 		font-size: 300%;
 	}
+	.nav-links:hover {
+	background-color: rgba(255, 239, 191, 1);
+}
 }
 
 
@@ -185,7 +189,7 @@ body {
 		font-size: 250%;
 	}
 	.banner-text p {
-		font-size: 140%;
+		font-size: 155%;
 	}
 }
 
@@ -399,11 +403,13 @@ body {
 	padding: 10px;
 	color:#334D5C;
 	font-family: "Ubuntu", sans-serif;
+	font-size: 100%;
 }
 
 .each-iou button {
 	float: right;
-	margin-top: 30px;
+	/*margin-top: 30px;*/
+	background-color: rgba(192, 192, 192, 0);
 }
 
 .unchecked {
@@ -466,29 +472,31 @@ body {
 	margin-top: -30px;
 	text-align: center;
 	padding-top: 30px;
+	padding-bottom: 60px;
 }
 
 .profile-container img {
-	height:30%;
-	width:30%;
+	height:50%;
+	width:50%;
 }
 
 .achievements h3 {
-	font-size: 22px;
+	font-size: 130%;
 	font-weight: bold;
-	font-family: "Bangers"	
+	font-family: "Bangers", cursive;	
 }
 
 .achievements h1 {
-	font-family: "Oswald";
+	font-family: "Oswald", sans-serif;
 	text-decoration:underline;
 	margin-bottom: 20px;
 }
 
 .achievements p {
-	font-size: 18px;
+	font-size: 100%;
 	font-weight: bold;
-	font-family: "Quicksand";	
+	font-family: "Quicksand", sans-serif;
+	margin-bottom: 20px;	
 }
 
 .completed {
@@ -496,9 +504,25 @@ body {
 }
 
 .user-info {
-	font-family: "Oswald"
+	font-family: "Oswald", sans-serif;
 }
 
+@media (min-width: 490px) {
+	.achievements h3 {
+		font-size: 170%;
+	}
+	.achievements p {
+		font-size: 140%;
+		margin-bottom: 40px;	
+	}
+	.profile-container img {
+		height:40%;
+		width:40%;
+	}
+	.achievements h1 {
+		margin-bottom: 60px;
+	}
+}
 
 
 

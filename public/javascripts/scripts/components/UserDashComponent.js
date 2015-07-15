@@ -6,9 +6,8 @@ module.exports = React.createClass({
 		return (
 			<div className="container-fluid user-container">
 				<h1> Cheers  {this.props.ioBrewUser.get("givenName")}!</h1>
-				<div className="col-xs-12 submit-btn">
+				<div className="col-xs-12 col-sm-6 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 submit-btn">
 					<button onClick={this.submitIou}>Submit an IOU!</button>
-				</div>
 					<div onClick={this.listIous} className="col-xs-12 iou-dash">
 						<div className="col-xs-10 col-xs-offset-1">
 							<div className="col-xs-10 col-xs-offset-1">
@@ -16,7 +15,8 @@ module.exports = React.createClass({
 							</div>
 						</div>
 					</div>
-				<div className="col-xs-12 submit-btn"> 
+				</div>
+				<div className="col-xs-12 col-sm-6 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2 submit-btn"> 
 					<button onClick={this.submitUome}>Submit a UOME!</button><br />
 					<div onClick={this.listUomes} className="col-xs-12 uome-dash">
 						<div className="col-xs-10 col-xs-offset-1">

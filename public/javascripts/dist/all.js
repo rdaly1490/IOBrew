@@ -36983,48 +36983,72 @@ module.exports = React.createClass({
 					null,
 					'Achievements'
 				),
-				React.createElement('img', { className: 'firstiou', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'h3',
-					null,
-					'First IOU Completed!'
+					'div',
+					{ className: 'col-xs-12 col-sm-6 col-md-6 col-lg-6' },
+					React.createElement('img', { className: 'firstiou', src: '/images/empty-circle.png' }),
+					React.createElement(
+						'h3',
+						null,
+						'First IOU Completed!'
+					),
+					React.createElement('p', { className: 'firstiouCompleted' })
 				),
-				React.createElement('p', { className: 'firstiouCompleted' }),
-				React.createElement('img', { className: 'firstuome', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'h3',
-					null,
-					'First UOME Completed'
+					'div',
+					{ className: 'col-xs-12 col-sm-6 col-md-6 col-lg-6' },
+					React.createElement('img', { className: 'firstuome', src: '/images/empty-circle.png' }),
+					React.createElement(
+						'h3',
+						null,
+						'First UOME Completed'
+					),
+					React.createElement('p', { className: 'firstuomeCompleted' })
 				),
-				React.createElement('p', { className: 'firstuomeCompleted' }),
-				React.createElement('img', { className: 'teniou', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'h3',
-					null,
-					'Ten IOUs Completed!'
+					'div',
+					{ className: 'col-xs-12 col-sm-6 col-md-6 col-lg-6' },
+					React.createElement('img', { className: 'teniou', src: '/images/empty-circle.png' }),
+					React.createElement(
+						'h3',
+						null,
+						'Ten IOUs Completed!'
+					),
+					React.createElement('p', { className: 'teniouCompleted' })
 				),
-				React.createElement('p', { className: 'teniouCompleted' }),
-				React.createElement('img', { className: 'tenuome', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'h3',
-					null,
-					'Ten UOMEs Completed'
+					'div',
+					{ className: 'col-xs-12 col-sm-6 col-md-6 col-lg-6' },
+					React.createElement('img', { className: 'tenuome', src: '/images/empty-circle.png' }),
+					React.createElement(
+						'h3',
+						null,
+						'Ten UOMEs Completed'
+					),
+					React.createElement('p', { className: 'tenuomeCompleted' })
 				),
-				React.createElement('p', { className: 'tenuomeCompleted' }),
-				React.createElement('img', { className: 'fiftyiou', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'h3',
-					null,
-					'Fifty IOUs Completed!'
+					'div',
+					{ className: 'col-xs-12 col-sm-6 col-md-6 col-lg-6' },
+					React.createElement('img', { className: 'fiftyiou', src: '/images/empty-circle.png' }),
+					React.createElement(
+						'h3',
+						null,
+						'Fifty IOUs Completed!'
+					),
+					React.createElement('p', { className: 'fiftyiouCompleted' })
 				),
-				React.createElement('p', { className: 'fiftyiouCompleted' }),
-				React.createElement('img', { className: 'fiftyuome', src: '/images/empty-circle.png' }),
 				React.createElement(
-					'h3',
-					null,
-					'Fifty UOMEs Completed'
-				),
-				React.createElement('p', { className: 'fiftyuomeCompleted' })
+					'div',
+					{ className: 'col-xs-12 col-sm-6 col-md-6 col-lg-6' },
+					React.createElement('img', { className: 'fiftyuome', src: '/images/empty-circle.png' }),
+					React.createElement(
+						'h3',
+						null,
+						'Fifty UOMEs Completed'
+					),
+					React.createElement('p', { className: 'fiftyuomeCompleted' })
+				)
 			)
 		);
 	}
@@ -37799,33 +37823,33 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ className: "col-xs-12 submit-btn" },
+				{ className: "col-xs-12 col-sm-6 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 submit-btn" },
 				React.createElement(
 					"button",
 					{ onClick: this.submitIou },
 					"Submit an IOU!"
-				)
-			),
-			React.createElement(
-				"div",
-				{ onClick: this.listIous, className: "col-xs-12 iou-dash" },
+				),
 				React.createElement(
 					"div",
-					{ className: "col-xs-10 col-xs-offset-1" },
+					{ onClick: this.listIous, className: "col-xs-12 iou-dash" },
 					React.createElement(
 						"div",
 						{ className: "col-xs-10 col-xs-offset-1" },
 						React.createElement(
-							"h2",
-							null,
-							"Beers You Owe"
+							"div",
+							{ className: "col-xs-10 col-xs-offset-1" },
+							React.createElement(
+								"h2",
+								null,
+								"Beers You Owe"
+							)
 						)
 					)
 				)
 			),
 			React.createElement(
 				"div",
-				{ className: "col-xs-12 submit-btn" },
+				{ className: "col-xs-12 col-sm-6 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2 submit-btn" },
 				React.createElement(
 					"button",
 					{ onClick: this.submitUome },

@@ -71,31 +71,38 @@ module.exports = React.createClass({
 
 				<div className="col-xs-10 col-xs-offset-1 achievements">
 					<h1>Achievements</h1>
+					<div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<img className="firstiou" src="/images/empty-circle.png" />
+						<h3>First IOU Completed!</h3>
+						<p className="firstiouCompleted"></p>
+					</div>
+					<div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<img className="firstuome" src="/images/empty-circle.png" />
+						<h3>First UOME Completed</h3>
+						<p className="firstuomeCompleted"></p>
+					</div>
 
-					<img className="firstiou" src="/images/empty-circle.png" />
-					<h3>First IOU Completed!</h3>
-					<p className="firstiouCompleted"></p>
-					<img className="firstuome" src="/images/empty-circle.png" />
-					<h3>First UOME Completed</h3>
-					<p className="firstuomeCompleted"></p>
+					<div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<img className="teniou" src="/images/empty-circle.png" />
+						<h3>Ten IOUs Completed!</h3>
+						<p className="teniouCompleted"></p>
+					</div>
+					<div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<img className="tenuome" src="/images/empty-circle.png" />
+						<h3>Ten UOMEs Completed</h3>
+						<p className="tenuomeCompleted"></p>
+					</div>
 
-					<img className="teniou" src="/images/empty-circle.png" />
-					<h3>Ten IOUs Completed!</h3>
-					<p className="teniouCompleted"></p>
-					<img className="tenuome" src="/images/empty-circle.png" />
-					<h3>Ten UOMEs Completed</h3>
-					<p className="tenuomeCompleted"></p>
-
-					<img className="fiftyiou" src="/images/empty-circle.png" />
-					<h3>Fifty IOUs Completed!</h3>
-					<p className="fiftyiouCompleted"></p>
-					<img className="fiftyuome" src="/images/empty-circle.png" />
-					<h3>Fifty UOMEs Completed</h3>
-					<p className="fiftyuomeCompleted"></p>
-
-
-
-
+					<div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<img className="fiftyiou" src="/images/empty-circle.png" />
+						<h3>Fifty IOUs Completed!</h3>
+						<p className="fiftyiouCompleted"></p>
+					</div>
+					<div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<img className="fiftyuome" src="/images/empty-circle.png" />
+						<h3>Fifty UOMEs Completed</h3>
+						<p className="fiftyuomeCompleted"></p>
+					</div>
 				</div>
 			</div>
 		);
