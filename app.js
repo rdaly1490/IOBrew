@@ -44,7 +44,7 @@ app.use(stormpath.init(app, {
     },
 }));
 
-app.listen(9000);
+// app.listen(9000);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
