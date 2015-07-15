@@ -53,7 +53,7 @@ module.exports = React.createClass({
 				return (
 					<div>
 						<div className={model.getClass(model)+" "+"each-iou"} key={model.cid}>
-							<img onClick={that.completeItem(model)} className="unchecked" src="/images/Beer-icon.png" />
+							<img onClick={that.completeItem(model)} className="unchecked" src="/images/beer-icon.png" />
 							&nbsp;<b> {model.get("owername")} </b>
 							Owes
 							<b> You </b>
@@ -97,7 +97,7 @@ module.exports = React.createClass({
 				target.parent().addClass("checked");
 			}
 			else {
-				e.target.src="/images/Beer-icon.png";
+				e.target.src="/images/beer-icon.png";
 				target.parent().removeClass("checked");
 			}
 		}
