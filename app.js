@@ -18,12 +18,15 @@ var AchievementFunctions = require('./routes/AchievementFunctions');
 var mongoose = require('mongoose');
 var fs = require("fs");
 var config = require('./config/config');
+var uriUtil = require('mongodb-uri');
 // var facebook = require("./stormpath/facebook");
 // var emailConfig=require('./stormpath/email');
+var mongodbUri = 'mongodb://heroku_h565qv7q:iordaql93r9j0vu0ullb328jkv@ds047672.mongolab.com:47672/heroku_h565qv7q';
+var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 
 var stormpath = require('express-stormpath');
 
-mongoose.connect('mongodb://localhost/workout_tracker');
+mongoose.connect(mongooseUri, options);
 
 var app = express();
 

@@ -17,6 +17,7 @@
     "express-session": "^1.11.3",
     "express-stormpath": "^1.0.5",
     "jade": "^1.11.0",
+    "mongodb-uri": "^0.9.7",
     "mongoose": "~2.7.x",
     "morgan": "~1.5.3",
     "nodemailer": "^1.4.0",
@@ -24,6 +25,6 @@
     "stormpath": "^0.10.0"
   },
   "engines": {
-      "node": "0.12.2"
+    "node": "0.12.2"
   }
 }
