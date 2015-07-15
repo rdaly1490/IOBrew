@@ -24,6 +24,7 @@ var stormpath = require('express-stormpath');
 mongoose.connect('mongodb://localhost/workout_tracker');
 
 var app = express();
+console.log(process.env.NODE_ENV);
 
 app.use(stormpath.init(app, {
     apiKeyFile: './stormpath/apiKey.properties',
