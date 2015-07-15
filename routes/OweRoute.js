@@ -63,17 +63,17 @@ exports.create = function(req, res) {
         };
         transporter.sendMail(message, function(error, info) {
           if(error) {
-            console.log(error)
+            console.log(error);
             res.send("email error");
           }
           else {
             console.log(info);
-            res.send("Email sent!")
+            res.send("Email sent!");
           }
         });
       }, 604800000);
     }
-}
+};
 
 exports.show = function(req, res) {
   
@@ -87,7 +87,7 @@ exports.show = function(req, res) {
       res.status(404).json({ message: "IOBrew not found."});
     }
   });
-}
+};
 
 exports.update = function(req, res, next) {
   
@@ -131,7 +131,7 @@ exports.update = function(req, res, next) {
         res.status(500).json({ message: "Could not update IOBrew." + err});
       }
     }); 
-}
+};
 
 exports.delete = function(req, res) {
 
@@ -146,4 +146,4 @@ exports.delete = function(req, res) {
       res.status(403).json({message: "Could not delete IOBrew. " + err });
     }
   });
-}
+};
