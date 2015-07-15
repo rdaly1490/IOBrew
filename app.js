@@ -23,7 +23,7 @@ var config = require('./config/config');
 
 var stormpath = require('express-stormpath');
 
-mongoose.connect(config.stormPath.mongo);
+mongoose.connect(config.stormPath.mongo.mongolabUri);
 
 var app = express();
 
