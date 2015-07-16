@@ -36841,15 +36841,6 @@ module.exports = React.createClass({
       ));
       links.push(React.createElement(
         'li',
-        { className: 'nav-links', key: 'AboutUs' },
-        React.createElement(
-          'a',
-          { href: '#home' },
-          'About Us'
-        )
-      ));
-      links.push(React.createElement(
-        'li',
         { className: 'nav-links', key: 'logout' },
         React.createElement(
           'a',
