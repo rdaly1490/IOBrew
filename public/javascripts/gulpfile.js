@@ -54,19 +54,19 @@ gulp.task("js-uglify-all", function() {
 gulp.task("js-uglify-jquery", function() {
 	return gulp.src("../javascripts/node_modules/jquery/dist/jquery.min.js")
 	.pipe(uglify())
-    .pipe(gulp.dest('../../prod/javascripts/node_modules/jquery/dist'));
+    .pipe(gulp.dest('../../prod/javascripts'));
 });
 
 gulp.task("js-uglify-bootstrap", function() {
-	return gulp.src("../javascripts/node_modules/bootstrap/dist/js/jquery.min.js")
+	return gulp.src("../javascripts/node_modules/bootstrap/dist/js/bootstrap.min.js")
 	.pipe(uglify())
-    .pipe(gulp.dest('../../prod/javascripts/node_modules/bootstrap/dist/js'));
+    .pipe(gulp.dest('../../prod/javascripts'));
 });
 
 gulp.task("css-uglify-bootstrap", function() {
 	return gulp.src("../javascripts/node_modules/bootstrap/dist/css/bootstrap.min.css")
 	.pipe(minifyCss())
-    .pipe(gulp.dest('../../prod/javascripts/node_modules/bootstrap/dist/css'));
+    .pipe(gulp.dest('../../prod/stylesheets'));
 });
 
 gulp.task("css-uglify-stylesheet", function() {

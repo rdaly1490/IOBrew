@@ -2,9 +2,15 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="/javascripts/node_modules/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	<% if(process.env.NODE_ENV === 'production') { %>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	<% } else { %>
+		<link rel="stylesheet" type="text/css" href="/javascripts/node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<% } %>
+
 	<link href='//fonts.googleapis.com/css?family=Quicksand|Ubuntu|Source+Code+Pro|Muli|Oswald|Abril+Fatface|Bangers|Kaushan+Script|Righteous|Courgette|Squada+One|Changa+One|Open+Sans+Condensed:300|Francois+One|Exo+2|Pathway+Gothic+One' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -14,8 +20,13 @@
 	<script type="text/javascript">
 		window.iobrew_user = <%- user ? JSON.stringify(user) : 'false' %>;
 	</script>
-	<script type="text/javascript" src="/javascripts/node_modules/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="/javascripts/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<% if(process.env.NODE_ENV === 'production') { %>
+		<script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+		<script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
+	<% } else { %>
+		<script type="text/javascript" src="/javascripts/node_modules/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="/javascripts/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<% } %>
 	<script type="text/javascript" src="/javascripts/dist/all.js"></script>
 </body>
 </html>
