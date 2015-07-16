@@ -36598,6 +36598,11 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: model.getClass(model) + ' ' + 'each-iou col-xs-12', key: model.cid },
+						React.createElement(
+							'button',
+							{ onClick: that.showDetails },
+							'Details'
+						),
 						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/beer-icon.png' }),
 						' ',
 						React.createElement(
@@ -36613,11 +36618,6 @@ module.exports = React.createClass({
 						),
 						' a ',
 						model.get('category'),
-						React.createElement(
-							'button',
-							{ onClick: that.showDetails },
-							'Details'
-						),
 						React.createElement(
 							'div',
 							{ className: model.getClass(model) + ' ' + 'details', style: detailsStyle, key: model.get('_id') },
@@ -37216,7 +37216,7 @@ var React = require("react");
 var _ = require("backbone/node_modules/underscore");
 var $ = require("jquery");
 var validator = require("validator");
-// var IouModel = require("../models/IouModel");
+
 var OweModel = require("../models/OweModel");
 
 module.exports = React.createClass({
@@ -37233,7 +37233,7 @@ module.exports = React.createClass({
 			{ className: "container-fluid submit-container" },
 			React.createElement(
 				"div",
-				{ className: "col-xs-6 col-xs-offset-3 form" },
+				{ className: "col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 form" },
 				React.createElement(
 					"form",
 					{ onSubmit: this.submitIou },
@@ -37244,7 +37244,12 @@ module.exports = React.createClass({
 					),
 					React.createElement("br", null),
 					React.createElement("input", { type: "text", ref: "name", placeholder: "Enter username or regular name" }),
-					React.createElement("br", null),
+					React.createElement("span", { onClick: this.firstq, className: "glyphicon glyphicon-question-sign form-help" }),
+					React.createElement(
+						"div",
+						{ className: "alert alert-warning firstq", role: "alert" },
+						"Enter another usersname(email) here or just enter a friends name if theyre not signed up yet!"
+					),
 					React.createElement(
 						"p",
 						{ className: "error" },
@@ -37262,7 +37267,12 @@ module.exports = React.createClass({
 					),
 					React.createElement("br", null),
 					React.createElement("input", { type: "text", ref: "image" }),
-					React.createElement("br", null),
+					React.createElement("span", { onClick: this.secondq, className: "glyphicon glyphicon-question-sign form-help" }),
+					React.createElement(
+						"div",
+						{ className: "alert alert-warning secondq", role: "alert" },
+						"Enter an image URL here to attach it to the submission."
+					),
 					React.createElement(
 						"p",
 						{ className: "error" },
@@ -37275,7 +37285,12 @@ module.exports = React.createClass({
 					),
 					React.createElement("br", null),
 					React.createElement("textarea", { ref: "reason" }),
-					React.createElement("br", null),
+					React.createElement("span", { onClick: this.thirdq, className: "glyphicon glyphicon-question-sign form-help" }),
+					React.createElement(
+						"div",
+						{ className: "alert alert-warning thirdq", role: "alert" },
+						"Enter a reason for this submission so you wont forget!"
+					),
 					React.createElement(
 						"p",
 						{ className: "error" },
@@ -37339,10 +37354,18 @@ module.exports = React.createClass({
 					),
 					React.createElement("br", null),
 					React.createElement("input", { type: "radio", value: "true", name: "reminder" }),
-					"  Yes",
+					React.createElement(
+						"span",
+						{ className: "radio-text" },
+						"  Yes"
+					),
 					React.createElement("br", null),
 					React.createElement("input", { type: "radio", value: "false", name: "reminder" }),
-					"  No",
+					React.createElement(
+						"span",
+						{ className: "radio-text" },
+						"  No"
+					),
 					React.createElement("br", null),
 					React.createElement(
 						"button",
@@ -37414,6 +37437,18 @@ module.exports = React.createClass({
 				}
 			});
 		}
+	},
+	firstq: function firstq(e) {
+		e.preventDefault();
+		$(".firstq").toggle();
+	},
+	secondq: function secondq(e) {
+		e.preventDefault();
+		$(".secondq").toggle();
+	},
+	thirdq: function thirdq(e) {
+		e.preventDefault();
+		$(".thirdq").toggle();
 	}
 });
 
@@ -37441,22 +37476,23 @@ module.exports = React.createClass({
 			{ className: "container-fluid submit-container" },
 			React.createElement(
 				"div",
-				{ className: "col-xs-8 form" },
+				{ className: "col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 form" },
 				React.createElement(
 					"form",
 					{ onSubmit: this.submitUome },
 					React.createElement(
 						"label",
 						null,
-						"This person owes you beer!"
+						"Who owes you a beer?"
 					),
-					React.createElement(
-						"a",
-						{ className: "details-submit", href: "#" },
-						"?"
-					),
-					React.createElement("input", { type: "text", ref: "name", placeholder: "Enter username or regular name" }),
 					React.createElement("br", null),
+					React.createElement("input", { type: "text", ref: "name", placeholder: "Enter username or regular name" }),
+					React.createElement("span", { onClick: this.firstq, className: "glyphicon glyphicon-question-sign form-help" }),
+					React.createElement(
+						"div",
+						{ className: "alert alert-warning firstq", role: "alert" },
+						"Enter another usersname(email) here or just enter a friends name if theyre not signed up yet!"
+					),
 					React.createElement(
 						"p",
 						{ className: "error" },
@@ -37474,7 +37510,12 @@ module.exports = React.createClass({
 					),
 					React.createElement("br", null),
 					React.createElement("input", { type: "text", ref: "image" }),
-					React.createElement("br", null),
+					React.createElement("span", { onClick: this.secondq, className: "glyphicon glyphicon-question-sign form-help" }),
+					React.createElement(
+						"div",
+						{ className: "alert alert-warning secondq", role: "alert" },
+						"Enter an image URL here to attach it to the submission."
+					),
 					React.createElement(
 						"p",
 						{ className: "error" },
@@ -37487,7 +37528,12 @@ module.exports = React.createClass({
 					),
 					React.createElement("br", null),
 					React.createElement("textarea", { ref: "reason" }),
-					React.createElement("br", null),
+					React.createElement("span", { onClick: this.thirdq, className: "glyphicon glyphicon-question-sign form-help" }),
+					React.createElement(
+						"div",
+						{ className: "alert alert-warning thirdq", role: "alert" },
+						"Enter a reason for this submission so you wont forget!"
+					),
 					React.createElement(
 						"p",
 						{ className: "error" },
@@ -37551,43 +37597,23 @@ module.exports = React.createClass({
 					),
 					React.createElement("br", null),
 					React.createElement("input", { type: "radio", value: "true", name: "reminder" }),
-					"  Yes",
+					React.createElement(
+						"span",
+						{ className: "radio-text" },
+						"  Yes"
+					),
 					React.createElement("br", null),
 					React.createElement("input", { type: "radio", value: "false", name: "reminder" }),
-					"  No",
+					React.createElement(
+						"span",
+						{ className: "radio-text" },
+						"  No"
+					),
 					React.createElement("br", null),
 					React.createElement(
 						"button",
 						{ type: "submit" },
 						"Submit"
-					)
-				)
-			),
-			React.createElement(
-				"div",
-				{ className: "col-xs-4 tutorial" },
-				React.createElement(
-					"h5",
-					null,
-					"Curios how this works?"
-				),
-				React.createElement(
-					"ul",
-					null,
-					React.createElement(
-						"li",
-						null,
-						"Enter another users email into the top category.  Friend not signed up yet? No Problem!  Just enter his name!"
-					),
-					React.createElement(
-						"li",
-						null,
-						"Enter an image link to send to your friend along with the request (optional)."
-					),
-					React.createElement(
-						"li",
-						null,
-						"Then submit, collect, and drink!"
 					)
 				)
 			)
@@ -37654,6 +37680,18 @@ module.exports = React.createClass({
 				}
 			});
 		}
+	},
+	firstq: function firstq(e) {
+		e.preventDefault();
+		$(".firstq").toggle();
+	},
+	secondq: function secondq(e) {
+		e.preventDefault();
+		$(".secondq").toggle();
+	},
+	thirdq: function thirdq(e) {
+		e.preventDefault();
+		$(".thirdq").toggle();
 	}
 });
 
@@ -37724,6 +37762,11 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: model.getClass(model) + ' ' + 'each-iou', key: model.cid },
+						React.createElement(
+							'button',
+							{ onClick: that.showDetails },
+							'Details'
+						),
 						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/beer-icon.png' }),
 						' ',
 						React.createElement(
@@ -37741,11 +37784,6 @@ module.exports = React.createClass({
 						),
 						'a ',
 						model.get('category'),
-						React.createElement(
-							'button',
-							{ onClick: that.showDetails },
-							'Details'
-						),
 						React.createElement(
 							'div',
 							{ className: 'details', style: detailsStyle, key: model.get('_id') },

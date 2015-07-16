@@ -53,12 +53,12 @@ module.exports = React.createClass({
 				return (
 					<div>
 						<div className={model.getClass(model)+" "+"each-iou"} key={model.cid}>
+							<button onClick={that.showDetails}>Details</button>
 							<img onClick={that.completeItem(model)} className="unchecked" src="/images/beer-icon.png" />
 							&nbsp;<b> {model.get("owername")} </b>
 							Owes
 							<b> You </b>
 							a {model.get("category")}
-							<button onClick={that.showDetails}>Details</button>
 							<div className="details" style={detailsStyle} key={model.get("_id")}>
 								<p>Date Created: {moment(model.get("date_created")).calendar()}</p>
 								<p>Created by: {model.get("createdby")}</p>

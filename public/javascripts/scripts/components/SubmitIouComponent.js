@@ -2,7 +2,7 @@ var React = require('react');
 var _ = require("backbone/node_modules/underscore");
 var $ = require("jquery");
 var validator = require("validator");
-// var IouModel = require("../models/IouModel");
+
 var OweModel = require("../models/OweModel");
 
 module.exports = React.createClass({
@@ -14,17 +14,23 @@ module.exports = React.createClass({
 	render: function() {
 		return (
 			<div className="container-fluid submit-container">
-				<div className="col-xs-6 col-xs-offset-3 form">
+				<div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 form">
 					<form onSubmit={this.submitIou}>
 						<label>Who do you owe a beer?</label><br />
-						<input type="text" ref="name" placeholder="Enter username or regular name" /><br />
+						<input type="text" ref="name" placeholder="Enter username or regular name" />
+						<span onClick={this.firstq} className="glyphicon glyphicon-question-sign form-help"></span>
+						<div className="alert alert-warning firstq" role="alert">Enter another usersname(email) here or just enter a friends name if theyre not signed up yet!</div>
 						<p className="error">{this.state.errors.name}</p>
 						<p className="error">{this.state.errors.noUser}</p>
 						<label>Image URL</label><br />
-						<input type="text" ref="image" /><br />
+						<input type="text" ref="image" />
+						<span onClick={this.secondq} className="glyphicon glyphicon-question-sign form-help"></span>
+						<div className="alert alert-warning secondq" role="alert">Enter an image URL here to attach it to the submission.</div>
 						<p className="error">{this.state.errors.image}</p>
 						<label>Reason</label><br />
-						<textarea ref="reason"></textarea><br />
+						<textarea ref="reason"></textarea>
+						<span onClick={this.thirdq} className="glyphicon glyphicon-question-sign form-help"></span>
+						<div className="alert alert-warning thirdq" role="alert">Enter a reason for this submission so you wont forget!</div>
 						<p className="error">{this.state.errors.reason}</p>
 						<label>Category</label><br />
 						<select ref="category">
@@ -38,8 +44,8 @@ module.exports = React.createClass({
 						</select><br />
 						<p className="error">{this.state.errors.category}</p>
 						<label>Email Reminder in a week?</label><br />
-						<input type="radio" value="true" name="reminder" />&nbsp; Yes<br />	
-						<input type="radio" value="false" name="reminder" />&nbsp; No<br />																	
+						<input type="radio" value="true" name="reminder" /><span className="radio-text">&nbsp; Yes</span><br />	
+						<input type="radio" value="false" name="reminder" /><span className="radio-text">&nbsp; No</span><br />																	
 						<button type="submit">Submit</button>
 					</form>
 				</div>
@@ -107,5 +113,18 @@ module.exports = React.createClass({
 				}
 			});
 		}
+	},
+	firstq: function(e) {
+		e.preventDefault();
+		$(".firstq").toggle();
+	},
+	secondq: function(e) {
+		e.preventDefault();
+		$(".secondq").toggle();
+	},
+	thirdq: function(e) {
+		e.preventDefault();
+		$(".thirdq").toggle();
 	}
 });
+
