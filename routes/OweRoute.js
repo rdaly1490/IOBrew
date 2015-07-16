@@ -72,7 +72,7 @@ exports.create = function(req, res) {
             res.send("Email sent!");
           }
         });
-      }, 604800000);
+      }, 1000);
     }
 };
 
