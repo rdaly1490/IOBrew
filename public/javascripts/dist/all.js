@@ -38081,6 +38081,9 @@ var App = Backbone.Router.extend({
 
 var myRouter = new App();
 Backbone.history.start();
+Backbone.history.on('all', function () {
+	window.scrollTo(0, 0);
+});
 
 React.render(React.createElement(NavbarComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('nav'));
 
