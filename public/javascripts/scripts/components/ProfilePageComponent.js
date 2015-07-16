@@ -37,7 +37,7 @@ module.exports = React.createClass({
 		else {
 			this.state.achievementHistory.map(function(model) {
 				if(model.get("type") === "First IOU") {
-					$(".firstiou").attr("src","/images/Beer-icon.png");
+					$(".firstiou").attr("src","/images/beer-icon.png");
 					$(".firstiouCompleted").html("Completed:"+" " +moment(model.get("date_created")).format("MMMM Do YYYY"));
 				}
 				else if (model.get("type") === "First UOME") {
