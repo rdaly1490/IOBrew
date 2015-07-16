@@ -88,8 +88,8 @@ module.exports = React.createClass({
 
 			var owe = new OweModel({
 				type: 2,
-				owerid: this.refs.name.getDOMNode().value,
-				owername: this.refs.name.getDOMNode().value,
+				owerid: owed.toLowerCase(),
+				owername: owed.toLowerCase(),
 				owedid: this.props.ioBrewUser.get("username"),
 				owedname: this.props.ioBrewUser.get("givenName"),
 				createdby: this.props.ioBrewUser.get("username"),
