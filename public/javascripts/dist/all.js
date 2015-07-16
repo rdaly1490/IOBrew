@@ -36789,7 +36789,7 @@ module.exports = React.createClass({
           { className: 'brew' },
           'Brew'
         ),
-        React.createElement('img', { src: '/images/Beer-icon.png' })
+        React.createElement('img', { src: '/images/beer-icon.png' })
       );
       links.push(React.createElement(
         'li',
