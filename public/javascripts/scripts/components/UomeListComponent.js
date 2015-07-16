@@ -77,7 +77,7 @@ module.exports = React.createClass({
 				<h2>Beers Owed to You</h2>
 					{wlist}
 				</div>
-			<button onClick={this.updatePage}>Update Page</button>
+			<button classNmae="update" onClick={this.updatePage}>Update Page</button>
 			</div>
 		);
 	},

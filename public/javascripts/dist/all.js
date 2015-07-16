@@ -37836,7 +37836,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'button',
-				{ onClick: this.updatePage },
+				{ classNmae: 'update', onClick: this.updatePage },
 				'Update Page'
 			)
 		);
