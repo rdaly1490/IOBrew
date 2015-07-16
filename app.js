@@ -61,7 +61,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-if((process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'prod')));
 }
 else {
