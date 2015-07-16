@@ -36819,7 +36819,7 @@ module.exports = React.createClass({
           { className: 'brew' },
           'Brew'
         ),
-        React.createElement('img', { src: '/images/Beer-icon.png' })
+        React.createElement('img', { src: '/images/beer-icon.png' })
       );
       links.push(React.createElement(
         'li',
@@ -36837,6 +36837,15 @@ module.exports = React.createClass({
           'a',
           { href: '#profile' },
           'Profile'
+        )
+      ));
+      links.push(React.createElement(
+        'li',
+        { className: 'nav-links', key: 'AboutUs' },
+        React.createElement(
+          'a',
+          { href: '#home' },
+          'About Us'
         )
       ));
       links.push(React.createElement(
@@ -37724,7 +37733,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: model.getClass(model) + ' ' + 'each-iou', key: model.cid },
-						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/empty-mug2.png' }),
+						React.createElement('img', { onClick: that.completeItem(model), className: 'unchecked', src: '/images/beer-icon.png' }),
 						' ',
 						React.createElement(
 							'b',
@@ -37815,10 +37824,10 @@ module.exports = React.createClass({
 			model.save();
 
 			if (model.get('finished') === true) {
-				e.target.src = '/images/beer-icon.png';
+				e.target.src = '/images/empty-mug2.png';
 				target.parent().addClass('checked');
 			} else {
-				e.target.src = '/images/empty-mug2.png';
+				e.target.src = '/images/beer-icon.png';
 				target.parent().removeClass('checked');
 			}
 		};

@@ -18,6 +18,7 @@ module.exports = React.createClass({
       var logo = (<a className="navbar-brand" href="#userdash">io<span className="brew">Brew</span><img src="/images/beer-icon.png" /></a>);
       links.push(<li className="nav-links" key="UserDash"><a href="#userdash">User Dash</a></li>);
       links.push(<li className="nav-links" key="Profile"><a href="#profile">Profile</a></li>);
+      links.push(<li className="nav-links" key="AboutUs"><a href="#home">About Us</a></li>);
       links.push(<li className="nav-links" key="logout"><a href="#" onClick={this.onLogOut}>Log out</a></li>);
     }
     return (
