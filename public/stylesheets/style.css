@@ -130,7 +130,6 @@ body {
 .button:hover {
 	text-decoration: none;
 	color:white;
-	font-weight: bold;
 }
 
 .primary-button {
@@ -161,6 +160,7 @@ body {
 	background: url(/images/textured-background.jpg);
 	background-size: cover;
 	background-position: center;
+	background-repeat: no-repeat;
 	padding-bottom: 60px;
 }
 
@@ -241,6 +241,7 @@ body {
 	background: url(/images/textured-background.jpg);
 	background-size: cover;
 	background-position: center;
+	background-repeat: no-repeat;
 	margin-top: -30px;
 }
 
@@ -314,6 +315,7 @@ body {
 	background: url(/images/textured-background.jpg);
 	background-size: cover;
 	background-position: center;
+	background-repeat: no-repeat;
 	margin-top: -30px;
 	min-height: 900px;
 }
@@ -408,6 +410,7 @@ body {
 	background: url(/images/textured-background.jpg);
 	background-size: cover;
 	background-position: center;
+	background-repeat: no-repeat;
 	margin-top: -30px;
 	min-height: 900px;
 }
@@ -503,6 +506,7 @@ body {
 	background: url(/images/textured-background.jpg);
 	background-size: cover;
 	background-position: center;
+	background-repeat: no-repeat;
 	margin-top: -30px;
 	text-align: center;
 	padding-top: 30px;
