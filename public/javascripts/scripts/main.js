@@ -14,6 +14,9 @@ var UserDashComponent = require("./components/UserDashComponent");
 var IouListComponent = require("./components/IouListComponent");
 var UomeListComponent = require("./components/UomeListComponent");
 var ProfilePageComponent = require("./components/ProfilePageComponent");
+var IouHistoryComponent = require("./components/IouHistoryComponent");
+var UomeHistoryComponent = require("./components/UomeHistoryComponent");
+var FooterComponent = require("./components/FooterComponent");
 
 var ioBrewUserModel = require("./models/ioBrewUserModel");
 
@@ -28,9 +31,6 @@ var ioBrewUser = new ioBrewUserModel({
 		emailVerificationToken: window.iobrew_user.emailVerificationToken
 });
 
-// console.log(ioBrewUser);
-// console.log(window.iobrew_user);
-
 var App = Backbone.Router.extend({
 	routes: {
 		"": "home",
@@ -42,7 +42,9 @@ var App = Backbone.Router.extend({
 		"userdash": "userdash",
 		"ioulist": "ioulist",
 		"uomelist": "uomelist",
-		"profile": "profile"
+		"profile": "profile",
+		"iouhistory": "iouhistory",
+		"uomehistory": "uomehistory"
 	},
 	home: function() {
 		React.render(
@@ -88,6 +90,16 @@ var App = Backbone.Router.extend({
 		React.render(		
 			<ProfilePageComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />,
 			document.getElementById("container"));			
+	},
+	iouhistory: function() {
+		React.render(		
+			<IouHistoryComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />,
+			document.getElementById("container"));			
+	},
+	uomehistory: function() {
+		React.render(		
+			<UomeHistoryComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />,
+			document.getElementById("container"));			
 	}
 });
 
@@ -98,6 +110,7 @@ Backbone.history.on("all", function() {
 });
 
 React.render(<NavbarComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, document.getElementById("nav"));
+React.render(<FooterComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, document.getElementById("footer"));
 
 // if (ioBrewUser.get("username") !== null) {
 // 	myRouter.navigate("userdash", {trigger:true});

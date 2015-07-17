@@ -16,7 +16,7 @@ module.exports = React.createClass({
 					filter:
 					 {	
 					 	// type: 2,
-					 	finished: 0, //0 or 1 for binary T or F
+					 	finished: 1, //0 or 1 for binary T or F
 					 	owedid: this.props.ioBrewUser.get("username")
 					 } 
 				  },
@@ -54,7 +54,7 @@ module.exports = React.createClass({
 					<div>
 						<div className={model.getClass(model)+" "+"each-iou"} key={model.cid}>
 							<button onClick={that.showDetails}>Details</button>
-							<img onClick={that.completeItem(model)} className="unchecked" src="/images/beer-icon.png" />
+							<img className="unchecked" src="/images/empty-mug2.png" />
 							&nbsp;<b> {model.get("owername")} </b>
 							Owes
 							<b> You </b>
@@ -74,37 +74,12 @@ module.exports = React.createClass({
 		return (
 			<div className="container-fluid list-container">
 				<div className="col-xs-10 col-xs-offset-1 todo-list">
-				<h2>Beers Owed to You</h2>
+				<h2>Beers Owed to You Graveyard</h2>
 					{wlist}
 				</div>
-			<button classNmae="update" onClick={this.updatePage}>Update Page</button>
-			<a href="#uomehistory">Complete History</a>
+				<a href="#uomelist">Back to List</a>
 			</div>
 		);
-	},
-	completeItem: function(model) {
-		return function(e) {
-			e.preventDefault();
-			var target = $(e.target);
-
-			model.set({
-				finished: !(model.get("finished"))
-			});
-
-			model.save();
-
-			if (model.get("finished") === true) {
-				e.target.src="/images/empty-mug2.png";
-				target.parent().addClass("checked");
-			}
-			else {
-				e.target.src="/images/beer-icon.png";
-				target.parent().removeClass("checked");
-			}
-		}
-	},
-	updatePage: function(e) {
-		window.location.reload();
 	},
 	showDetails: function(e) {
 		e.preventDefault();

@@ -91,7 +91,7 @@ module.exports = React.createClass({
 				owerid: this.props.ioBrewUser.get("username"),
 				owername: this.props.ioBrewUser.get("givenName"),
 				owedid: owed.toLowerCase(),
-				owedname: owed.toLowerCase(),
+				owedname: owed,
 				createdby: this.props.ioBrewUser.get("username"),
 				image: this.refs.image.getDOMNode().value,
 				reason: this.refs.reason.getDOMNode().value,

@@ -133,7 +133,6 @@ app.post('/iobrews', function(req,res,next) {
   if(req.body.type === 1 && req.body.owedid.indexOf("@") !== -1) {
     app.get('stormpathApplication').getAccounts({username: req.body.owedid}, function(err, accounts) {
       if (accounts.items.length > 0) {
-        res.status(200).json({message: "User Exists"});
         console.log({message: "User found"});
         req.body.owedname = accounts.items[0].givenName;
         next();
@@ -147,7 +146,6 @@ app.post('/iobrews', function(req,res,next) {
   else if (req.body.type === 2 && req.body.owerid.indexOf("@") !== -1){
     app.get('stormpathApplication').getAccounts({username: req.body.owerid}, function(err, accounts) {
       if (accounts.items.length > 0) {
-        res.status(200).json({message: "User Exists"});
         req.body.owername = accounts.items[0].givenName;
         next();
       }
@@ -157,7 +155,6 @@ app.post('/iobrews', function(req,res,next) {
     });
   }
   else {
-    res.status(200).json({message: "Not an email address"});
     next();
   }
 }, OweRoute.create)

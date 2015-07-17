@@ -1,22 +1,9 @@
 var nodemailer = require('nodemailer');
-// var emailConfig=require('../stormpath/email');
 var emailConfig = require('../config/config').email;
 
 var oweModel = require('../models/owe').Owe; 
 
 var AchievementFunctions = require('./AchievementFunctions');
-// var express = require('express');
-// var app = express();
-// var stormpath = require('express-stormpath');
-
-// exports.checkUsers = function(req, res, next) {
-//   app.get('stormpathApplication').getAccounts({email: "rdaly1490@gmail.com"}, function(err, accounts) {
-//     if (accounts) {
-//       console.log("This works");
-//       next();
-//     }
-//   });
-// }
 
 exports.create = function(req, res) {
 
@@ -65,14 +52,17 @@ exports.create = function(req, res) {
         transporter.sendMail(message, function(error, info) {
           if(error) {
             console.log(error);
-            res.send("email error");
+            res.json({message: "Email error"});
           }
           else {
             console.log(info);
-            res.send("Email sent!");
+            res.json({message: "Email sent!"});
           }
         });
       }, 1000);
+    }
+    else {
+      res.json({message: "Email Reminder false"});
     }
 };
 

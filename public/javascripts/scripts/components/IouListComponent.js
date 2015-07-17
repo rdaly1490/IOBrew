@@ -79,6 +79,7 @@ module.exports = React.createClass({
 					{wlist}
 				</div>
 			<button className="update" onClick={this.updatePage}>Update Page</button>
+			<a href="#iouhistory">Complete History</a>
 			</div>
 		);
 

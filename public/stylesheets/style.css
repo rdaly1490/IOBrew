@@ -98,14 +98,17 @@ body {
 	display: inline;
 	font-family: 'Ubuntu', sans-serif;
 	font-weight: bold;
+	text-shadow: 1px 1px 1px black;
 }
 
 .alt-text {
 	color:black;
+	text-shadow: 1px 1px 1px white;
 }
 
 .banner-text {
 	padding-top: 290px;
+	text-shadow: 1px 1px 1px black;
 }
 
 .banner-text p {
@@ -254,6 +257,7 @@ body {
 	font-size: 30px;
 	text-align: center;
 	margin-top: 170px;
+	text-shadow: 1px 1px 1px black;
 }
 
 .user-container h1 {
@@ -567,5 +571,11 @@ body {
 }
 
 
+/*--------------------------------   Footer   -------------------------------------*/
 
+footer {
+	background-color: rgba(255, 239, 191, 1);
+	height:50px;
+	margin-top: -20px;
+}
 

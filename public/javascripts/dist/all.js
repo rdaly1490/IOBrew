@@ -36385,7 +36385,7 @@ module.exports = Backbone.Collection.extend({
 	url: '/achievements'
 });
 
-},{"../models/AchievementModel":178,"backbone":1,"jquery":4}],163:[function(require,module,exports){
+},{"../models/AchievementModel":181,"backbone":1,"jquery":4}],163:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backbone');
@@ -36397,7 +36397,7 @@ module.exports = Backbone.Collection.extend({
 	url: '/iobrews'
 });
 
-},{"../models/OweModel":179,"backbone":1,"jquery":4}],164:[function(require,module,exports){
+},{"../models/OweModel":182,"backbone":1,"jquery":4}],164:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backbone');
@@ -36409,7 +36409,29 @@ module.exports = Backbone.Collection.extend({
 	url: '/workouts'
 });
 
-},{"../models/WorkoutModel":181,"backbone":1,"jquery":4}],165:[function(require,module,exports){
+},{"../models/WorkoutModel":184,"backbone":1,"jquery":4}],165:[function(require,module,exports){
+"use strict";
+
+var React = require("react");
+var $ = require("jquery");
+
+module.exports = React.createClass({
+	displayName: "exports",
+
+	render: function render() {
+		return React.createElement(
+			"div",
+			null,
+			React.createElement(
+				"h1",
+				null,
+				"Rob was here"
+			)
+		);
+	}
+});
+
+},{"jquery":4,"react":160}],166:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36530,7 +36552,159 @@ module.exports = React.createClass({
 // Lorem ipsum Duis dolore veniam proident velit sint dolor magna eu nisi in.
 // </div>
 
-},{"jquery":4,"react":160}],166:[function(require,module,exports){
+},{"jquery":4,"react":160}],167:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var $ = require('jquery');
+var moment = require('moment');
+
+var OweModel = require('../models/OweModel');
+
+var OweCollection = require('../collections/OweCollection');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+
+		var that = this;
+
+		var OweHistory = new OweCollection();
+		OweHistory.fetch({
+			data: {
+				filter: {
+					// type: 1, //shouldnt need type because of owerid being the user.  in type 2 ower id is other party
+					finished: 1, //0 or 1 for binary T or F
+					owerid: this.props.ioBrewUser.get('username')
+				}
+			},
+			success: function success() {
+				that.forceUpdate();
+			}
+		});
+		OweHistory.on('sync', function () {
+			that.forceUpdate();
+		});
+
+		return {
+			oweHistory: OweHistory
+		};
+	},
+	render: function render() {
+		var detailsStyle = {
+			display: 'none'
+		};
+		var that = this;
+
+		var sortedModels = this.state.oweHistory.sortBy(function (oweModel) {
+			return -1 * new Date(oweModel.get('date_created')).getTime();
+		});
+
+		if (sortedModels.length === 0) {
+			var wlist = React.createElement(
+				'div',
+				{ className: 'no-iobrews' },
+				React.createElement('img', { src: '/images/empty-list.png' }),
+				React.createElement(
+					'h3',
+					null,
+					'Theres Nothing Here'
+				)
+			);
+		} else {
+			var wlist = sortedModels.map(function (model) {
+				return React.createElement(
+					'div',
+					null,
+					React.createElement(
+						'div',
+						{ className: model.getClass(model) + ' ' + 'each-iou col-xs-12', key: model.cid },
+						React.createElement(
+							'button',
+							{ onClick: that.showDetails },
+							'Details'
+						),
+						React.createElement('img', { className: 'unchecked', src: '/images/empty-mug2.png' }),
+						' ',
+						React.createElement(
+							'b',
+							null,
+							'You'
+						),
+						' Owe ',
+						React.createElement(
+							'b',
+							null,
+							model.get('owedname')
+						),
+						' a ',
+						model.get('category'),
+						React.createElement(
+							'div',
+							{ className: model.getClass(model) + ' ' + 'details', style: detailsStyle, key: model.get('_id') },
+							React.createElement(
+								'p',
+								null,
+								'Date Created: ',
+								moment(model.get('date_created')).calendar()
+							),
+							React.createElement(
+								'p',
+								null,
+								'Created by: ',
+								model.get('createdby')
+							),
+							React.createElement(
+								'p',
+								null,
+								'Reason: ',
+								model.get('reason')
+							),
+							React.createElement(
+								'p',
+								null,
+								'Image associated with this item: ',
+								React.createElement(
+									'a',
+									{ href: model.get('image') },
+									React.createElement('img', { src: model.get('image') })
+								)
+							)
+						)
+					)
+				);
+			});
+		}
+
+		return React.createElement(
+			'div',
+			{ className: 'container-fluid list-container' },
+			React.createElement(
+				'div',
+				{ className: 'col-xs-10 col-xs-offset-1 todo-list' },
+				React.createElement(
+					'h2',
+					null,
+					'Beers You Owe Graveyard'
+				),
+				wlist
+			),
+			React.createElement(
+				'a',
+				{ href: '#ioulist' },
+				'Back to List'
+			)
+		);
+	},
+	showDetails: function showDetails(e) {
+		e.preventDefault();
+		var target = $(e.target);
+		target.siblings('.details').toggle();
+	}
+});
+
+},{"../collections/OweCollection":163,"../models/OweModel":182,"jquery":4,"moment":5,"react":160}],168:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -36672,6 +36846,11 @@ module.exports = React.createClass({
 				'button',
 				{ className: 'update', onClick: this.updatePage },
 				'Update Page'
+			),
+			React.createElement(
+				'a',
+				{ href: '#iouhistory' },
+				'Complete History'
 			)
 		);
 	},
@@ -36705,7 +36884,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/OweCollection":163,"../models/OweModel":179,"jquery":4,"moment":5,"react":160}],167:[function(require,module,exports){
+},{"../collections/OweCollection":163,"../models/OweModel":182,"jquery":4,"moment":5,"react":160}],169:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36763,7 +36942,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/UserModel":180,"jquery":4,"react":160}],168:[function(require,module,exports){
+},{"../models/UserModel":183,"jquery":4,"react":160}],170:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -36894,7 +37073,7 @@ module.exports = React.createClass({
 
 // <a className="navbar-brand" href="#">Cheers {this.props.ioBrewUser.get("givenName")} !</a>
 
-},{"react":160}],169:[function(require,module,exports){
+},{"react":160}],171:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37054,7 +37233,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/AchievementCollection":162,"jquery":4,"moment":5,"react":160}],170:[function(require,module,exports){
+},{"../collections/AchievementCollection":162,"jquery":4,"moment":5,"react":160}],172:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -37143,7 +37322,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/UserModel":180,"jquery":4,"react":160}],171:[function(require,module,exports){
+},{"../models/UserModel":183,"jquery":4,"react":160}],173:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -37209,7 +37388,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/WorkoutModel":181,"jquery":4,"react":160}],172:[function(require,module,exports){
+},{"../models/WorkoutModel":184,"jquery":4,"react":160}],174:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -37415,7 +37594,7 @@ module.exports = React.createClass({
 				owerid: this.props.ioBrewUser.get("username"),
 				owername: this.props.ioBrewUser.get("givenName"),
 				owedid: owed.toLowerCase(),
-				owedname: owed.toLowerCase(),
+				owedname: owed,
 				createdby: this.props.ioBrewUser.get("username"),
 				image: this.refs.image.getDOMNode().value,
 				reason: this.refs.reason.getDOMNode().value,
@@ -37452,7 +37631,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/OweModel":179,"backbone/node_modules/underscore":2,"jquery":4,"react":160,"validator":161}],173:[function(require,module,exports){
+},{"../models/OweModel":182,"backbone/node_modules/underscore":2,"jquery":4,"react":160,"validator":161}],175:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -37656,7 +37835,7 @@ module.exports = React.createClass({
 			var owe = new OweModel({
 				type: 2,
 				owerid: owed.toLowerCase(),
-				owername: owed.toLowerCase(),
+				owername: owed,
 				owedid: this.props.ioBrewUser.get("username"),
 				owedname: this.props.ioBrewUser.get("givenName"),
 				createdby: this.props.ioBrewUser.get("username"),
@@ -37695,7 +37874,160 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/OweModel":179,"backbone/node_modules/underscore":2,"jquery":4,"react":160,"validator":161}],174:[function(require,module,exports){
+},{"../models/OweModel":182,"backbone/node_modules/underscore":2,"jquery":4,"react":160,"validator":161}],176:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var $ = require('jquery');
+var moment = require('moment');
+
+// var UomeCollection = require("../collections/UomeCollection");
+var OweCollection = require('../collections/OweCollection');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+
+		var that = this;
+
+		var OweHistory = new OweCollection();
+		OweHistory.fetch({
+			data: {
+				filter: {
+					// type: 2,
+					finished: 1, //0 or 1 for binary T or F
+					owedid: this.props.ioBrewUser.get('username')
+				}
+			},
+			success: function success() {
+				that.forceUpdate();
+			}
+		});
+		OweHistory.on('sync', function () {
+			that.forceUpdate();
+		});
+
+		return {
+			oweHistory: OweHistory
+		};
+	},
+	render: function render() {
+		var detailsStyle = {
+			display: 'none'
+		};
+		var that = this;
+
+		var sortedModels = this.state.oweHistory.sortBy(function (oweModel) {
+			return -1 * new Date(oweModel.get('date_created')).getTime();
+		});
+
+		if (sortedModels.length === 0) {
+			var wlist = React.createElement(
+				'div',
+				{ className: 'no-iobrews' },
+				React.createElement('img', { src: '/images/empty-list.png' }),
+				React.createElement(
+					'h3',
+					null,
+					'Theres Nothing Here'
+				)
+			);
+		} else {
+			var wlist = sortedModels.map(function (model) {
+				return React.createElement(
+					'div',
+					null,
+					React.createElement(
+						'div',
+						{ className: model.getClass(model) + ' ' + 'each-iou', key: model.cid },
+						React.createElement(
+							'button',
+							{ onClick: that.showDetails },
+							'Details'
+						),
+						React.createElement('img', { className: 'unchecked', src: '/images/empty-mug2.png' }),
+						' ',
+						React.createElement(
+							'b',
+							null,
+							' ',
+							model.get('owername'),
+							' '
+						),
+						'Owes',
+						React.createElement(
+							'b',
+							null,
+							' You '
+						),
+						'a ',
+						model.get('category'),
+						React.createElement(
+							'div',
+							{ className: 'details', style: detailsStyle, key: model.get('_id') },
+							React.createElement(
+								'p',
+								null,
+								'Date Created: ',
+								moment(model.get('date_created')).calendar()
+							),
+							React.createElement(
+								'p',
+								null,
+								'Created by: ',
+								model.get('createdby')
+							),
+							React.createElement(
+								'p',
+								null,
+								'Reason: ',
+								model.get('reason')
+							),
+							React.createElement(
+								'p',
+								null,
+								'Image associated with this item: ',
+								React.createElement(
+									'a',
+									{ href: model.get('image') },
+									React.createElement('img', { src: model.get('image') })
+								)
+							)
+						)
+					)
+				);
+			});
+		}
+
+		return React.createElement(
+			'div',
+			{ className: 'container-fluid list-container' },
+			React.createElement(
+				'div',
+				{ className: 'col-xs-10 col-xs-offset-1 todo-list' },
+				React.createElement(
+					'h2',
+					null,
+					'Beers Owed to You Graveyard'
+				),
+				wlist
+			),
+			React.createElement(
+				'a',
+				{ href: '#uomelist' },
+				'Back to List'
+			)
+		);
+	},
+	showDetails: function showDetails(e) {
+		e.preventDefault();
+		var target = $(e.target);
+		target.siblings('.details').toggle();
+	}
+});
+
+},{"../collections/OweCollection":163,"jquery":4,"moment":5,"react":160}],177:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37838,6 +38170,11 @@ module.exports = React.createClass({
 				'button',
 				{ classNmae: 'update', onClick: this.updatePage },
 				'Update Page'
+			),
+			React.createElement(
+				'a',
+				{ href: '#uomehistory' },
+				'Complete History'
 			)
 		);
 	},
@@ -37871,7 +38208,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/OweCollection":163,"jquery":4,"moment":5,"react":160}],175:[function(require,module,exports){
+},{"../collections/OweCollection":163,"jquery":4,"moment":5,"react":160}],178:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -37964,7 +38301,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"jquery":4,"react":160}],176:[function(require,module,exports){
+},{"jquery":4,"react":160}],179:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -38039,7 +38376,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/WorkoutCollection":164,"jquery":4,"react":160}],177:[function(require,module,exports){
+},{"../collections/WorkoutCollection":164,"jquery":4,"react":160}],180:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -38058,6 +38395,9 @@ var UserDashComponent = require('./components/UserDashComponent');
 var IouListComponent = require('./components/IouListComponent');
 var UomeListComponent = require('./components/UomeListComponent');
 var ProfilePageComponent = require('./components/ProfilePageComponent');
+var IouHistoryComponent = require('./components/IouHistoryComponent');
+var UomeHistoryComponent = require('./components/UomeHistoryComponent');
+var FooterComponent = require('./components/FooterComponent');
 
 var ioBrewUserModel = require('./models/ioBrewUserModel');
 
@@ -38072,9 +38412,6 @@ var ioBrewUser = new ioBrewUserModel({
 	emailVerificationToken: window.iobrew_user.emailVerificationToken
 });
 
-// console.log(ioBrewUser);
-// console.log(window.iobrew_user);
-
 var App = Backbone.Router.extend({
 	routes: {
 		'': 'home',
@@ -38086,7 +38423,9 @@ var App = Backbone.Router.extend({
 		'userdash': 'userdash',
 		'ioulist': 'ioulist',
 		'uomelist': 'uomelist',
-		'profile': 'profile'
+		'profile': 'profile',
+		'iouhistory': 'iouhistory',
+		'uomehistory': 'uomehistory'
 	},
 	home: function home() {
 		React.render(React.createElement(HomePageComponent, { myRouter: myRouter }), document.getElementById('container'));
@@ -38114,6 +38453,12 @@ var App = Backbone.Router.extend({
 	},
 	profile: function profile() {
 		React.render(React.createElement(ProfilePageComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('container'));
+	},
+	iouhistory: function iouhistory() {
+		React.render(React.createElement(IouHistoryComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('container'));
+	},
+	uomehistory: function uomehistory() {
+		React.render(React.createElement(UomeHistoryComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('container'));
 	}
 });
 
@@ -38124,12 +38469,13 @@ Backbone.history.on('all', function () {
 });
 
 React.render(React.createElement(NavbarComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('nav'));
+React.render(React.createElement(FooterComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('footer'));
 
 // if (ioBrewUser.get("username") !== null) {
 // 	myRouter.navigate("userdash", {trigger:true});
 // }
 
-},{"./components/HomePageComponent":165,"./components/IouListComponent":166,"./components/LoginComponent":167,"./components/NavbarComponent":168,"./components/ProfilePageComponent":169,"./components/RegisterComponent":170,"./components/SubmitComponent":171,"./components/SubmitIouComponent":172,"./components/SubmitUomeComponent":173,"./components/UomeListComponent":174,"./components/UserDashComponent":175,"./components/WorkoutListComponent":176,"./models/ioBrewUserModel":182,"backbone":1,"jquery":4,"react":160}],178:[function(require,module,exports){
+},{"./components/FooterComponent":165,"./components/HomePageComponent":166,"./components/IouHistoryComponent":167,"./components/IouListComponent":168,"./components/LoginComponent":169,"./components/NavbarComponent":170,"./components/ProfilePageComponent":171,"./components/RegisterComponent":172,"./components/SubmitComponent":173,"./components/SubmitIouComponent":174,"./components/SubmitUomeComponent":175,"./components/UomeHistoryComponent":176,"./components/UomeListComponent":177,"./components/UserDashComponent":178,"./components/WorkoutListComponent":179,"./models/ioBrewUserModel":185,"backbone":1,"jquery":4,"react":160}],181:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -38143,7 +38489,7 @@ module.exports = Backbone.Model.extend({
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],179:[function(require,module,exports){
+},{"backbone":1}],182:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -38174,7 +38520,7 @@ module.exports = Backbone.Model.extend({
 	}
 });
 
-},{"backbone":1}],180:[function(require,module,exports){
+},{"backbone":1}],183:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -38192,7 +38538,7 @@ module.exports = Backbone.Model.extend({
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],181:[function(require,module,exports){
+},{"backbone":1}],184:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -38207,7 +38553,7 @@ module.exports = Backbone.Model.extend({
 	idAttribute: "_id"
 });
 
-},{"backbone":1}],182:[function(require,module,exports){
+},{"backbone":1}],185:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -38225,7 +38571,7 @@ module.exports = Backbone.Model.extend({
 	}
 });
 
-},{"backbone":1}]},{},[177])
+},{"backbone":1}]},{},[180])
 
 
 //# sourceMappingURL=all.js.map

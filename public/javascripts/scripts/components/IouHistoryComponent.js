@@ -2,7 +2,8 @@ var React = require('react');
 var $ = require("jquery");
 var moment = require('moment');
 
-// var UomeCollection = require("../collections/UomeCollection");
+var OweModel = require("../models/OweModel");
+
 var OweCollection = require("../collections/OweCollection");
 
 module.exports = React.createClass({
@@ -15,9 +16,9 @@ module.exports = React.createClass({
 			data: {
 					filter:
 					 {	
-					 	// type: 2,
-					 	finished: 0, //0 or 1 for binary T or F
-					 	owedid: this.props.ioBrewUser.get("username")
+					 	// type: 1, //shouldnt need type because of owerid being the user.  in type 2 ower id is other party
+					 	finished: 1, //0 or 1 for binary T or F
+					 	owerid: this.props.ioBrewUser.get("username")
 					 } 
 				  },
 			success: function() {
@@ -52,14 +53,14 @@ module.exports = React.createClass({
 			var wlist = sortedModels.map(function(model) {
 				return (
 					<div>
-						<div className={model.getClass(model)+" "+"each-iou"} key={model.cid}>
+						<div className={model.getClass(model)+" "+"each-iou col-xs-12"} key={model.cid}>
 							<button onClick={that.showDetails}>Details</button>
-							<img onClick={that.completeItem(model)} className="unchecked" src="/images/beer-icon.png" />
-							&nbsp;<b> {model.get("owername")} </b>
-							Owes
-							<b> You </b>
-							a {model.get("category")}
-							<div className="details" style={detailsStyle} key={model.get("_id")}>
+							<img className="unchecked" src="/images/empty-mug2.png" />
+							&nbsp;<b>You</b>
+							&nbsp;Owe&nbsp;
+							<b>{model.get("owedname")}</b> 
+							&nbsp;a {model.get("category")}	
+							<div className={model.getClass(model)+" "+"details"} style={detailsStyle} key={model.get("_id")}>
 								<p>Date Created: {moment(model.get("date_created")).calendar()}</p>
 								<p>Created by: {model.get("createdby")}</p>
 								<p>Reason: {model.get("reason")}</p>
@@ -74,37 +75,13 @@ module.exports = React.createClass({
 		return (
 			<div className="container-fluid list-container">
 				<div className="col-xs-10 col-xs-offset-1 todo-list">
-				<h2>Beers Owed to You</h2>
+					<h2>Beers You Owe Graveyard</h2>
 					{wlist}
 				</div>
-			<button classNmae="update" onClick={this.updatePage}>Update Page</button>
-			<a href="#uomehistory">Complete History</a>
+				<a href="#ioulist">Back to List</a>
 			</div>
 		);
-	},
-	completeItem: function(model) {
-		return function(e) {
-			e.preventDefault();
-			var target = $(e.target);
 
-			model.set({
-				finished: !(model.get("finished"))
-			});
-
-			model.save();
-
-			if (model.get("finished") === true) {
-				e.target.src="/images/empty-mug2.png";
-				target.parent().addClass("checked");
-			}
-			else {
-				e.target.src="/images/beer-icon.png";
-				target.parent().removeClass("checked");
-			}
-		}
-	},
-	updatePage: function(e) {
-		window.location.reload();
 	},
 	showDetails: function(e) {
 		e.preventDefault();
@@ -112,3 +89,7 @@ module.exports = React.createClass({
 		target.siblings(".details").toggle();
 	}
 });
+
+
+
+
