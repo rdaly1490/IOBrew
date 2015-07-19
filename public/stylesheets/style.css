@@ -5,10 +5,7 @@
 
 body {
   padding: 0px;
-  	background: url(/images/textured-background.jpg);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+
 }
 
 
@@ -16,11 +13,14 @@ body {
 /*------------------   NavBar   -----------------------------------*/
 
 .nav-container {
-	background-color: rgba(255, 239, 191, 1);
+	background-color: rgba(51,77,92,1);
+	border:none;
+	padding-left: 0px;
+	padding-right: 0px;
 	border:none;
 }
 .navbar-header {
-	background-color: rgba(255, 239, 191, 1);
+	background-color: rgba(51,77,92,1);
 }
 
 .navbar-collapse {
@@ -33,13 +33,23 @@ body {
 	margin-bottom: 20px;
 	color: #999273;
 	font-size: 180%;
+	padding:0px;
+	/*margin-left: 37%;*/
 }
 
-.navbar-brand img{
-	height:40px;
-	width:40px;
-	display: inline;
+.navbar-brand {
+	float:none;
+	/*width:30%;*/
 }
+
+.logos {
+	width: 20%;
+	margin-right: auto;
+	margin-left: auto;
+	max-height: 75px;
+	max-width: 75px;
+}
+
 
 .nav-links:hover {
 	background-color: #999273;
@@ -47,16 +57,26 @@ body {
 
 .nav-links {
 	font-size: 140%;
-	font-family: "Oswald"
+	font-family: "Oswald";
+}
+
+.navbar-default .navbar-nav>li>a {
+	color:#FAF4D6;
+	text-shadow: 1px 1px 1px black;
 }
 
 .brew {
+	font-size: 30px;
 	color: #FFC30F;
 	font-family: Copperplate, fantasy;
 }
 
 .collapsed {
-	margin-top: 15px;
+	margin-top: 20px;
+}
+
+.collapse {
+	border: none;
 }
 
 @media (min-width: 400px) {
@@ -77,7 +97,15 @@ body {
 	}
 	.nav-links:hover {
 	background-color: rgba(255, 239, 191, 1);
-}
+	}
+	.logos {
+		width:70%;
+		margin-top: -25px;
+	}
+	.mobile-submit {
+		/*display:none;*/
+		visibility: collapse;
+	}
 }
 
 
@@ -94,21 +122,22 @@ body {
 }
 
 .home-banner h1 {
-	font-size: 170%;
+	font-size: 240%;
 	display: inline;
 	font-family: 'Ubuntu', sans-serif;
 	font-weight: bold;
-	text-shadow: 1px 1px 1px black;
+	text-shadow: 3px 3px 1px black;
 }
 
 .alt-text {
-	color:black;
-	text-shadow: 1px 1px 1px white;
+	color:white;
+	text-shadow: 3px 3px 1px black;
 }
 
 .banner-text {
-	padding-top: 290px;
-	text-shadow: 1px 1px 1px black;
+	padding-top: 210px;
+	text-shadow: 3px 3px 1px black;
+	font-size: 130%;
 }
 
 .banner-text p {
@@ -120,6 +149,7 @@ body {
 }
 
 .button {
+	text-shadow: 1px 1px 1px black;
 	padding-left: 20px;
 	padding-right: 20px;
 	padding-top: 10px;
@@ -140,11 +170,11 @@ body {
 }
 
 .primary-button {
-	background-color: #999273;
+	background-color: #334D5C;
 	display:block;
 	width:40%;
 	max-width: 280px;
-	font-size: 120%;
+	font-size: 100%;
 }
 
 .secondary-button {
@@ -155,12 +185,12 @@ body {
 	display: block;
 	width:50%;
 	max-width: 350px;
-	font-size: 120%;
+	font-size: 100%;
 
 }
 
 .secondary-button:hover {
-	background-color: #999273;
+	background-color: #334D5C;
 }
 
 .home-benefits {
@@ -196,12 +226,25 @@ body {
 	font-weight: bold;
 }
 
+.home-logo {
+	background-color: #FAF4D6;
+}
+
 @media (min-width: 411px) {
 	.home-banner h1 {
 		font-size: 250%;
 	}
 	.banner-text p {
 		font-size: 155%;
+	}
+	.banner-text {
+		padding-top: 260px;
+	}
+	.primary-button {
+		font-size: 120%;
+	}
+	.secondary-button {
+		font-size: 120%;
 	}
 }
 
@@ -221,6 +264,15 @@ body {
 	.benefits h3 {
 		font-size: 250%;
 	}
+	.ben-img {
+		float:right;
+		margin-top: 20px;
+	}
+	.benefits p {
+		width:65%;
+		float:left;
+		margin-bottom: 80px;
+	}
 }
 
 @media (min-width: 1000px) {
@@ -239,43 +291,109 @@ body {
 	.banner-text p {
 		font-size: 280%;
 	}
+	.benefits p {
+		width:75%;
+	}
 }
 
 /*--------------------------   User Dash   -----------------------------------*/
 
+@main: #2c3e50;
+@accent: lighten(@main, 40%);
+
 .user-container {
-	padding: 0px;
-/*	background: url(/images/textured-background.jpg);
+	background: url(/images/textured-background.jpg);
 	background-size: cover;
 	background-position: center;
-	background-repeat: no-repeat;*/
-	margin-top: -30px;
+	background-repeat: no-repeat;
+	min-height: 600px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom:50px;
+	margin-top: -20px;
 }
 
-.user-container h2 {
+.user-container img {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.user-bottom {
+	min-height:180px;
+	border: 3px solid #0C171A;
+	border-radius: 5px;
+}
+
+.user-bottom:hover {
+	cursor: pointer;
+}
+
+.dash-imgs {
+	width:30%;
+}
+
+.submit-bottom {
+	background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #ffffff -20%, #f4e8a9 100%);
+  	background-image: radial-gradient(ellipse farthest-corner at center top, #ffffff -20%, #f4e8a9 100%);
+	display:none;
+}
+
+.submit-bottom img {
+	width:20%;
+}
+
+.achs {
+  	background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #ffffff -20%, #f4e8a9 100%);
+  	background-image: radial-gradient(ellipse farthest-corner at center top, #ffffff -20%, #f4e8a9 100%);
+  	padding-top: 10px;
+  	text-align: center;
+}
+
+.achs img {
+	width: 15%;
+}
+
+.dash-greet {
+  	padding-top: 15px;
+  	padding-bottom: 15px;
+  	text-align: center;
+  	font-family: "Oswald", "sans-serif";
+}
+
+.user-container h4 {
 	font-family: 'Oswald', sans-serif;
-	font-size: 30px;
+	font-size: 150%;
 	text-align: center;
-	margin-top: 170px;
-	text-shadow: 1px 1px 1px black;
+	color:#0C171A;
 }
 
 .user-container h1 {
 	font-family: 'Ubuntu', sans-serif;
 	font-weight: bold;
 	text-align: center;
-	margin-top: 30px;
-	color: black;
+	margin-top: 0px;
+	color: #0C171A;
+	font-size: 400%;
 }
 
 .iou-dash {
-	background: url(/images/beer-glasses.jpg);
-	background-size: cover;
-	background-position: center;
-	height: 300px;
+	border-top: 3px solid #0C171A;
+	border-left: 3px solid #0C171A;
+	border-right: 3px solid #0C171A;
+	border-bottom: 3px solid #0C171A;
+  	background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #ffffff -20%, #f4e8a9 100%);
+  	background-image: radial-gradient(ellipse farthest-corner at center top, #ffffff -20%, #f4e8a9 100%);
+	min-height: 180px;
 	color:white;
 	font-size: 18px;
-	text-align: left;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	text-align: center;
+	color: rgb(12,23,26);
+}
+
+.iou-dash img {
+	width: 15%;
 }
 
 .iou-dash:hover {
@@ -303,18 +421,65 @@ body {
 }
 
 .uome-dash {
-	background: url(/images/beer-mugs.jpg);
-	background-size: cover;
-	background-position: center;
-	height: 300px;
+	border-top: 3px solid #0C171A;
+	border-right: 3px solid #0C171A;
+	border-left: 3px solid #0C171A;
+	border-bottom: 3px solid #0C171A;
+  	background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #ffffff -20%, #f4e8a9 100%);
+  	background-image: radial-gradient(ellipse farthest-corner at center top, #ffffff -20%, #f4e8a9 100%);
+	min-height: 180px;
 	color:white;
 	font-size: 18px;
-	text-align: left;
-	margin-bottom: 150px;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	text-align: center;
+	color: rgb(12,23,26);
+}
+
+.uome-dash img {
+	width: 15%;
 }
 
 .uome-dash:hover {
 	cursor: pointer;
+}
+
+@media (min-width: 768px) {
+	.user-bottom {
+		display: block;
+		padding-top: 40px;
+		min-height:180px;
+	}
+	.user-container h1 {
+		margin-top: 10px;
+		font-size: 320%;
+	}
+	.iou-dash {
+		margin-bottom: 0px;
+	}
+	.uome-dash {
+		margin-bottom: 0px;
+	}
+	.iou-dash img {
+		width:50%;
+	}
+	.uome-dash img {
+		width:50%;
+	}
+	.achs img {
+		width:20%;
+		margin-top: -20px;
+	}
+
+}
+
+@media (min-width: 992px) {
+	.iou-dash img {
+		width:50%;
+	}
+	.user-bottom {
+		min-height:200px;
+	}
 }
 
 /*-------------------------   Submit IOU  Page & Submit UOME Page   ------------------------------*/
@@ -421,6 +586,7 @@ body {
 	background-repeat: no-repeat;
 	margin-top: -30px;
 	min-height: 900px;
+	padding-bottom: 50px;
 }
 
 .list-container button {
@@ -429,7 +595,7 @@ body {
 }
 
 .todo-list {
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 .pic1 {
@@ -507,6 +673,38 @@ body {
 
 }
 
+.list-btns {
+	padding:0px;
+	text-align: center;
+	background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #ffffff -20%, #f4e8a9 100%);
+  	background-image: radial-gradient(ellipse farthest-corner at center top, #ffffff -20%, #f4e8a9 100%);
+  	border-radius: 5px;
+	border: 1px solid #0C171A;
+	font-style: "Oswald", "sans-serif";
+	font-size: 20px;
+}
+
+.list-btns span {
+	margin-top: 10px;
+}
+
+.list-btns:hover {
+	cursor:pointer;
+}
+
+.list-nav {
+	margin-top: 20px;
+	padding: 0px;
+}
+
+.back-to-list {
+	margin-top: 20px;
+	float:right;
+	color:black;
+	text-decoration: underline;
+	margin-bottom: -20px;
+}
+
 
 /*----------------------------------   Profile Page   ----------------------------------*/
 
@@ -574,7 +772,7 @@ body {
 /*--------------------------------   Footer   -------------------------------------*/
 
 footer {
-	background-color: rgba(255, 239, 191, 1);
+	background-color: rgba(51,77,92,1);
 	height:50px;
 	margin-top: -20px;
 }

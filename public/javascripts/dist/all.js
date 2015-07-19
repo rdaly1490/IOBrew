@@ -36451,24 +36451,28 @@ module.exports = React.createClass({
 					"div",
 					{ className: "col-xs-12 banner-text" },
 					React.createElement(
-						"h1",
-						null,
-						" Connect."
-					),
-					React.createElement(
-						"h1",
-						{ className: "alt-text" },
-						" Drink. "
-					),
-					React.createElement(
-						"h1",
-						null,
-						"Share."
-					),
-					React.createElement(
-						"p",
-						null,
-						"An innovative IOU App for beers"
+						"div",
+						{ className: " col-xs-12 box" },
+						React.createElement(
+							"h1",
+							null,
+							" Connect."
+						),
+						React.createElement(
+							"h1",
+							{ className: "alt-text" },
+							" Drink. "
+						),
+						React.createElement(
+							"h1",
+							null,
+							"Share."
+						),
+						React.createElement(
+							"p",
+							null,
+							"An innovative IOU App for beers"
+						)
 					)
 				),
 				React.createElement(
@@ -36497,8 +36501,8 @@ module.exports = React.createClass({
 						{ className: "col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 benefits" },
 						React.createElement(
 							"div",
-							{ className: "col-xs-12 col-md-4 col-lg-4" },
-							React.createElement("img", { src: "/images/beer-list.png" }),
+							{ className: "col-xs-12 col-md-12 col-lg-12" },
+							React.createElement("img", { src: "/images/beer-list.png", className: "ben-img" }),
 							React.createElement(
 								"h3",
 								null,
@@ -36512,8 +36516,8 @@ module.exports = React.createClass({
 						),
 						React.createElement(
 							"div",
-							{ className: "col-xs-12 col-md-4 col-lg-4" },
-							React.createElement("img", { src: "/images/beer-achievements.png" }),
+							{ className: "col-xs-12 col-md-12 col-lg-12" },
+							React.createElement("img", { src: "/images/beer-achievements.png", className: "ben-img" }),
 							React.createElement(
 								"h3",
 								null,
@@ -36527,8 +36531,8 @@ module.exports = React.createClass({
 						),
 						React.createElement(
 							"div",
-							{ className: "col-xs-12 col-md-4 col-lg-4" },
-							React.createElement("img", { src: "/images/beer-email.png" }),
+							{ className: "col-xs-12 col-md-12 col-lg-12" },
+							React.createElement("img", { src: "/images/envelope2.png", className: "ben-img" }),
 							React.createElement(
 								"h3",
 								null,
@@ -36613,7 +36617,8 @@ module.exports = React.createClass({
 				)
 			);
 		} else {
-			var wlist = sortedModels.map(function (model) {
+			var shortList = sortedModels.slice(0, 20);
+			var wlist = shortList.map(function (model) {
 				return React.createElement(
 					'div',
 					null,
@@ -36681,6 +36686,11 @@ module.exports = React.createClass({
 			'div',
 			{ className: 'container-fluid list-container' },
 			React.createElement(
+				'a',
+				{ className: 'back-to-list', href: '#ioulist' },
+				'Back to List'
+			),
+			React.createElement(
 				'div',
 				{ className: 'col-xs-10 col-xs-offset-1 todo-list' },
 				React.createElement(
@@ -36689,11 +36699,6 @@ module.exports = React.createClass({
 					'Beers You Owe Graveyard'
 				),
 				wlist
-			),
-			React.createElement(
-				'a',
-				{ href: '#ioulist' },
-				'Back to List'
 			)
 		);
 	},
@@ -36834,6 +36839,37 @@ module.exports = React.createClass({
 			{ className: 'container-fluid list-container' },
 			React.createElement(
 				'div',
+				{ className: 'col-xs-12 list-nav' },
+				React.createElement(
+					'div',
+					{ onClick: this.history, className: 'col-xs-4 col-sm-3 col-sm-offset-1 col-lg-2 col-lg-offset-3 list-btns' },
+					React.createElement(
+						'span',
+						null,
+						'History'
+					)
+				),
+				React.createElement(
+					'div',
+					{ onClick: this.add, className: 'col-xs-4 col-sm-4 col-lg-2 list-btns' },
+					React.createElement(
+						'span',
+						null,
+						'Add IOU'
+					)
+				),
+				React.createElement(
+					'div',
+					{ onClick: this.updatePage, className: 'col-xs-4 col-sm-3 col-lg-2 list-btns' },
+					React.createElement(
+						'span',
+						null,
+						'Update'
+					)
+				)
+			),
+			React.createElement(
+				'div',
 				{ className: 'col-xs-10 col-xs-offset-1 todo-list' },
 				React.createElement(
 					'h2',
@@ -36841,16 +36877,6 @@ module.exports = React.createClass({
 					'Beers You Owe'
 				),
 				wlist
-			),
-			React.createElement(
-				'button',
-				{ className: 'update', onClick: this.updatePage },
-				'Update Page'
-			),
-			React.createElement(
-				'a',
-				{ href: '#iouhistory' },
-				'Complete History'
 			)
 		);
 	},
@@ -36876,6 +36902,14 @@ module.exports = React.createClass({
 	},
 	updatePage: function updatePage(e) {
 		window.location.reload();
+	},
+	history: function history(e) {
+		e.preventDefault();
+		this.props.myRouter.navigate('iouhistory', { trigger: true });
+	},
+	add: function add(e) {
+		e.preventDefault();
+		this.props.myRouter.navigate('submitiou', { trigger: true });
 	},
 	showDetails: function showDetails(e) {
 		e.preventDefault();
@@ -36962,13 +36996,7 @@ module.exports = React.createClass({
       var logo = React.createElement(
         'a',
         { className: 'navbar-brand', href: '#' },
-        'io',
-        React.createElement(
-          'span',
-          { className: 'brew' },
-          'Brew'
-        ),
-        React.createElement('img', { src: '/images/beer-icon.png' })
+        React.createElement('img', { src: '/images/beer-icon.png', className: 'img-responsive', alt: 'Responsive image' })
       );
       links.push(React.createElement(
         'li',
@@ -36992,14 +37020,26 @@ module.exports = React.createClass({
       var logo = React.createElement(
         'a',
         { className: 'navbar-brand', href: '#userdash' },
-        'io',
-        React.createElement(
-          'span',
-          { className: 'brew' },
-          'Brew'
-        ),
-        React.createElement('img', { src: '/images/beer-icon.png' })
+        React.createElement('img', { src: '/images/beer-icon.png', className: 'img-responsive', alt: 'Responsive image' })
       );
+      links.push(React.createElement(
+        'li',
+        { className: 'nav-links mobile-submit', key: 'SubmitIou' },
+        React.createElement(
+          'a',
+          { href: '#submitiou' },
+          'Submit IOU'
+        )
+      ));
+      links.push(React.createElement(
+        'li',
+        { className: 'nav-links mobile-submit', key: 'SubmitUome' },
+        React.createElement(
+          'a',
+          { href: '#submituome' },
+          'Submit UOME'
+        )
+      ));
       links.push(React.createElement(
         'li',
         { className: 'nav-links', key: 'UserDash' },
@@ -37049,7 +37089,11 @@ module.exports = React.createClass({
             React.createElement('span', { className: 'icon-bar' }),
             React.createElement('span', { className: 'icon-bar' })
           ),
-          logo
+          React.createElement(
+            'div',
+            { className: 'logos nav-justified' },
+            logo
+          )
         ),
         React.createElement(
           'div',
@@ -37071,7 +37115,7 @@ module.exports = React.createClass({
   }
 });
 
-// <a className="navbar-brand" href="#">Cheers {this.props.ioBrewUser.get("givenName")} !</a>
+// var logo = (<a className="navbar-brand" href="#"><span className="io">io</span><span className="brew">Brew</span><img src="/images/beer-icon.png" className="img-responsive" alt="Responsive image" /></a>);
 
 },{"react":160}],171:[function(require,module,exports){
 'use strict';
@@ -37157,6 +37201,7 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'col-xs-10 col-xs-offset-1 achievements' },
+				React.createElement('img', { src: '/images/beer-achs.png' }),
 				React.createElement(
 					'h1',
 					null,
@@ -37934,7 +37979,8 @@ module.exports = React.createClass({
 				)
 			);
 		} else {
-			var wlist = sortedModels.map(function (model) {
+			var shortList = sortedModels.slice(0, 20);
+			var wlist = shortList.map(function (model) {
 				return React.createElement(
 					'div',
 					null,
@@ -38004,6 +38050,11 @@ module.exports = React.createClass({
 			'div',
 			{ className: 'container-fluid list-container' },
 			React.createElement(
+				'a',
+				{ className: 'back-to-list', href: '#uomelist' },
+				'Back to List'
+			),
+			React.createElement(
 				'div',
 				{ className: 'col-xs-10 col-xs-offset-1 todo-list' },
 				React.createElement(
@@ -38012,11 +38063,6 @@ module.exports = React.createClass({
 					'Beers Owed to You Graveyard'
 				),
 				wlist
-			),
-			React.createElement(
-				'a',
-				{ href: '#uomelist' },
-				'Back to List'
 			)
 		);
 	},
@@ -38158,6 +38204,37 @@ module.exports = React.createClass({
 			{ className: 'container-fluid list-container' },
 			React.createElement(
 				'div',
+				{ className: 'col-xs-12 list-nav' },
+				React.createElement(
+					'div',
+					{ onClick: this.history, className: 'col-xs-4 col-sm-3 col-sm-offset-1 col-lg-2 col-lg-offset-3 list-btns' },
+					React.createElement(
+						'span',
+						null,
+						'History'
+					)
+				),
+				React.createElement(
+					'div',
+					{ onClick: this.add, className: 'col-xs-4 col-sm-4 col-lg-2 list-btns' },
+					React.createElement(
+						'span',
+						null,
+						'Add IOU'
+					)
+				),
+				React.createElement(
+					'div',
+					{ onClick: this.updatePage, className: 'col-xs-4 col-sm-3 col-lg-2 list-btns' },
+					React.createElement(
+						'span',
+						null,
+						'Update'
+					)
+				)
+			),
+			React.createElement(
+				'div',
 				{ className: 'col-xs-10 col-xs-offset-1 todo-list' },
 				React.createElement(
 					'h2',
@@ -38165,16 +38242,6 @@ module.exports = React.createClass({
 					'Beers Owed to You'
 				),
 				wlist
-			),
-			React.createElement(
-				'button',
-				{ classNmae: 'update', onClick: this.updatePage },
-				'Update Page'
-			),
-			React.createElement(
-				'a',
-				{ href: '#uomehistory' },
-				'Complete History'
 			)
 		);
 	},
@@ -38201,6 +38268,14 @@ module.exports = React.createClass({
 	updatePage: function updatePage(e) {
 		window.location.reload();
 	},
+	history: function history(e) {
+		e.preventDefault();
+		this.props.myRouter.navigate('uomehistory', { trigger: true });
+	},
+	add: function add(e) {
+		e.preventDefault();
+		this.props.myRouter.navigate('submituome', { trigger: true });
+	},
 	showDetails: function showDetails(e) {
 		e.preventDefault();
 		var target = $(e.target);
@@ -38214,71 +38289,147 @@ module.exports = React.createClass({
 var React = require("react");
 var $ = require("jquery");
 
+var AchievementCollection = require("../collections/AchievementCollection");
+var OweCollection = require("../collections/OweCollection");
+
 module.exports = React.createClass({
 	displayName: "exports",
 
+	getInitialState: function getInitialState() {
+
+		var that = this;
+
+		var AchievementHistory = new AchievementCollection();
+		var OweHistory = new OweCollection();
+		var UomeHistory = new OweCollection();
+		AchievementHistory.fetch({
+			data: {
+				filter: {
+					username: this.props.ioBrewUser.get("username")
+				}
+			},
+			success: function success() {
+				that.forceUpdate();
+			}
+		});
+		OweHistory.fetch({
+			data: {
+				filter: {
+					// type: 1, //shouldnt need type because of owerid being the user.  in type 2 ower id is other party
+					finished: 0, //0 or 1 for binary T or F
+					owerid: this.props.ioBrewUser.get("username")
+				}
+			},
+			success: function success() {
+				that.forceUpdate();
+			}
+		});
+		UomeHistory.fetch({
+			data: {
+				filter: {
+					// type: 1, //shouldnt need type because of owerid being the user.  in type 2 ower id is other party
+					finished: 0, //0 or 1 for binary T or F
+					owedid: this.props.ioBrewUser.get("username")
+				}
+			},
+			success: function success() {
+				that.forceUpdate();
+			}
+		});
+		UomeHistory.on("sync", function () {
+			that.forceUpdate();
+		});
+		OweHistory.on("sync", function () {
+			that.forceUpdate();
+		});
+		AchievementHistory.on("sync", function () {
+			that.forceUpdate();
+		});
+
+		return {
+			achievementHistory: AchievementHistory,
+			oweHistory: OweHistory,
+			uomeHistory: UomeHistory
+		};
+	},
 	render: function render() {
 		return React.createElement(
 			"div",
 			{ className: "container-fluid user-container" },
 			React.createElement(
-				"h1",
-				null,
-				" Cheers  ",
-				this.props.ioBrewUser.get("givenName"),
-				"!"
-			),
-			React.createElement(
 				"div",
-				{ className: "col-xs-12 col-sm-6 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 submit-btn" },
+				{ className: "col-xs-12 dash-greet" },
 				React.createElement(
-					"button",
-					{ onClick: this.submitIou },
-					"Submit an IOU!"
-				),
-				React.createElement(
-					"div",
-					{ onClick: this.listIous, className: "col-xs-12 iou-dash" },
-					React.createElement(
-						"div",
-						{ className: "col-xs-10 col-xs-offset-1" },
-						React.createElement(
-							"div",
-							{ className: "col-xs-10 col-xs-offset-1" },
-							React.createElement(
-								"h2",
-								null,
-								"Beers You Owe"
-							)
-						)
-					)
+					"h3",
+					null,
+					"Cheers, ",
+					this.props.ioBrewUser.get("givenName"),
+					"!"
 				)
 			),
 			React.createElement(
 				"div",
-				{ className: "col-xs-12 col-sm-6 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2 submit-btn" },
+				{ onClick: this.listIous, className: "col-xs-12 col-sm-6 col-md-5 col-md-offset-1 iou-dash" },
+				React.createElement("img", { src: "/images/happy.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
 				React.createElement(
-					"button",
-					{ onClick: this.submitUome },
-					"Submit a UOME!"
+					"h1",
+					null,
+					this.state.oweHistory.length
 				),
-				React.createElement("br", null),
 				React.createElement(
-					"div",
-					{ onClick: this.listUomes, className: "col-xs-12 uome-dash" },
-					React.createElement(
-						"div",
-						{ className: "col-xs-10 col-xs-offset-1" },
-						React.createElement(
-							"div",
-							{ className: "col-xs-10 col-xs-offset-1" },
-							React.createElement(
-								"h2",
-								null,
-								"Beers Owed To You"
-							)
-						)
-					)
+					"h4",
+					null,
+					" Active IOUs "
+				)
+			),
+			React.createElement(
+				"div",
+				{ onClick: this.listUomes, className: "col-xs-12 col-sm-6 col-md-5 uome-dash" },
+				React.createElement("img", { src: "/images/cry2.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
+				React.createElement(
+					"h1",
+					null,
+					this.state.uomeHistory.length
+				),
+				React.createElement(
+					"h4",
+					null,
+					" Active UOMEs "
+				)
+			),
+			React.createElement(
+				"div",
+				{ onClick: this.submitIou, className: "col-xs-12 col-sm-4 col-md-3 col-md-offset-1 user-bottom submit-bottom" },
+				React.createElement("img", { src: "/images/plus.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
+				React.createElement(
+					"h4",
+					null,
+					"Submit IOU"
+				)
+			),
+			React.createElement(
+				"div",
+				{ onClick: this.toProfile, className: "col-xs-12 col-sm-4 col-md-4 user-bottom achs" },
+				React.createElement("img", { src: "/images/beer-achs.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
+				React.createElement(
+					"h1",
+					null,
+					this.state.achievementHistory.length
+				),
+				React.createElement(
+					"h4",
+					null,
+					" out of 6"
+				)
+			),
+			React.createElement(
+				"div",
+				{ onClick: this.submitUome, className: "col-xs-12 col-sm-4 col-md-3 user-bottom submit-bottom" },
+				React.createElement("img", { src: "/images/plus.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
+				React.createElement(
+					"h4",
+					null,
+					"Submit UOME"
 				)
 			)
 		);
@@ -38298,10 +38449,14 @@ module.exports = React.createClass({
 	listUomes: function listUomes(e) {
 		e.preventDefault();
 		this.props.myRouter.navigate("uomelist", { trigger: true });
+	},
+	toProfile: function toProfile(e) {
+		e.preventDefault();
+		this.props.myRouter.navigate("profile", { trigger: true });
 	}
 });
 
-},{"jquery":4,"react":160}],179:[function(require,module,exports){
+},{"../collections/AchievementCollection":162,"../collections/OweCollection":163,"jquery":4,"react":160}],179:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -38469,7 +38624,7 @@ Backbone.history.on('all', function () {
 });
 
 React.render(React.createElement(NavbarComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('nav'));
-React.render(React.createElement(FooterComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('footer'));
+// React.render(<FooterComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, document.getElementById("footer"));
 
 // if (ioBrewUser.get("username") !== null) {
 // 	myRouter.navigate("userdash", {trigger:true});

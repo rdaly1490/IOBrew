@@ -2,7 +2,7 @@ var React = require('react');
 var $ = require("jquery");
 var moment = require('moment');
 
-var AchievementCollection = require("../collections/AchievementCollection")
+var AchievementCollection = require("../collections/AchievementCollection");
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -70,6 +70,7 @@ module.exports = React.createClass({
 				</div>
 
 				<div className="col-xs-10 col-xs-offset-1 achievements">
+					<img src="/images/beer-achs.png" />
 					<h1>Achievements</h1>
 					<div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 						<img className="firstiou" src="/images/empty-circle.png" />

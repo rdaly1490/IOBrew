@@ -49,7 +49,8 @@ module.exports = React.createClass({
 						</div>
 		}
 		else {
-			var wlist = sortedModels.map(function(model) {
+			var shortList = sortedModels.slice(0,20);
+			var wlist = shortList.map(function(model) {
 				return (
 					<div>
 						<div className={model.getClass(model)+" "+"each-iou"} key={model.cid}>
@@ -73,11 +74,11 @@ module.exports = React.createClass({
 
 		return (
 			<div className="container-fluid list-container">
+				<a className="back-to-list" href="#uomelist">Back to List</a>
 				<div className="col-xs-10 col-xs-offset-1 todo-list">
 				<h2>Beers Owed to You Graveyard</h2>
 					{wlist}
 				</div>
-				<a href="#uomelist">Back to List</a>
 			</div>
 		);
 	},

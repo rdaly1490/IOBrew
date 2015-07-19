@@ -74,12 +74,21 @@ module.exports = React.createClass({
 
 		return (
 			<div className="container-fluid list-container">
+				<div className="col-xs-12 list-nav">
+					<div onClick={this.history} className="col-xs-4 col-sm-3 col-sm-offset-1 col-lg-2 col-lg-offset-3 list-btns">
+						<span>History</span>
+					</div>
+					<div onClick={this.add} className="col-xs-4 col-sm-4 col-lg-2 list-btns">
+						<span>Add IOU</span>
+					</div>
+					<div onClick={this.updatePage} className="col-xs-4 col-sm-3 col-lg-2 list-btns">
+						<span>Update</span>
+					</div>
+				</div>
 				<div className="col-xs-10 col-xs-offset-1 todo-list">
 					<h2>Beers You Owe</h2>
 					{wlist}
 				</div>
-			<button className="update" onClick={this.updatePage}>Update Page</button>
-			<a href="#iouhistory">Complete History</a>
 			</div>
 		);
 
@@ -107,6 +116,14 @@ module.exports = React.createClass({
 	},
 	updatePage: function(e) {
 		window.location.reload();
+	},
+	history: function(e) {
+		e.preventDefault();
+		this.props.myRouter.navigate("iouhistory", {trigger:true});
+	},
+	add: function(e) {
+		e.preventDefault();
+		this.props.myRouter.navigate("submitiou", {trigger:true});
 	},
 	showDetails: function(e) {
 		e.preventDefault();
