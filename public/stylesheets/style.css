@@ -849,6 +849,20 @@ a:hover {
 	.achievements div {
 		min-height: 310px;
 	}
+	.achievements div img {
+		max-height: 150px;
+		max-width: 150px;
+	}
+	.achievements img {
+		max-height: 280px;
+		max-width: 320px;
+	}
+	.user-info h3 {
+		font-size: 30px;
+	}
+	.user-info p {
+		font-size: 24px;
+	}
 }
 
 
