@@ -36843,8 +36843,8 @@ module.exports = React.createClass({
 				'div',
 				{ className: 'col-xs-12 list-nav' },
 				React.createElement(
-					'div',
-					{ onClick: this.history, className: 'col-xs-4 col-sm-3 col-sm-offset-1 col-lg-2 col-lg-offset-3 list-btns' },
+					'a',
+					{ href: '#iouhistory', className: 'col-xs-4 col-sm-3 col-sm-offset-1 col-lg-2 col-lg-offset-3 list-btns' },
 					React.createElement(
 						'span',
 						null,
@@ -36852,8 +36852,8 @@ module.exports = React.createClass({
 					)
 				),
 				React.createElement(
-					'div',
-					{ onClick: this.add, className: 'col-xs-4 col-sm-4 col-lg-2 list-btns' },
+					'a',
+					{ href: '#submitiou', className: 'col-xs-4 col-sm-4 col-lg-2 list-btns' },
 					React.createElement(
 						'span',
 						null,
@@ -36862,7 +36862,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ onClick: this.updatePage, className: 'col-xs-4 col-sm-3 col-lg-2 list-btns' },
+					{ className: 'col-xs-4 col-sm-3 col-lg-2 list-btns' },
 					React.createElement(
 						'span',
 						null,
@@ -36904,14 +36904,6 @@ module.exports = React.createClass({
 	},
 	updatePage: function updatePage(e) {
 		window.location.reload();
-	},
-	history: function history(e) {
-		e.preventDefault();
-		this.props.myRouter.navigate('iouhistory', { trigger: true });
-	},
-	add: function add(e) {
-		e.preventDefault();
-		this.props.myRouter.navigate('submitiou', { trigger: true });
 	},
 	showDetails: function showDetails(e) {
 		e.preventDefault();
@@ -38192,8 +38184,8 @@ module.exports = React.createClass({
 				'div',
 				{ className: 'col-xs-12 list-nav' },
 				React.createElement(
-					'div',
-					{ onClick: this.history, className: 'col-xs-4 col-sm-3 col-sm-offset-1 col-lg-2 col-lg-offset-3 list-btns' },
+					'a',
+					{ href: '#uomehistory', className: 'col-xs-4 col-sm-3 col-sm-offset-1 col-lg-2 col-lg-offset-3 list-btns' },
 					React.createElement(
 						'span',
 						null,
@@ -38201,8 +38193,8 @@ module.exports = React.createClass({
 					)
 				),
 				React.createElement(
-					'div',
-					{ onClick: this.add, className: 'col-xs-4 col-sm-4 col-lg-2 list-btns' },
+					'a',
+					{ href: 'submituome', className: 'col-xs-4 col-sm-4 col-lg-2 list-btns' },
 					React.createElement(
 						'span',
 						null,
@@ -38253,14 +38245,6 @@ module.exports = React.createClass({
 	},
 	updatePage: function updatePage(e) {
 		window.location.reload();
-	},
-	history: function history(e) {
-		e.preventDefault();
-		this.props.myRouter.navigate('uomehistory', { trigger: true });
-	},
-	add: function add(e) {
-		e.preventDefault();
-		this.props.myRouter.navigate('submituome', { trigger: true });
 	},
 	showDetails: function showDetails(e) {
 		e.preventDefault();
@@ -38395,7 +38379,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				"a",
-				{ href: "profile", className: "col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 user-bottom achs" },
+				{ href: "#profile", className: "col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 user-bottom achs" },
 				React.createElement("img", { src: "/images/beer-achs.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
 				React.createElement(
 					"h1",
@@ -38424,26 +38408,6 @@ module.exports = React.createClass({
 				)
 			)
 		);
-	},
-	submitIou: function submitIou(e) {
-		e.preventDefault();
-		this.props.myRouter.navigate("submitiou", { trigger: true });
-	},
-	submitUome: function submitUome(e) {
-		e.preventDefault();
-		this.props.myRouter.navigate("submituome", { trigger: true });
-	},
-	listIous: function listIous(e) {
-		e.preventDefault();
-		this.props.myRouter.navigate("ioulist", { trigger: true });
-	},
-	listUomes: function listUomes(e) {
-		e.preventDefault();
-		this.props.myRouter.navigate("uomelist", { trigger: true });
-	},
-	toProfile: function toProfile(e) {
-		e.preventDefault();
-		this.props.myRouter.navigate("profile", { trigger: true });
 	}
 });
 
