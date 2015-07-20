@@ -72,7 +72,6 @@ body {
 
 .navbar-default .navbar-nav>li>a {
 	color:#FAF4D6;
-	text-shadow: 1px 1px 1px black;
 }
 
 .navbar-default .navbar-nav>li {
@@ -96,6 +95,14 @@ body {
 
 .collapse {
 	border: none;
+}
+
+#nav-a-links:hover {
+	color:#334D5C;
+}
+
+#nav-a-links:focus {
+	color:#FFC30F;
 }
 
 @media (min-width: 400px) {
@@ -488,10 +495,14 @@ body {
 	.iou-dash {
 		min-height:280px;
 		margin-bottom: 0px;
+		border-left: 6px solid #0C171A;
+		border-top: 6px solid #0C171A;
 	}
 	.uome-dash {
 		min-height:280px;
-		margin-bottom: 0px;
+		margin-bottom: 0px;	
+		border-top: 6px solid #0C171A;
+		border-right: 6px solid #0C171A;
 	}
 	.iou-dash img {
 		margin-top: 40px;
@@ -505,12 +516,26 @@ body {
 		width:20%;
 		margin-top: -20px;
 	}
-	.user-container h4 {
-
+	.achs {
+		border-bottom: 6px solid #0C171A;
+	}
+	.sub-iou {
+		border-left: 6px solid #0C171A;
+		border-bottom: 6px solid #0C171A;	
+	}
+	.sub-uome {
+		border-right: 6px solid #0C171A;
+		border-bottom: 6px solid #0C171A;	
 	}
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1065px) {
+	.user-bottom {
+		min-height: 240px;
+	}
+	.submit-bottom {
+		padding-top: 90px;
+	}
 }
 
 /*-------------------------   Submit IOU  Page & Submit UOME Page   ------------------------------*/
@@ -780,6 +805,17 @@ body {
 
 .user-info {
 	font-family: "Oswald", sans-serif;
+}
+
+.achs-pic {
+	margin-top: 50px;
+}
+
+.achievements h5 {
+	font-family: "Quicksand", sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+
 }
 
 @media (min-width: 490px) {

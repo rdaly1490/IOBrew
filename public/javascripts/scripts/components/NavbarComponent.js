@@ -18,9 +18,9 @@ module.exports = React.createClass({
       var logo = (<a className="navbar-brand" href="#userdash"><span className="io">io</span><span className="brew">Brew</span><img src="/images/beer-icon.png" className="img-responsive" alt="Responsive image" /></a>);
       links.push(<li className="nav-links mobile-submit" key="SubmitIou"><a href="#submitiou">Submit IOU</a></li>);
       links.push(<li className="nav-links mobile-submit" key="SubmitUome"><a href="#submituome">Submit UOME</a></li>);
-      links.push(<li className="nav-links" key="UserDash"><a href="#userdash">User Dash</a></li>);
-      links.push(<li className="nav-links" key="Profile"><a href="#profile">Profile</a></li>);
-      links.push(<li className="nav-links" key="logout"><a href="#" onClick={this.onLogOut}>Log out</a></li>);
+      links.push(<li className="nav-links" key="UserDash"><a id="nav-a-links" href="#userdash">User Dash</a></li>);
+      links.push(<li className="nav-links" key="Profile"><a id="nav-a-links" href="#profile">Profile</a></li>);
+      links.push(<li className="nav-links" key="logout"><a id="nav-a-links" href="#" onClick={this.onLogOut}>Log out</a></li>);
     }
     return (
       <nav className="navbar navbar-default">

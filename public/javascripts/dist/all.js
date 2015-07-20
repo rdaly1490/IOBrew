@@ -37079,7 +37079,7 @@ module.exports = React.createClass({
         { className: 'nav-links', key: 'UserDash' },
         React.createElement(
           'a',
-          { href: '#userdash' },
+          { id: 'nav-a-links', href: '#userdash' },
           'User Dash'
         )
       ));
@@ -37088,7 +37088,7 @@ module.exports = React.createClass({
         { className: 'nav-links', key: 'Profile' },
         React.createElement(
           'a',
-          { href: '#profile' },
+          { id: 'nav-a-links', href: '#profile' },
           'Profile'
         )
       ));
@@ -37097,7 +37097,7 @@ module.exports = React.createClass({
         { className: 'nav-links', key: 'logout' },
         React.createElement(
           'a',
-          { href: '#', onClick: this.onLogOut },
+          { id: 'nav-a-links', href: '#', onClick: this.onLogOut },
           'Log out'
         )
       ));
@@ -37193,22 +37193,22 @@ module.exports = React.createClass({
 		} else {
 			this.state.achievementHistory.map(function (model) {
 				if (model.get('type') === 'First IOU') {
-					$('.firstiou').attr('src', '/images/green-checkmark.png');
+					$('.firstiou').attr('src', '/images/handshake.png');
 					$('.firstiouCompleted').html('Completed:' + ' ' + moment(model.get('date_created')).format('MMMM Do YYYY'));
 				} else if (model.get('type') === 'First UOME') {
-					$('.firstuome').attr('src', '/images/green-checkmark.png');
+					$('.firstuome').attr('src', '/images/thumbsup.png');
 					$('.firstuomeCompleted').html('Completed:' + ' ' + moment(model.get('date_created')).format('MMMM Do YYYY'));
 				} else if (model.get('type') === 'Ten IOU') {
-					$('.teniou').attr('src', '/images/retro-beer.jpg');
+					$('.teniou').attr('src', '/images/coffeecup.png');
 					$('.teniouCompleted').html('Completed:' + ' ' + moment(model.get('date_created')).format('MMMM Do YYYY'));
 				} else if (model.get('type') === 'Ten UOME') {
-					$('.tenuome').attr('src', '/images/green-checkmark.png');
+					$('.tenuome').attr('src', '/images/beerangel.png');
 					$('.tenuomeCompleted').html('Completed:' + ' ' + moment(model.get('date_created')).format('MMMM Do YYYY'));
 				} else if (model.get('type') === 'Fifty IOU') {
-					$('.fiftyiou').attr('src', '/images/beer-list.png');
+					$('.fiftyiou').attr('src', '/images/emptywallet.png');
 					$('.fiftyiouCompleted').html('Completed:' + ' ' + moment(model.get('date_created')).format('MMMM Do YYYY'));
 				} else if (model.get('type') === 'Fifty UOME') {
-					$('.fiftyuome').attr('src', '/images/beer-list.png');
+					$('.fiftyuome').attr('src', '/images/moneybag.png');
 					$('.fiftyuomeCompleted').html('Completed:' + ' ' + moment(model.get('date_created')).format('MMMM Do YYYY'));
 				}
 			});
@@ -37235,7 +37235,7 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'col-xs-10 col-xs-offset-1 achievements' },
-				React.createElement('img', { src: '/images/beer-achs.png' }),
+				React.createElement('img', { className: 'achs-pic', src: '/images/beer-achs.png' }),
 				React.createElement(
 					'h1',
 					null,
@@ -37248,6 +37248,11 @@ module.exports = React.createClass({
 					React.createElement(
 						'h3',
 						null,
+						'Can you spot me buddy?'
+					),
+					React.createElement(
+						'h5',
+						null,
 						'First IOU Completed!'
 					),
 					React.createElement('p', { className: 'firstiouCompleted' })
@@ -37258,6 +37263,11 @@ module.exports = React.createClass({
 					React.createElement('img', { className: 'firstuome', src: '/images/empty-circle.png' }),
 					React.createElement(
 						'h3',
+						null,
+						'This Round is On Me'
+					),
+					React.createElement(
+						'h5',
 						null,
 						'First UOME Completed'
 					),
@@ -37270,6 +37280,11 @@ module.exports = React.createClass({
 					React.createElement(
 						'h3',
 						null,
+						'Sober Up'
+					),
+					React.createElement(
+						'h5',
+						null,
 						'Ten IOUs Completed!'
 					),
 					React.createElement('p', { className: 'teniouCompleted' })
@@ -37280,6 +37295,11 @@ module.exports = React.createClass({
 					React.createElement('img', { className: 'tenuome', src: '/images/empty-circle.png' }),
 					React.createElement(
 						'h3',
+						null,
+						'The Giver'
+					),
+					React.createElement(
+						'h5',
 						null,
 						'Ten UOMEs Completed'
 					),
@@ -37292,6 +37312,11 @@ module.exports = React.createClass({
 					React.createElement(
 						'h3',
 						null,
+						'Do You Own a Wallet?'
+					),
+					React.createElement(
+						'h5',
+						null,
 						'Fifty IOUs Completed!'
 					),
 					React.createElement('p', { className: 'fiftyiouCompleted' })
@@ -37302,6 +37327,11 @@ module.exports = React.createClass({
 					React.createElement('img', { className: 'fiftyuome', src: '/images/empty-circle.png' }),
 					React.createElement(
 						'h3',
+						null,
+						'Deep Pockets'
+					),
+					React.createElement(
+						'h5',
 						null,
 						'Fifty UOMEs Completed'
 					),
@@ -38433,7 +38463,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ onClick: this.submitIou, className: "col-xs-12 col-sm-4 col-md-3 col-md-offset-1 user-bottom submit-bottom" },
+				{ onClick: this.submitIou, className: "col-xs-12 col-sm-4 col-md-3 col-md-offset-1 user-bottom submit-bottom sub-iou" },
 				React.createElement("img", { src: "/images/plus.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
 				React.createElement(
 					"h4",
@@ -38463,7 +38493,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ onClick: this.submitUome, className: "col-xs-12 col-sm-4 col-md-3 user-bottom submit-bottom" },
+				{ onClick: this.submitUome, className: "col-xs-12 col-sm-4 col-md-3 user-bottom submit-bottom sub-uome" },
 				React.createElement("img", { src: "/images/plus.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
 				React.createElement(
 					"h4",
