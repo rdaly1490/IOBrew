@@ -7,10 +7,9 @@ var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
 
 var routes = require('./routes/index');
-var workouts = require('./routes/workouts');
 var UserRoute = require('./routes/UserRoute');
-var IouRoute = require('./routes/IouRoute');
-var UomeRoute = require('./routes/UomeRoute');
+// var IouRoute = require('./routes/IouRoute');
+// var UomeRoute = require('./routes/UomeRoute');
 var OweRoute = require('./routes/OweRoute');
 var AchievementRoute = require('./routes/AchievementRoute');
 var AchievementFunctions = require('./routes/AchievementFunctions');
@@ -87,24 +86,17 @@ fs.readdirSync(__dirname + "/models").forEach(function(filename) {
 
 app.get('/', routes.index);
 
-app.get("/workouts", function(req, res) {
-  mongoose.model("workout").find(function(err, workout) {
-    AchievementFunctions.FirstIou();
-    res.send(workout);
-  })
-});
+// app.get("/ious", function(req, res) {
+//   mongoose.model("iou").find(req.query.filter, function(err, ious) {
+//     res.send(ious);
+//   })
+// });
 
-app.get("/ious", function(req, res) {
-  mongoose.model("iou").find(req.query.filter, function(err, ious) {
-    res.send(ious);
-  })
-});
-
-app.get("/uomes", function(req, res) {
-  mongoose.model("uome").find(req.query.filter, function(err, uomes) {
-    res.send(uomes);
-  })
-});
+// app.get("/uomes", function(req, res) {
+//   mongoose.model("uome").find(req.query.filter, function(err, uomes) {
+//     res.send(uomes);
+//   })
+// });
 
 app.get("/iobrews", function(req, res) {
   mongoose.model("owe").find(req.query.filter, function(err, owes) {
@@ -120,14 +112,11 @@ app.get("/achievements", function(req, res) {
   })
 });
 
-
-app.post('/workouts', workouts.create);
-
 app.post('/users', UserRoute.create);
 
-app.post('/ious', IouRoute.create);
+// app.post('/ious', IouRoute.create);
 
-app.post('/uomes', UomeRoute.create);
+// app.post('/uomes', UomeRoute.create);
 
 app.post('/iobrews', function(req,res,next) {
   if(req.body.type === 1 && req.body.owedid.indexOf("@") !== -1) {
@@ -162,31 +151,18 @@ app.post('/iobrews', function(req,res,next) {
 app.post('/achievements', AchievementRoute.create);
 
 
+// app.get('/uomes/:id', UomeRoute.show);
 
-
-
-
-
-
-
-app.get('/workouts/:id', workouts.show);
-
-app.get('/uomes/:id', UomeRoute.show);
-
-app.get('/ious/:id', IouRoute.show);
+// app.get('/ious/:id', IouRoute.show);
 
 app.get('/iobrews/:id', OweRoute.show);
 
 app.get('/achievements/:id', AchievementRoute.show);
 
 
+// app.put('/uomes/:id', UomeRoute.update);
 
-
-app.put('/workouts', workouts.update);
-
-app.put('/uomes/:id', UomeRoute.update);
-
-app.put('/ious/:id', IouRoute.update);
+// app.put('/ious/:id', IouRoute.update);
 
 app.put('/iobrews/:id',OweRoute.update
   ,AchievementFunctions.FirstIou
@@ -199,16 +175,9 @@ app.put('/iobrews/:id',OweRoute.update
 app.put('/achievements/:id', AchievementRoute.update);
 
 
+// app.delete('/uomes', UomeRoute.delete);
 
-
-
-
-
-app.delete('/workouts', workouts.delete);
-
-app.delete('/uomes', UomeRoute.delete);
-
-app.delete('/ious', IouRoute.delete);
+// app.delete('/ious', IouRoute.delete);
 
 app.delete('/iobrews', OweRoute.delete);
 

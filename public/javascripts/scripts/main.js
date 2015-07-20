@@ -2,8 +2,6 @@ var React = require('react');
 var Backbone = require("backbone");
 Backbone.$ = require('jquery');
 
-var WorkoutListComponent = require("./components/WorkoutListComponent");
-var SubmitComponent = require("./components/SubmitComponent");
 var RegisterComponent = require("./components/RegisterComponent");
 var SubmitIouComponent = require("./components/SubmitIouComponent");
 var SubmitUomeComponent = require("./components/SubmitUomeComponent");
@@ -34,7 +32,6 @@ var ioBrewUser = new ioBrewUserModel({
 var App = Backbone.Router.extend({
 	routes: {
 		"": "home",
-		"workoutlist":"home",
 		"submit":"submit",
 		"register": "register",
 		"submitiou": "submitIou",

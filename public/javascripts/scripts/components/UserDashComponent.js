@@ -71,30 +71,30 @@ module.exports = React.createClass({
 				<div className="col-xs-12 dash-greet">
 					<h3>Cheers, {this.props.ioBrewUser.get("givenName")}!</h3>
 				</div>
-				<div onClick={this.listIous} className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-5 col-md-offset-1 iou-dash">
+				<a href="#ioulist" className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-5 col-md-offset-1 iou-dash">
 					<img src="/images/happy.png" className="img-responsive dash-imgs" alt="Responsive image" />
 					<h1>{this.state.oweHistory.length}</h1>
 					<h4> Active IOUs </h4>
-				</div>
-				<div onClick={this.listUomes} className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-5 uome-dash">
+				</a>
+				<a href="#uomelist" className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-5 uome-dash">
 					<img src="/images/cry2.png" className="img-responsive dash-imgs" alt="Responsive image" />
 					<h1>{this.state.uomeHistory.length}</h1>
 					<h4> Active UOMEs </h4>
-				</div>
-				<div onClick={this.submitIou} className="col-xs-12 col-sm-4 col-md-3 col-md-offset-1 user-bottom submit-bottom sub-iou">
+				</a>
+				<a href="#submitiou" className="col-xs-12 col-sm-4 col-md-3 col-md-offset-1 user-bottom submit-bottom sub-iou">
 					<img src="/images/plus.png" className="img-responsive dash-imgs" alt="Responsive image" />
 					<h4>Submit IOU</h4>
-				</div>
-				<div onClick={this.toProfile} className="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 user-bottom achs">
+				</a>
+				<a href="profile" className="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 user-bottom achs">
 					<img src="/images/beer-achs.png" className="img-responsive dash-imgs" alt="Responsive image" />
 					<h1>{this.state.achievementHistory.length}</h1>
 					<h4> out of 6</h4>
 					<h4> Achievements</h4>
-				</div>
-				<div onClick={this.submitUome} className="col-xs-12 col-sm-4 col-md-3 user-bottom submit-bottom sub-uome">
+				</a>
+				<a href="#submituome" className="col-xs-12 col-sm-4 col-md-3 user-bottom submit-bottom sub-uome">
 					<img src="/images/plus.png" className="img-responsive dash-imgs" alt="Responsive image" />
 					<h4>Submit UOME</h4>
-				</div>								
+				</a>								
 			</div>
 		);
 	},
