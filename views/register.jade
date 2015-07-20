@@ -64,6 +64,11 @@ block body
                 label.col-sm-4 Password
                 .col-sm-8
                   input.form-control(placeholder='Password', name='password', required='true', type='password')
+                div.col-sm-8 Must Contain:
+                  ul
+                    li 8 characters
+                    li A capital letter
+                    li A number
 
               if app.get('stormpathEnableConfirmPassword')
                 .form-group.group-confirm-password(form-group='true')
