@@ -36409,25 +36409,21 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "container container-fluid" },
+			{ className: "col-xs-6 footer-links" },
 			React.createElement(
-				"div",
-				{ className: "col-xs-6 footer-links" },
-				React.createElement(
-					"a",
-					{ target: "_blank", href: "https://www.linkedin.com/in/dalyrobert" },
-					React.createElement("img", { src: "/images/beer-linkedin.png" })
-				),
-				React.createElement(
-					"a",
-					{ target: "_blank", href: "https://twitter.com/dalywebdev" },
-					React.createElement("img", { src: "/images/beer-twitter.png" })
-				),
-				React.createElement(
-					"a",
-					{ target: "_blank", href: "https://github.com/rdaly1490" },
-					React.createElement("img", { src: "/images/beer-github.png" })
-				)
+				"a",
+				{ target: "_blank", href: "https://www.linkedin.com/in/dalyrobert" },
+				React.createElement("img", { src: "/images/beer-linkedin.png" })
+			),
+			React.createElement(
+				"a",
+				{ target: "_blank", href: "https://twitter.com/dalywebdev" },
+				React.createElement("img", { src: "/images/beer-twitter.png" })
+			),
+			React.createElement(
+				"a",
+				{ target: "_blank", href: "https://github.com/rdaly1490" },
+				React.createElement("img", { src: "/images/beer-github.png" })
 			)
 		);
 	}

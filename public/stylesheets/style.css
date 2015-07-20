@@ -844,12 +844,13 @@ footer {
 	background-color: rgba(51,77,92,1);
 	height:50px;
 	margin-top: -20px;
+	padding-right: 30px;
 }
 
 footer img {
 	height:30px;
 	width: 30px;
-	margin-left: 10px;
+	margin-left: 20px;
 	float: right;
 }
 
