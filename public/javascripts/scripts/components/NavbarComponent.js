@@ -10,12 +10,12 @@ module.exports = React.createClass({
     var links = [];
     var userDropdown = null;
     if(!this.props.ioBrewUser.get("username")) {
-      var logo = (<a className="navbar-brand" href="#"><img src="/images/beer-icon.png" className="img-responsive" alt="Responsive image" /></a>);
+      var logo = (<a className="navbar-brand" href="#"><span className="io">io</span><span className="brew">Brew</span><img src="/images/beer-icon.png" className="img-responsive" alt="Responsive image" /></a>);
       links.push(<li className="nav-links" key="login"><a href="/login">Log in</a></li>);
       links.push(<li className="nav-links" key="register"><a href="/register">Register</a></li>);
     }
     else {
-      var logo = (<a className="navbar-brand" href="#userdash"><img src="/images/beer-icon.png" className="img-responsive" alt="Responsive image" /></a>);
+      var logo = (<a className="navbar-brand" href="#userdash"><span className="io">io</span><span className="brew">Brew</span><img src="/images/beer-icon.png" className="img-responsive" alt="Responsive image" /></a>);
       links.push(<li className="nav-links mobile-submit" key="SubmitIou"><a href="#submitiou">Submit IOU</a></li>);
       links.push(<li className="nav-links mobile-submit" key="SubmitUome"><a href="#submituome">Submit UOME</a></li>);
       links.push(<li className="nav-links" key="UserDash"><a href="#userdash">User Dash</a></li>);

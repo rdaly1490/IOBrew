@@ -36515,8 +36515,8 @@ module.exports = React.createClass({
 						{ className: "col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 benefits" },
 						React.createElement(
 							"div",
-							{ className: "col-xs-12 col-md-12 col-lg-12" },
-							React.createElement("img", { src: "/images/beer-list.png", className: "ben-img" }),
+							{ className: "col-xs-12 col-md-12 col-lg-12 ben" },
+							React.createElement("img", { src: "/images/list.png", className: "ben-img" }),
 							React.createElement(
 								"h3",
 								null,
@@ -36530,8 +36530,8 @@ module.exports = React.createClass({
 						),
 						React.createElement(
 							"div",
-							{ className: "col-xs-12 col-md-12 col-lg-12" },
-							React.createElement("img", { src: "/images/beer-achievements.png", className: "ben-img" }),
+							{ className: "col-xs-12 col-md-12 col-lg-12 ben" },
+							React.createElement("img", { src: "/images/awards.png", className: "ben-img" }),
 							React.createElement(
 								"h3",
 								null,
@@ -36545,8 +36545,8 @@ module.exports = React.createClass({
 						),
 						React.createElement(
 							"div",
-							{ className: "col-xs-12 col-md-12 col-lg-12" },
-							React.createElement("img", { src: "/images/envelope2.png", className: "ben-img" }),
+							{ className: "col-xs-12 col-md-12 col-lg-12 ben" },
+							React.createElement("img", { src: "/images/envelope.png", className: "ben-img" }),
 							React.createElement(
 								"h3",
 								null,
@@ -37010,6 +37010,16 @@ module.exports = React.createClass({
       var logo = React.createElement(
         'a',
         { className: 'navbar-brand', href: '#' },
+        React.createElement(
+          'span',
+          { className: 'io' },
+          'io'
+        ),
+        React.createElement(
+          'span',
+          { className: 'brew' },
+          'Brew'
+        ),
         React.createElement('img', { src: '/images/beer-icon.png', className: 'img-responsive', alt: 'Responsive image' })
       );
       links.push(React.createElement(
@@ -37034,6 +37044,16 @@ module.exports = React.createClass({
       var logo = React.createElement(
         'a',
         { className: 'navbar-brand', href: '#userdash' },
+        React.createElement(
+          'span',
+          { className: 'io' },
+          'io'
+        ),
+        React.createElement(
+          'span',
+          { className: 'brew' },
+          'Brew'
+        ),
         React.createElement('img', { src: '/images/beer-icon.png', className: 'img-responsive', alt: 'Responsive image' })
       );
       links.push(React.createElement(
@@ -38383,7 +38403,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ onClick: this.listIous, className: "col-xs-12 col-sm-6 col-md-5 col-md-offset-1 iou-dash" },
+				{ onClick: this.listIous, className: "col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-5 col-md-offset-1 iou-dash" },
 				React.createElement("img", { src: "/images/happy.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
 				React.createElement(
 					"h1",
@@ -38398,7 +38418,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ onClick: this.listUomes, className: "col-xs-12 col-sm-6 col-md-5 uome-dash" },
+				{ onClick: this.listUomes, className: "col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-5 uome-dash" },
 				React.createElement("img", { src: "/images/cry2.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
 				React.createElement(
 					"h1",
@@ -38423,7 +38443,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ onClick: this.toProfile, className: "col-xs-12 col-sm-4 col-md-4 user-bottom achs" },
+				{ onClick: this.toProfile, className: "col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 user-bottom achs" },
 				React.createElement("img", { src: "/images/beer-achs.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
 				React.createElement(
 					"h1",
