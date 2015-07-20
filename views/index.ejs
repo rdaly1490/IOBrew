@@ -21,6 +21,14 @@
 	<script type="text/javascript">
 		window.iobrew_user = <%- user ? JSON.stringify(user) : 'false' %>;
 	</script>
+	<script language="javascript">
+        function autoResizeDiv()
+        {
+            document.getElementById('container').style.height = window.innerHeight +'px';
+        }
+        window.onresize = autoResizeDiv;
+        autoResizeDiv();
+    </script>
 	<% if(process.env.NODE_ENV === 'production') { %>
 		<script type="text/javascript" src="/javascripts/jquery.min.js"></script>
 		<script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
