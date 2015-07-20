@@ -3,9 +3,13 @@
 }
 
 
-body {
+/*body {
   padding: 0px;
-}
+ 	background: url(/images/textured-background.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}*/
 
 a:hover {
 	text-decoration: none;
@@ -233,6 +237,10 @@ a:hover {
 
 .home-benefits {
 	padding-bottom: 60px;
+/*	background: url(/images/textured-background.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;*/
 }
 
 .benefits {
@@ -834,6 +842,12 @@ a:hover {
 	}
 	.achievements h1 {
 		margin-bottom: 60px;
+	}
+}
+
+@media (min-width: 768px) {
+	.achievements div {
+		min-height: 310px;
 	}
 }
 

@@ -10,7 +10,7 @@ module.exports = React.createClass({
 						<div className=" col-xs-12 box">
 						<h1> Connect.</h1>
 						<h1 className="alt-text"> Drink. </h1>
-						<h1>Share.</h1>
+						<h1>Share.</h1> 
 						<p>An innovative IOU App for beers</p>
 						</div>
 					</div>
@@ -25,7 +25,7 @@ module.exports = React.createClass({
 							<div className="col-xs-12 col-md-12 col-lg-12 ben">
 								<img src="/images/list.png" className="ben-img" />
 								<h3>Keep Track</h3>
-								<p>Never miss out on a cold, refreshing beer again!  IoBrew lets you keep
+								<p>Never miss out on a cold, refreshing beer again!  ioBrew lets you keep
 									track of beer owed to you and beers you owe to others.  Remember to collect
 									on those beers and to share the wealth with others.
 								</p>

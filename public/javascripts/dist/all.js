@@ -36509,7 +36509,7 @@ module.exports = React.createClass({
 							React.createElement(
 								"p",
 								null,
-								"Never miss out on a cold, refreshing beer again!  IoBrew lets you keep track of beer owed to you and beers you owe to others.  Remember to collect on those beers and to share the wealth with others."
+								"Never miss out on a cold, refreshing beer again!  ioBrew lets you keep track of beer owed to you and beers you owe to others.  Remember to collect on those beers and to share the wealth with others."
 							)
 						),
 						React.createElement(
