@@ -232,10 +232,6 @@ a:hover {
 }
 
 .home-benefits {
-	background: url(/images/textured-background.jpg);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
 	padding-bottom: 60px;
 }
 
@@ -352,10 +348,6 @@ a:hover {
 @accent: lighten(@main, 40%);
 
 .user-container {
-	background: url(/images/textured-background.jpg);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
 	min-height: 600px;
 	padding-left: 0px;
 	padding-right: 0px;
@@ -563,10 +555,6 @@ a:hover {
 /*-------------------------   Submit IOU  Page & Submit UOME Page   ------------------------------*/
 
 .submit-container {
-	background: url(/images/textured-background.jpg);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
 	margin-top: -30px;
 	min-height: 900px;
 }
@@ -658,10 +646,6 @@ a:hover {
 /*--------------------------   IOU List Page   -------------------------------*/
 
 .list-container {
-	background: url(/images/textured-background.jpg);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
 	margin-top: -30px;
 	min-height: 900px;
 	padding-bottom: 50px;
@@ -787,10 +771,6 @@ a:hover {
 /*----------------------------------   Profile Page   ----------------------------------*/
 
 .profile-container {
-	background: url(/images/textured-background.jpg);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
 	margin-top: -30px;
 	text-align: center;
 	padding-top: 30px;
