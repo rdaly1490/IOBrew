@@ -22,7 +22,7 @@ block body
                 each error in formErrors
                   p #{error.error}
 
-            form.registration-form.form-horizontal.sp-form(method='post', role='form')
+            form.registration-form.form-horizontal.sp-form(method='post', role='form', onsubmit='lower()')
               input(name='_csrf', type='hidden', value=csrfToken)
               input(name='customData[imageUrl]', type='hidden', value='https://upload.wikimedia.org/wikipedia/commons/0/0f/Grosser_Panda.JPG')
 
@@ -75,3 +75,16 @@ block body
 
         a.to-login(href=app.get('stormpathLoginUrl')) &nbsp; Back to Log In
         a.to-login(href='/') Back to HomePage &nbsp;|  
+
+  script(type='text/javascript').
+      /**
+       * This functions runs when the form is submitted -- it changes the user's
+       * email address to all lowercase.
+       */
+      function lower() {
+        var emailInput = document.getElementsByName('email')[0];
+        emailInput.value = emailInput.value.toLowerCase();
+
+        // Allow the form submission to go through uninterrupted.
+        return true;
+      }
