@@ -38370,7 +38370,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"h4",
 					null,
-					"Submit IOU"
+					"Add IOU"
 				)
 			),
 			React.createElement(
@@ -38385,12 +38385,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"h4",
 					null,
-					" out of 6"
-				),
-				React.createElement(
-					"h4",
-					null,
-					" Achievements"
+					" of 6 Achievements"
 				)
 			),
 			React.createElement(
@@ -38400,7 +38395,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"h4",
 					null,
-					"Submit UOME"
+					"Add UOME"
 				)
 			)
 		);

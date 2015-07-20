@@ -83,17 +83,16 @@ module.exports = React.createClass({
 				</a>
 				<a href="#submitiou" className="col-xs-12 col-sm-4 col-md-3 col-md-offset-1 user-bottom submit-bottom sub-iou">
 					<img src="/images/plus.png" className="img-responsive dash-imgs" alt="Responsive image" />
-					<h4>Submit IOU</h4>
+					<h4>Add IOU</h4>
 				</a>
 				<a href="#profile" className="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 user-bottom achs">
 					<img src="/images/beer-achs.png" className="img-responsive dash-imgs" alt="Responsive image" />
 					<h1>{this.state.achievementHistory.length}</h1>
-					<h4> out of 6</h4>
-					<h4> Achievements</h4>
+					<h4> of 6 Achievements</h4>
 				</a>
 				<a href="#submituome" className="col-xs-12 col-sm-4 col-md-3 user-bottom submit-bottom sub-uome">
 					<img src="/images/plus.png" className="img-responsive dash-imgs" alt="Responsive image" />
-					<h4>Submit UOME</h4>
+					<h4>Add UOME</h4>
 				</a>								
 			</div>
 		);
