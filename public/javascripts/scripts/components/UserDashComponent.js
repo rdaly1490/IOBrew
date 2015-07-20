@@ -89,6 +89,7 @@ module.exports = React.createClass({
 					<img src="/images/beer-achs.png" className="img-responsive dash-imgs" alt="Responsive image" />
 					<h1>{this.state.achievementHistory.length}</h1>
 					<h4> out of 6</h4>
+					<h4> Achievements</h4>
 				</div>
 				<div onClick={this.submitUome} className="col-xs-12 col-sm-4 col-md-3 user-bottom submit-bottom">
 					<img src="/images/plus.png" className="img-responsive dash-imgs" alt="Responsive image" />

@@ -110,7 +110,7 @@ Backbone.history.on("all", function() {
 });
 
 React.render(<NavbarComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, document.getElementById("nav"));
-// React.render(<FooterComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, document.getElementById("footer"));
+React.render(<FooterComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, document.getElementById("footer"));
 
 // if (ioBrewUser.get("username") !== null) {
 // 	myRouter.navigate("userdash", {trigger:true});

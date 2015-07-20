@@ -36421,11 +36421,25 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			null,
+			{ className: "container container-fluid" },
 			React.createElement(
-				"h1",
-				null,
-				"Rob was here"
+				"div",
+				{ className: "col-xs-6 footer-links" },
+				React.createElement(
+					"a",
+					{ target: "_blank", href: "https://www.linkedin.com/in/dalyrobert" },
+					React.createElement("img", { src: "/images/beer-linkedin.png" })
+				),
+				React.createElement(
+					"a",
+					{ target: "_blank", href: "https://twitter.com/dalywebdev" },
+					React.createElement("img", { src: "/images/beer-twitter.png" })
+				),
+				React.createElement(
+					"a",
+					{ target: "_blank", href: "https://github.com/rdaly1490" },
+					React.createElement("img", { src: "/images/beer-github.png" })
+				)
 			)
 		);
 	}
@@ -38420,6 +38434,11 @@ module.exports = React.createClass({
 					"h4",
 					null,
 					" out of 6"
+				),
+				React.createElement(
+					"h4",
+					null,
+					" Achievements"
 				)
 			),
 			React.createElement(
@@ -38624,7 +38643,7 @@ Backbone.history.on('all', function () {
 });
 
 React.render(React.createElement(NavbarComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('nav'));
-// React.render(<FooterComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, document.getElementById("footer"));
+React.render(React.createElement(FooterComponent, { myRouter: myRouter, ioBrewUser: ioBrewUser }), document.getElementById('footer'));
 
 // if (ioBrewUser.get("username") !== null) {
 // 	myRouter.navigate("userdash", {trigger:true});
