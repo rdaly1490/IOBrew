@@ -20,13 +20,15 @@ a:hover {
 }
 
 #container {
+	padding-bottom:70px;
+}
+
+#wrapper {
 	background: url(/images/textured-background.jpg);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	padding-bottom:70px;
 }
-
 
 
 /*------------------   NavBar   -----------------------------------*/
