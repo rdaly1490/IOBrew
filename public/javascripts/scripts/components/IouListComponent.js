@@ -81,7 +81,7 @@ module.exports = React.createClass({
 					<a href="#submitiou" className="col-xs-4 col-sm-4 col-lg-2 list-btns">
 						<span>Add IOU</span>
 					</a>
-					<div className="col-xs-4 col-sm-3 col-lg-2 list-btns">
+					<div onClick={this.updatePage} className="col-xs-4 col-sm-3 col-lg-2 list-btns">
 						<span>Update</span>
 					</div>
 				</div>

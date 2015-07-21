@@ -77,8 +77,8 @@ module.exports = React.createClass({
 					<a href="#uomehistory" className="col-xs-4 col-sm-3 col-sm-offset-1 col-lg-2 col-lg-offset-3 list-btns">
 						<span>History</span>
 					</a>
-					<a href="submituome" className="col-xs-4 col-sm-4 col-lg-2 list-btns">
-						<span>Add IOU</span>
+					<a href="#submituome" className="col-xs-4 col-sm-4 col-lg-2 list-btns">
+						<span>Add UOME</span>
 					</a>
 					<div onClick={this.updatePage} className="col-xs-4 col-sm-3 col-lg-2 list-btns">
 						<span>Update</span>

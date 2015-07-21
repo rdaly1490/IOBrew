@@ -112,6 +112,8 @@ React.render(<FooterComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, do
 // if (ioBrewUser.get("username") !== null) {
 // 	myRouter.navigate("userdash", {trigger:true});
 // }
-
+$('.nav a').on('click', function(){
+    $(".navbar-toggle").click() //bootstrap 3.x by Richard
+});
 
 

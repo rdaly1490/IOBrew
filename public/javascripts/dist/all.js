@@ -36858,7 +36858,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ className: 'col-xs-4 col-sm-3 col-lg-2 list-btns' },
+					{ onClick: this.updatePage, className: 'col-xs-4 col-sm-3 col-lg-2 list-btns' },
 					React.createElement(
 						'span',
 						null,
@@ -38190,11 +38190,11 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'a',
-					{ href: 'submituome', className: 'col-xs-4 col-sm-4 col-lg-2 list-btns' },
+					{ href: '#submituome', className: 'col-xs-4 col-sm-4 col-lg-2 list-btns' },
 					React.createElement(
 						'span',
 						null,
-						'Add IOU'
+						'Add UOME'
 					)
 				),
 				React.createElement(
@@ -38497,6 +38497,10 @@ React.render(React.createElement(FooterComponent, { myRouter: myRouter, ioBrewUs
 // if (ioBrewUser.get("username") !== null) {
 // 	myRouter.navigate("userdash", {trigger:true});
 // }
+$('.nav a').on('click', function () {
+	$('.navbar-toggle').click();
+});
+//bootstrap 3.x by Richard
 
 },{"./components/FooterComponent":164,"./components/HomePageComponent":165,"./components/IouHistoryComponent":166,"./components/IouListComponent":167,"./components/LoginComponent":168,"./components/NavbarComponent":169,"./components/ProfilePageComponent":170,"./components/RegisterComponent":171,"./components/SubmitIouComponent":172,"./components/SubmitUomeComponent":173,"./components/UomeHistoryComponent":174,"./components/UomeListComponent":175,"./components/UserDashComponent":176,"./models/ioBrewUserModel":181,"backbone":1,"jquery":4,"react":160}],178:[function(require,module,exports){
 "use strict";
