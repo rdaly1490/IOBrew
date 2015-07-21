@@ -781,7 +781,7 @@ a:hover {
   	border-radius: 5px;
 	border: 1px solid #0C171A;
 	font-style: "Oswald", "sans-serif";
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .list-btns span {
@@ -806,6 +806,11 @@ a:hover {
 	margin-bottom: -20px;
 }
 
+@media (min-width: 550px) {
+	.list-btns {
+		font-size: 20px;
+	}
+}
 
 /*----------------------------------   Profile Page   ----------------------------------*/
 
