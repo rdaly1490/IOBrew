@@ -474,7 +474,6 @@ a:hover {
 	width:100%;
 	margin-top: 50px;
 	border-radius: 4px;
-	/*border:none;*/
 	font-size: 30px;
 	background-color: #FFEFBF;
 	color:#999273;
@@ -787,6 +786,7 @@ a:hover {
 
 .list-btns span {
 	margin-top: 10px;
+	color:#0C171A;
 }
 
 .list-btns:hover {
