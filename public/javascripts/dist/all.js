@@ -38498,9 +38498,10 @@ React.render(React.createElement(FooterComponent, { myRouter: myRouter, ioBrewUs
 // 	myRouter.navigate("userdash", {trigger:true});
 // }
 $('.nav a').on('click', function () {
-	$('.navbar-toggle').click();
+	if ($(window).width() < 768) {
+		$('.navbar-toggle').click();
+	}
 });
-//bootstrap 3.x by Richard
 
 },{"./components/FooterComponent":164,"./components/HomePageComponent":165,"./components/IouHistoryComponent":166,"./components/IouListComponent":167,"./components/LoginComponent":168,"./components/NavbarComponent":169,"./components/ProfilePageComponent":170,"./components/RegisterComponent":171,"./components/SubmitIouComponent":172,"./components/SubmitUomeComponent":173,"./components/UomeHistoryComponent":174,"./components/UomeListComponent":175,"./components/UserDashComponent":176,"./models/ioBrewUserModel":181,"backbone":1,"jquery":4,"react":160}],178:[function(require,module,exports){
 "use strict";

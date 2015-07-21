@@ -113,7 +113,9 @@ React.render(<FooterComponent myRouter={myRouter} ioBrewUser={ioBrewUser} />, do
 // 	myRouter.navigate("userdash", {trigger:true});
 // }
 $('.nav a').on('click', function(){
-    $(".navbar-toggle").click() //bootstrap 3.x by Richard
+	if($(window).width() < 768) {
+    	$(".navbar-toggle").click()
+    }
 });
 
 
