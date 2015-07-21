@@ -38336,7 +38336,7 @@ module.exports = React.createClass({
 			React.createElement(
 				"a",
 				{ href: "#ioulist", className: "col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-5 col-md-offset-1 iou-dash" },
-				React.createElement("img", { src: "/images/happy.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
+				React.createElement("img", { src: "/images/beeriou.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
 				React.createElement(
 					"h1",
 					null,
@@ -38351,7 +38351,7 @@ module.exports = React.createClass({
 			React.createElement(
 				"a",
 				{ href: "#uomelist", className: "col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-5 uome-dash" },
-				React.createElement("img", { src: "/images/cry2.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
+				React.createElement("img", { src: "/images/beeruome.png", className: "img-responsive dash-imgs", alt: "Responsive image" }),
 				React.createElement(
 					"h1",
 					null,
