@@ -629,6 +629,7 @@ a:hover {
 
 .form-help {
 	float: right;
+	cursor: pointer;
 }
 
 .form-help:hover {
