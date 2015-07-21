@@ -60,6 +60,14 @@ a:hover {
 	text-align: center;
 }
 
+.navbar-default {
+	border:none;
+}
+
+.navbar-toggle {
+	border:none;
+}
+
 .navbar-brand a{
 	display: block;
 	margin-left: auto;
@@ -112,7 +120,16 @@ a:hover {
 }
 
 .collapsed {
-	margin-top: 20px;
+	margin-top: 15px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color:#FAF4D6;
+}
+
+.navbar-toggle .icon-bar {
+	height:3px;
+	width:35px;
 }
 
 .collapse {
