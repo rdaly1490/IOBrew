@@ -45,9 +45,9 @@ exports.create = function(req, res) {
         var message = {
           from: "rdaly1490@gmail.com",
           to: newOwe.createdby,
-          subject: "Don't forget about your booze, log back into IoBrew!",
-          text: "This is a test email.",
-          html: "<p> From: "+" "+newOwe.createdby+"</p> <p> Message: "+" "+newOwe.category+"</p>"
+          subject: "Don't forget about your booze, log back into ioBrew!",
+          text: "Hi, "+newOwe.createdby+"!"+"This is your one week reminder, you've got an item in your queue for " +newOwe.category+" that's begging to be drank; log back into ioBrew, find the offender, and enjoy a cold one.",
+          html: "<h3> Hi, "+newOwe.createdby+"!"+"</h3> <h5>This is your one week reminder, dont forget you've got an item in your queue for " +newOwe.category+" that's begging to be drank; log back into ioBrew, find the offender, and enjoy a cold one.</h5>"
         };
         transporter.sendMail(message, function(error, info) {
           if(error) {
@@ -59,7 +59,7 @@ exports.create = function(req, res) {
             res.json({message: "Email sent!"});
           }
         });
-      }, 1000);
+      }, 604800000);
     }
     else {
       res.json({message: "Email Reminder false"});
